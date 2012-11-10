@@ -1,0 +1,39 @@
+--- usr/bin/steam.orig	2012-11-08 11:49:47.959025506 +0100
++++ usr/bin/steam	2012-11-08 11:49:59.588025546 +0100
+@@ -1,26 +1,5 @@
+ #! /bin/bash
+ 
+-function install_extra_packages() {
+-	EXTRA_PACKAGES="$*"
+-
+-	# Get the list of packages which are already installed
+-	INSTALLED="$(dpkg --get-selections $EXTRA_PACKAGES 2>/dev/null | grep "\binstall$" | cut -f1 | sort)"
+-
+-	# compute the list of packages that need to be installed
+-	NEEDSINSTALL="$(comm -23 <(echo "$EXTRA_PACKAGES" | tr ' ' '\n' | sort) <(echo "$INSTALLED") | xargs ) "
+-
+-	MESSAGE='Enter your password to complete the Steam installation.
+-
+-Steam needs to install these additional packages: 
+-'$NEEDSINSTALL
+-
+-	if [ $NEEDSINSTALL ]; then
+-		# Call gksudo to actually do the work
+-		gksudo --disable-grab --message "$MESSAGE" apt-get install $NEEDSINSTALL
+-	fi
+-}
+-
+-
+ # these variables can be overridden on commandline
+ LAUNCHSTEAMDIR=~/Steam
+ LAUNCHSTEAMPLATFORM=ubuntu12_32
+@@ -54,9 +33,6 @@
+ 	
+     cp /usr/share/applications/steam.desktop "${DESKTOP_DIR}"
+     chmod +x "${DESKTOP_DIR}/steam.desktop"
+-
+-	# Try and install any extra packages
+-	install_extra_packages jockey-common python-apt
+ fi
+ # go to the install directory and run the client
+ LAUNCHSTEAMDIR=`readlink -e $STEAMROOTLINK`
