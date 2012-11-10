@@ -13,7 +13,7 @@ LICENSE="steam"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE=""
+IUSE="video_cards_intel"
 
 RDEPEND=" virtual/opengl
 		amd64? (
@@ -59,6 +59,8 @@ RDEPEND=" virtual/opengl
 			x11-libs/libXrender
 			x11-libs/pango
 			>=x11-libs/pixman-0.24.4
+
+			video_cards_intel? ( >=media-libs/mesa-9 )
 			)"
 
 S=${WORKDIR}
