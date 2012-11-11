@@ -61,7 +61,7 @@ RDEPEND="
 			x11-libs/libXrender
 			x11-libs/pango
 			>=x11-libs/pixman-0.24.4
-			
+
 			video_cards_intel? ( >=media-libs/mesa-9 )
 			)"
 
@@ -75,25 +75,25 @@ src_prepare() {
 	# fix QA notice
 	sed -r -i "s/^(MimeType=.*)/\1;/" usr/share/applications/steam.desktop
 	sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
-	
+
 	epatch "${FILESDIR}/remove-ubuntu-specifics.patch"
 }
 
 src_install() {
 	dobin "usr/bin/steam"
-	
+
 	insinto "/usr/lib/"
 	doins -r usr/lib/steam
-	
+
 	dodoc usr/share/doc/steam/changelog.gz
 	doman usr/share/man/man6/steam.6.gz
-	
+
 	insinto /usr/share/applications/
 	doins usr/share/applications/steam.desktop
-	
+
 	insinto /usr/share/icons/
 	doins -r usr/share/icons/
-	
+
 	doicon usr/share/pixmaps/steam.xpm
 }
 
@@ -101,8 +101,7 @@ pkg_postinst() {
 	einfo "This ebuild only installs the steam installer."
 	einfo "Execute \"steam\" to install the actual client into"
 	einfo "your home folder."
-	
+
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }
-
