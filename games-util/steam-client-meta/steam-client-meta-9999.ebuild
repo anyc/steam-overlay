@@ -73,11 +73,13 @@ pkg_postinst() {
 	einfo "dependencies for the steam client."
 	
 	if use windows-games; then
+		einfo ""
 		einfo "To start games automatically with wine, follow"
 		einfo "https://wiki.archlinux.org/index.php/Wine#Using_Wine_as_an_interpreter_for_Win16.2FWin32_binaries"
 	fi
 	
 	if use flash; then
+		einfo ""
 		einfo "In order to use flash, link the 32bit libflashplayer.so to"
 		einfo "/usr/lib/browser-plugins/"
 	fi
