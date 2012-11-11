@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<use>
+	<flag name='windows-games'>Pull in app-emulation/wine to play windows-only games</flag>
+	<flag name='flash'>Pull in www-plugins/adobe-flash for the internal browser</flag>
+</use>
+</pkgmetadata>
