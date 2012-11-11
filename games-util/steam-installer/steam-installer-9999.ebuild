@@ -9,7 +9,7 @@ inherit eutils unpacker
 DESCRIPTION="Installer for Valve's native Steam client"
 HOMEPAGE="https://steampowered.com"
 SRC_URI="http://media.steampowered.com/client/installer/steam.deb"
-LICENSE="steam"
+LICENSE="ValveSteamLicense"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
@@ -40,25 +40,25 @@ src_prepare() {
 	# fix QA notice
 	sed -r -i "s/^(MimeType=.*)/\1;/" usr/share/applications/steam.desktop
 	sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
-	
+
 	epatch "${FILESDIR}/remove-ubuntu-specifics.patch"
 }
 
 src_install() {
 	dobin "usr/bin/steam"
-	
+
 	insinto "/usr/lib/"
 	doins -r usr/lib/steam
-	
+
 	dodoc usr/share/doc/steam/changelog.gz
 	doman usr/share/man/man6/steam.6.gz
-	
+
 	insinto /usr/share/applications/
 	doins usr/share/applications/steam.desktop
-	
+
 	insinto /usr/share/icons/
 	doins -r usr/share/icons/
-	
+
 	doicon usr/share/pixmaps/steam.xpm
 }
 
@@ -69,8 +69,7 @@ pkg_postinst() {
 	einfo ""
 	einfo "To pull in the dependencies for the steam client, emerge:"
 	einfo "game-utils/steam-client-meta"
-	
+
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }
-
