@@ -26,4 +26,4 @@ Branches
 
 * master: current stable versions, should equal the one in http://dev.gentoo.org/~mrpouet/pub/gamerlay/main_page.xml
 * testing: testing new modifications
-* meta-pkgs: split installer ebuild in installer-only ebuild and meta ebuild for client dependencies
+* meta-pkgs: split installer ebuild in installer-only ebuild and meta ebuild for client dependencies (see [https://github.com/anyc/steam-overlay/wiki/Meta-pkgs-branch](meta-pkgs wiki entry) )

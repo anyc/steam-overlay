@@ -11,10 +11,12 @@ LICENSE="steam"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="video_cards_intel"
+IUSE="video_cards_intel windows-games flash"
 
 RDEPEND="
 		virtual/opengl
+		
+		windows-games? ( app-emulation/wine )
 		
 		amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
@@ -25,6 +27,8 @@ RDEPEND="
 			>=app-emulation/emul-linux-x86-xlibs-20121028
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
+			
+			flash? ( www-plugins/adobe-flash[32bit] )
 			)
 		x86? (
 			dev-libs/glib:2
@@ -59,7 +63,8 @@ RDEPEND="
 			x11-libs/libXrender
 			x11-libs/pango
 			>=x11-libs/pixman-0.24.4
-
+			
+			flash? ( www-plugins/adobe-flash )
 			video_cards_intel? ( >=media-libs/mesa-9 )
 			)"
 
