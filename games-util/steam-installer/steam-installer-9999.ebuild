@@ -16,7 +16,7 @@ KEYWORDS="-* ~amd64 ~x86"
 IUSE="video_cards_intel"
 
 RDEPEND="
-		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi)
+		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
 		virtual/opengl
 		amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
