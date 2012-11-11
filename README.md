@@ -1,7 +1,7 @@
 steam-overlay
 =============
 
-Gentoo overlay for Valve's Steam client and Steam-based games
+Gentoo overlay for Valve's Steam client and Steam-based games. Stable ebuilds are also transferred to [Gamerlay overlay](http://dev.gentoo.org/~mrpouet/pub/gamerlay/main_page.xml).
 
 Using the overlay
 -----------------
@@ -24,6 +24,6 @@ If you want to suggest changes, like new dependencies or game-related stuff, ple
 Branches
 --------
 
-* master: current stable versions, should equal the one in [Gamerlay overlay](http://dev.gentoo.org/~mrpouet/pub/gamerlay/main_page.xml)
+* master: current stable versions
 * testing: testing new modifications for master branch
 * meta-pkgs: split installer ebuild in installer-only ebuild and meta ebuild for client dependencies (see [meta-pkgs wiki entry](https://github.com/anyc/steam-overlay/wiki/Meta-pkgs-branch) )
