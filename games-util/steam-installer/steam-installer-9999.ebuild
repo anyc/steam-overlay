@@ -9,13 +9,15 @@ inherit eutils unpacker
 DESCRIPTION="Installer for Valve's native Steam client"
 HOMEPAGE="https://steampowered.com"
 SRC_URI="http://media.steampowered.com/client/installer/steam.deb"
-LICENSE="steam"
+LICENSE="ValveSteamLicense"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE="video_cards_intel"
 
-RDEPEND=" virtual/opengl
+RDEPEND="
+		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi)
+		virtual/opengl
 		amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
 			>=app-emulation/emul-linux-x86-gtklibs-20121028
@@ -59,7 +61,7 @@ RDEPEND=" virtual/opengl
 			x11-libs/libXrender
 			x11-libs/pango
 			>=x11-libs/pixman-0.24.4
-
+			
 			video_cards_intel? ( >=media-libs/mesa-9 )
 			)"
 
