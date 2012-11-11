@@ -20,3 +20,10 @@ Contribute to this overlay
 --------------------------
 
 If you want to suggest changes, like new dependencies or game-related stuff, please send a github pull request with explanation/proof why this is necessary, so we can discuss it. Determine correct behavior and dependencies can be tricky, therefore we'd like to discuss and wait for confirmation of others before adding modifications or new ebuilds.
+
+Branches
+--------
+
+* master: current stable versions, should equal the one in http://dev.gentoo.org/~mrpouet/pub/gamerlay/main_page.xml
+* testing: testing new modifications
+* meta-pkgs: split installer ebuild in installer-only ebuild and meta ebuild for client dependencies
