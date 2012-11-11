@@ -14,6 +14,7 @@ KEYWORDS="-* ~amd64 ~x86"
 IUSE="video_cards_intel windows-games flash"
 
 RDEPEND="
+		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi)
 		virtual/opengl
 		
 		windows-games? ( app-emulation/wine )
