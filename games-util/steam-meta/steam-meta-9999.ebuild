@@ -7,7 +7,7 @@ EAPI=4
 DESCRIPTION="Meta package for Valve's Steam environment"
 HOMEPAGE="https://steampowered.com"
 SRC_URI=""
-LICENSE="steam"
+LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"

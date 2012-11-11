@@ -7,7 +7,7 @@ EAPI=4
 DESCRIPTION="Meta package for Valve's native Steam client"
 HOMEPAGE="https://steampowered.com"
 SRC_URI=""
-LICENSE="steam"
+LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
@@ -71,6 +71,16 @@ RDEPEND="
 pkg_postinst() {
 	einfo "This is only a meta package that pulls in the required"
 	einfo "dependencies for the steam client."
+	
+	if use windows-games; then
+		einfo "To start games automatically with wine, follow"
+		einfo "https://wiki.archlinux.org/index.php/Wine#Using_Wine_as_an_interpreter_for_Win16.2FWin32_binaries"
+	fi
+	
+	if use flash; then
+		einfo "In order to use flash, link the 32bit libflashplayer.so to"
+		einfo "/usr/lib/browser-plugins/"
+	fi
 	
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
