@@ -19,9 +19,6 @@ RDEPEND="
 		"
 
 pkg_postinst() {
-	einfo "This is only a meta package that pulls in dependencies"
+	einfo "This is a meta package that pulls in the dependencies"
 	einfo "for the steam environment."
-
-	ewarn "The steam client and the games are not controlled by"
-	ewarn "portage. Updates are handled by the client itself."
 }
