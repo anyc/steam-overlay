@@ -4,8 +4,6 @@
 
 EAPI=4
 
-inherit eutils unpacker
-
 DESCRIPTION="Meta package for Valve's native Steam client"
 HOMEPAGE="https://steampowered.com"
 SRC_URI=""
@@ -15,7 +13,7 @@ SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE="video_cards_intel"
 
-RDEPEND=" games-util/steam-installer
+RDEPEND="
 		virtual/opengl
 		
 		amd64? (
