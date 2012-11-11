@@ -6,7 +6,7 @@ EAPI=4
 
 inherit eutils unpacker
 
-DESCRIPTION="Installer for Valve's Steam client for Linux"
+DESCRIPTION="Installer for Valve's native Steam client"
 HOMEPAGE="https://steampowered.com"
 SRC_URI="http://media.steampowered.com/client/installer/steam.deb"
 LICENSE="steam"
