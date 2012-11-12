@@ -9,5 +9,7 @@
 		This ebuild installs the Steam installer not the client
 		itself.
 	</longdescription>
-	<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	<upstream>
+		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	</upstream>
 </pkgmetadata>
