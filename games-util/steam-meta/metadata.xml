@@ -9,5 +9,7 @@
 		This is a meta package that pulls in dependencies
 		for the steam environment.
 	</longdescription>
-	<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	<upstream>
+		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	</upstream>
 </pkgmetadata>
