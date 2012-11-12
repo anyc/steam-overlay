@@ -9,7 +9,9 @@
 		This is a meta package that pulls in dependencies
 		for the steam client.
 	</longdescription>
-	<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	<upstream>
+		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	</upstream>
 	<use>
 		<flag name='windows-games'>Pull in app-emulation/wine to play windows-only games</flag>
 		<flag name='flash'>Pull in www-plugins/adobe-flash for the internal browser</flag>
