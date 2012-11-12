@@ -17,9 +17,12 @@ IUSE=""
 
 RDEPEND=" amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
+			>=app-emulation/emul-linux-x86-gtklibs-20121028
+			>=app-emulation/emul-linux-x86-soundlibs-20121028
 			>=app-emulation/emul-linux-x86-xlibs-20121028
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
+			media-fonts/font-bitstream-100dpi
 			)
 		x86? (
 			>=sys-devel/gcc-4.6.0
@@ -28,6 +31,7 @@ RDEPEND=" amd64? (
 			x11-libs/libXau
 			x11-libs/libxcb
 			x11-libs/libXdmcp
+			media-fonts/font-bitstream-100dpi
 			)"
 
 S=${WORKDIR}
