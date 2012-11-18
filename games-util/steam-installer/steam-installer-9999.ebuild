@@ -11,6 +11,7 @@ HOMEPAGE="https://steampowered.com"
 SRC_URI="http://media.steampowered.com/client/installer/steam.deb"
 LICENSE="ValveSteamLicense"
 
+RESTRICT="bindist mirror"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
