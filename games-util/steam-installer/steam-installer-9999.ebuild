@@ -64,12 +64,12 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "This ebuild only installs the steam installer."
+	einfo "This ebuild only provides the steam installer."
 	einfo "Execute \"steam\" to install the actual client into"
 	einfo "your home folder."
 	einfo ""
-	einfo "To pull in the dependencies for the steam client, emerge:"
-	einfo "game-utils/steam-client-meta"
+	einfo "To pull in the dependencies for the steam client and games,"
+	einfo "emerge: game-utils/steam-meta"
 
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."

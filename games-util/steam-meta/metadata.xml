@@ -12,4 +12,11 @@
 	<upstream>
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
+	<use>
+		<flag name='installer'>Pull in the steam-installer</flag>
+		<flag name='testdeps'>
+			Pull in dependencies that are not yet confirmed as strictly
+			required.
+		</flag>
+	</use>
 </pkgmetadata>
