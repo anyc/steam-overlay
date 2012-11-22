@@ -17,7 +17,10 @@ RDEPEND="
 		games-util/steam-client-meta
 
 		installer? ( games-util/steam-installer )
-		testdeps? ( media-libs/libtxc_dxtn )
+		testdeps? (
+			media-libs/libtxc_dxtn
+			sys-apps/pciutils
+			)
 		"
 
 pkg_postinst() {
