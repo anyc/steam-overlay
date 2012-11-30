@@ -1,9 +1,11 @@
---- usr/bin/steam.orig	2012-11-08 11:49:47.959025506 +0100
-+++ usr/bin/steam	2012-11-08 11:49:59.588025546 +0100
-@@ -1,26 +1,5 @@
- #! /bin/bash
+--- usr/bin/steam.orig	2012-11-30 16:59:01.798537287 +0400
++++ usr/bin/steam	2012-11-30 16:59:19.828312424 +0400
+@@ -108,27 +108,6 @@
+ 	fi
+ }
  
--function install_extra_packages() {
+-function install_extra_packages()
+-{
 -	EXTRA_PACKAGES="$*"
 -
 -	# Get the list of packages which are already installed
@@ -11,29 +13,28 @@
 -
 -	# compute the list of packages that need to be installed
 -	NEEDSINSTALL="$(comm -23 <(echo "$EXTRA_PACKAGES" | tr ' ' '\n' | sort) <(echo "$INSTALLED") | xargs ) "
+-	NEEDSINSTALL=${NEEDSINSTALL## } # remove leading space
 -
--	MESSAGE='Enter your password to complete the Steam installation.
+-	if [ "$NEEDSINSTALL" ]; then
+-		# Call to actually do the work
+-		MESSAGE=$"Please enter your password to complete the Steam installation.
 -
 -Steam needs to install these additional packages: 
--'$NEEDSINSTALL
--
--	if [ $NEEDSINSTALL ]; then
--		# Call gksudo to actually do the work
--		gksudo --disable-grab --message "$MESSAGE" apt-get install $NEEDSINSTALL
+-"$NEEDSINSTALL
+-		run_sudo "$MESSAGE" apt-get install $NEEDSINSTALL
 -	fi
 -}
 -
--
- # these variables can be overridden on commandline
- LAUNCHSTEAMDIR=~/Steam
- LAUNCHSTEAMPLATFORM=ubuntu12_32
-@@ -54,9 +33,6 @@
- 	
-     cp /usr/share/applications/steam.desktop "${DESKTOP_DIR}"
-     chmod +x "${DESKTOP_DIR}/steam.desktop"
+ function install_bootstrap()
+ {
+ 	STEAMDIR=$1
+@@ -158,9 +137,6 @@
+ 
+ 	# Restore the umask
+ 	umask $omask
 -
 -	# Try and install any extra packages
 -	install_extra_packages jockey-common python-apt
- fi
- # go to the install directory and run the client
- LAUNCHSTEAMDIR=`readlink -e $STEAMROOTLINK`
+ }
+ 
+ function repair_bootstrap()
