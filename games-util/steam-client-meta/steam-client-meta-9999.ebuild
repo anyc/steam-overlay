@@ -21,16 +21,26 @@ RDEPEND="
 		windows-games? ( app-emulation/wine )
 
 		amd64? (
-			>=app-emulation/emul-linux-x86-baselibs-20121028
-			>=app-emulation/emul-linux-x86-gtklibs-20121028
-			>=app-emulation/emul-linux-x86-opengl-20121028
-			>=app-emulation/emul-linux-x86-sdl-20121028
-			>=app-emulation/emul-linux-x86-soundlibs-20121028
-			>=app-emulation/emul-linux-x86-xlibs-20121028
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
 
 			flash? ( www-plugins/adobe-flash[32bit] )
+			video_cards_intel? (
+				>=app-emulation/emul-linux-x86-baselibs-20121202
+				>=app-emulation/emul-linux-x86-gtklibs-20121202
+				>=app-emulation/emul-linux-x86-opengl-20121202
+				>=app-emulation/emul-linux-x86-sdl-20121202
+				>=app-emulation/emul-linux-x86-soundlibs-20121202
+				>=app-emulation/emul-linux-x86-xlibs-20121202
+				)
+			!video_cards_intel? (
+				>=app-emulation/emul-linux-x86-baselibs-20121028
+				>=app-emulation/emul-linux-x86-gtklibs-20121028
+				>=app-emulation/emul-linux-x86-opengl-20121028
+				>=app-emulation/emul-linux-x86-sdl-20121028
+				>=app-emulation/emul-linux-x86-soundlibs-20121028
+				>=app-emulation/emul-linux-x86-xlibs-20121028
+				)
 			)
 		x86? (
 			dev-libs/glib:2
