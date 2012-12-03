@@ -1,0 +1,20 @@
+123--- usr/bin/steam.orig	2012-12-03 10:24:01.260300027 +0400
++++ usr/bin/steam	2012-12-03 10:24:45.379749695 +0400
+@@ -35,7 +35,7 @@
+ 		# Save the prompt in a temporary file because it can have newlines in it
+ 		tmpfile=`mktemp || echo "/tmp/steam_message.txt"`
+ 		echo -e "$*" >$tmpfile
+-		xterm -T "$title" -e "cat $tmpfile; echo -n 'Press enter to continue: '; read input"
++		${TERM} -T "$title" -e "cat $tmpfile; echo -n 'Press enter to continue: '; read input"
+ 		rm -f $tmpfile
+ 	fi
+ }
+@@ -65,7 +65,7 @@
+ 	fi
+ 
+ 	# Fall back to sudo in a terminal
+-	xterm -e sudo -p "$prompt
++	${TERM} -e sudo -p "$prompt
+ [sudo] password for user: " $*
+ }
+ 
