@@ -43,6 +43,7 @@ src_prepare() {
 	sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
 
 	epatch "${FILESDIR}/remove-ubuntu-specifics.patch"
+	epatch "${FILESDIR}/use-default-terminal.patch"
 }
 
 src_install() {
