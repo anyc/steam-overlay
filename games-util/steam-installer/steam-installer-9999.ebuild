@@ -65,13 +65,18 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "This ebuild only provides the steam installer."
-	einfo "Execute \"steam\" to install the actual client into"
+	einfo "Execute /usr/bin/steam to install the actual client into"
 	einfo "your home folder."
+	einfo ""
+	einfo "After installing the client, /usr/bin/steam is also used to start"
+	einfo "the client. After unmerging the installer, you can start the client"
+	einfo "by executing ~/Steam/steam.sh"
 	einfo ""
 	einfo "To pull in the dependencies for the steam client and games,"
 	einfo "emerge: game-utils/steam-meta"
 
-	ewarn "The steam client and the games are not controlled by"
-	ewarn "portage. Updates are handled by the client itself."
+	ewarn "This ebuild _only_ provides the steam installer. The steam client"
+	ewarn "and the games are _not_ controlled by portage. Updates are handled"
+	ewarn "by the client itself."
 }
+
