@@ -26,5 +26,3 @@ Branches
 --------
 
 * master: current stable versions, should equal the ebuilds in gamerlay overlay
-* testing: testing new modifications for master branch
-* single_ebuild: the all-in-one steam-installer ebuild (deprecated)
