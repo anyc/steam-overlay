@@ -20,6 +20,7 @@ RDEPEND="
 		testdeps? (
 			media-libs/libtxc_dxtn
 			sys-apps/pciutils
+			media-libs/jasper
 			)
 		"
 
