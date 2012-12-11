@@ -11,7 +11,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="video_cards_intel windows-games flash"
+IUSE="flash video_cards_intel windows-games"
 
 RDEPEND="
 		virtual/opengl

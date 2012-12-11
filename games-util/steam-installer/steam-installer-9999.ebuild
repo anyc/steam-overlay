@@ -79,4 +79,3 @@ pkg_postinst() {
 	ewarn "and the games are _not_ controlled by portage. Updates are handled"
 	ewarn "by the client itself."
 }
-

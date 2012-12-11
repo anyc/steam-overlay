@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>dev@kicherer.org</email>
+		<name>Mario Kicherer</name>
+	</maintainer>
+	<longdescription>
+		This is a meta package that pulls in the known dependencies
+		for different steam games.
+	</longdescription>
+	<upstream>
+		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	</upstream>
+	<use>
+		<flag name='s3tc'>Pull in library for S3TC compression support</flag>
+		<flag name='steamgames_unwritten_tales'>
+			Dependencies for "The Book of Unwritten Tales: The Critter
+			Chronicles"
+		</flag>
+		<flag name='testdeps'>
+			Pull in dependencies that are not yet confirmed as strictly
+			required.
+		</flag>
+	</use>
+</pkgmetadata>

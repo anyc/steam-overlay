@@ -14,10 +14,5 @@
 	</upstream>
 	<use>
 		<flag name='installer'>Pull in the steam-installer</flag>
-		<flag name='s3tc'>Pull in library for S3TC compression support</flag>
-		<flag name='testdeps'>
-			Pull in dependencies that are not yet confirmed as strictly
-			required.
-		</flag>
 	</use>
 </pkgmetadata>
