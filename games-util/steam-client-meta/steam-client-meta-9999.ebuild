@@ -96,7 +96,7 @@ pkg_postinst() {
 	if use flash; then
 		einfo ""
 		einfo "In order to use flash, link the 32bit libflashplayer.so to"
-		einfo "/usr/lib/browser-plugins/"
+		einfo "\${STEAM_FOLDER}/ubuntu12_32/plugins/"
 	fi
 
 	ewarn "The steam client and the games are not controlled by"
