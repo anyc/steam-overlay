@@ -4,6 +4,9 @@
 
 EAPI=5
 
+# Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
+# or come to #gentoo-gamerlay in freenode IRC
+
 DESCRIPTION="Meta package for Steam games"
 HOMEPAGE="https://steampowered.com"
 SRC_URI=""
@@ -38,6 +41,7 @@ pkg_postinst() {
 	elog "If a game does not start, please enable \"testdeps\" use-flag and"
 	elog "check if it fixes the issue. Please report, if and which one of the"
 	elog "dependencies is required for a game, so we can mark it accordingly."
+	elog "Development website: https://github.com/anyc/steam-overlay"
 
 	if use video_cards_intel && ! use s3tc; then
 		elog "You have video_cards_intel enabled. You might want to enable"

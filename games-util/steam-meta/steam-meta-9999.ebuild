@@ -4,6 +4,9 @@
 
 EAPI=5
 
+# Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
+# or come to #gentoo-gamerlay in freenode IRC
+
 DESCRIPTION="Meta package for Valve's Steam environment"
 HOMEPAGE="https://steampowered.com"
 SRC_URI=""
