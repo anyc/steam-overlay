@@ -19,7 +19,10 @@ SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
 
-RDEPEND=" amd64? (
+RDEPEND="
+		gnome-extra/zenity
+
+		amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
 			>=app-emulation/emul-linux-x86-xlibs-20121028
 			>=sys-devel/gcc-4.6.0[multilib]
@@ -45,8 +48,9 @@ src_prepare() {
 	sed -r -i "s/^(MimeType=.*)/\1;/" usr/share/applications/steam.desktop
 	sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
 
-	epatch "${FILESDIR}/remove-ubuntu-specifics.patch"
-	epatch "${FILESDIR}/use-default-terminal.patch"
+	# disable ubuntu-specific package installation and use $TERM instead
+	# of "xterm"
+	epatch "${FILESDIR}/usr_bin_steam.patch"
 }
 
 src_install() {
@@ -64,7 +68,7 @@ src_install() {
 	insinto /usr/share/icons/
 	doins -r usr/share/icons/
 
-	doicon usr/share/pixmaps/steam.xpm
+	doicon usr/share/pixmaps/steam.png
 }
 
 pkg_postinst() {
