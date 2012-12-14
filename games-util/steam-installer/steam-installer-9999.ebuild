@@ -11,12 +11,19 @@ inherit eutils unpacker
 
 DESCRIPTION="Installer for Valve's native Steam client"
 HOMEPAGE="https://steampowered.com"
-SRC_URI="http://media.steampowered.com/client/installer/steam.deb"
+
+if [[ "${PV}" == "9999" ]] ; then
+	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
+	KEYWORDS=""
+else
+	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_${PV}_i386.deb"
+	KEYWORDS="-* ~amd64 ~x86"
+fi
+
 LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
 SLOT="0"
-KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
