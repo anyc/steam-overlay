@@ -12,7 +12,4 @@
 	<upstream>
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
-	<use>
-		<flag name='installer'>Pull in the steam-installer</flag>
-	</use>
 </pkgmetadata>

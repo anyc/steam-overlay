@@ -14,11 +14,10 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="+installer"
+IUSE=""
 
 RDEPEND="
+		games-util/steam-base
 		games-util/steam-client-meta
 		games-util/steam-games-meta
-
-		installer? ( games-util/steam-installer )
 		"

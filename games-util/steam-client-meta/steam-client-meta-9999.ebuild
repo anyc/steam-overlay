@@ -84,19 +84,19 @@ RDEPEND="
 			)"
 
 pkg_postinst() {
-	einfo "This is only a meta package that pulls in the required"
-	einfo "dependencies for the steam client."
+	elog "This is only a meta package that pulls in the required"
+	elog "dependencies for the steam client."
 
 	if use windows-games; then
-		einfo ""
-		einfo "To start games automatically with wine, follow"
-		einfo "https://wiki.archlinux.org/index.php/Wine#Using_Wine_as_an_interpreter_for_Win16.2FWin32_binaries"
+		elog ""
+		elog "To start games automatically with wine, follow"
+		elog "https://wiki.archlinux.org/index.php/Wine#Using_Wine_as_an_interpreter_for_Win16.2FWin32_binaries"
 	fi
 
 	if use flash; then
-		einfo ""
-		einfo "In order to use flash, link the 32bit libflashplayer.so to"
-		einfo "\${STEAM_FOLDER}/ubuntu12_32/plugins/"
+		elog ""
+		elog "In order to use flash, link the 32bit libflashplayer.so to"
+		elog "\${STEAM_FOLDER}/ubuntu12_32/plugins/"
 	fi
 
 	ewarn "The steam client and the games are not controlled by"

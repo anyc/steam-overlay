@@ -9,7 +9,7 @@ EAPI=5
 
 inherit eutils unpacker
 
-DESCRIPTION="Installer for Valve's native Steam client"
+DESCRIPTION="Supplementary files for Valve's Steam client for Linux"
 HOMEPAGE="https://steampowered.com"
 
 if [[ "${PV}" == "9999" ]] ; then
@@ -55,9 +55,11 @@ src_prepare() {
 	sed -r -i "s/^(MimeType=.*)/\1;/" usr/share/applications/steam.desktop
 	sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
 
-	# disable ubuntu-specific package installation and use $TERM instead
-	# of "xterm"
-	epatch "${FILESDIR}/usr_bin_steam.patch"
+	if [[ "${PV}" != "9999" ]] ; then
+		# disable ubuntu-specific package installation and use $TERM instead
+		# of "xterm"
+		epatch "${FILESDIR}/usr_bin_steam.patch"
+	fi
 }
 
 src_install() {
@@ -79,17 +81,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "Execute /usr/bin/steam to install the actual client into"
-	einfo "your home folder."
-	einfo ""
-	einfo "After installing the client, /usr/bin/steam is also used to start"
-	einfo "the client. After unmerging the installer, you can start the client"
-	einfo "by executing ~/Steam/steam.sh"
-	einfo ""
-	einfo "To pull in the dependencies for the steam client and games,"
-	einfo "emerge: game-utils/steam-meta"
+	elog "Execute /usr/bin/steam to download and install the actual"
+	elog "client into your home folder. After installation, the script"
+	elog "also starts the client from your home folder."
 
-	ewarn "This ebuild _only_ provides the steam installer. The steam client"
-	ewarn "and the games are _not_ controlled by portage. Updates are handled"
-	ewarn "by the client itself."
+	ewarn "The steam client and the games are _not_ controlled by portage."
+	ewarn "Updates are handled by the client itself."
 }

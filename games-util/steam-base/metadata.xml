@@ -6,8 +6,8 @@
 		<name>Mario Kicherer</name>
 	</maintainer>
 	<longdescription>
-		This ebuild installs the Steam installer not the client
-		itself.
+		This ebuild installs common files for the Steam environment,
+		like bootstrap archive and icons, but not the client itself.
 	</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
