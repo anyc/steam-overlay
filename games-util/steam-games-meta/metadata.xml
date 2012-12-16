@@ -18,6 +18,7 @@
 			Dependencies for "The Book of Unwritten Tales: The Critter
 			Chronicles"
 		</flag>
+		<flag name='steamgames_tf2'>Team Fortress 2</flag>
 		<flag name='testdeps'>
 			Pull in dependencies that are not yet confirmed as strictly
 			required.
