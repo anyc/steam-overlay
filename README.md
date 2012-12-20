@@ -13,7 +13,7 @@ To install, emerge `steam-meta` ebuild.
 Troubleshooting Steam
 ---------------------
 
-If you have problems, please take a look at http://wiki.gentoo.org/wiki/Steam, [Gentoo Forums thread](https://forums.gentoo.org/viewtopic-t-930354-postdays-0-postorder-asc-start-75.html) and [Arch Wiki](https://wiki.archlinux.org/index.php/Steam#Native_Steam_on_Linux).
+If you have problems, please take a look at http://wiki.gentoo.org/wiki/Steam, [Gentoo Forums thread](https://forums.gentoo.org/viewtopic-t-930354-postdays-0-postorder-asc-start-75.html), [Arch Wiki](https://wiki.archlinux.org/index.php/Steam#Native_Steam_on_Linux) and [official bug tracker](https://github.com/ValveSoftware/steam-for-linux/issues).
 
 The correspondig bugzilla entry is here: [Bug #442176](https://bugs.gentoo.org/show_bug.cgi?id=442176)
 

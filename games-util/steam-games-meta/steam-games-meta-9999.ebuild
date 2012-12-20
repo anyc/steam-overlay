@@ -28,11 +28,15 @@ RDEPEND="
 		s3tc? ( media-libs/libtxc_dxtn )
 		testdeps? (
 			dev-games/ogre
+			dev-lang/mono
 			media-libs/freealut
+			media-libs/sdl-image
+			media-libs/sdl-mixer
 			media-libs/sdl-ttf
 			media-libs/tiff
 			net-misc/curl
 			sys-apps/pciutils
+			x11-misc/xclip
 			)
 		steamgames_unwritten_tales? ( media-libs/jasper )
 		steamgames_tf2? (
