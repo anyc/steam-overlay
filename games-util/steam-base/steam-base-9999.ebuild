@@ -51,11 +51,12 @@ src_unpack() {
 }
 
 src_prepare() {
-	# fix QA notice
-	sed -r -i "s/^(MimeType=.*)/\1;/" usr/share/applications/steam.desktop
-	sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
-
+	# leave -9999 vanilla to check if patches are still required
 	if [[ "${PV}" != "9999" ]] ; then
+		# fix QA notice
+		sed -r -i "s/^(MimeType=.*)/\1;/" usr/share/applications/steam.desktop
+		sed -r -i "s/^(Actions=.*)/\1;/" usr/share/applications/steam.desktop
+
 		# disable ubuntu-specific package installation and use $TERM instead
 		# of "xterm"
 		epatch "${FILESDIR}/usr_bin_steam.patch"
