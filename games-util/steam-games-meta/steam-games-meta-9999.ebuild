@@ -43,16 +43,15 @@ RDEPEND="
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
 			)
 		"
+REQUIRED_USE="
+		steamgames_tf2? (
+				video_cards_intel? ( s3tc )
+			)
+		"
 
 pkg_postinst() {
 	elog "If a game does not start, please enable \"testdeps\" use-flag and"
 	elog "check if it fixes the issue. Please report, if and which one of the"
 	elog "dependencies is required for a game, so we can mark it accordingly."
 	elog "Development website: https://github.com/anyc/steam-overlay"
-
-	if use video_cards_intel && ! use s3tc; then
-		elog "You have video_cards_intel enabled. You might want to enable"
-		elog "s3tc use-flag in order to play certain games which rely on this"
-		elog "texture compression."
-	fi
 }
