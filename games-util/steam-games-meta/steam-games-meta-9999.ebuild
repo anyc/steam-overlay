@@ -25,20 +25,28 @@ for sgame in ${IUSE_STEAMGAMES}; do
 done
 
 RDEPEND="
-		s3tc? ( media-libs/libtxc_dxtn )
-		testdeps? (
-			dev-games/ogre
-			dev-lang/mono
-			media-libs/freealut
-			media-libs/sdl-image
-			media-libs/sdl-mixer
-			media-libs/sdl-ttf
-			media-libs/tiff
-			net-misc/curl
-			sys-apps/pciutils
-			x11-misc/xclip
+		s3tc? (
+			amd64? ( media-libs/libtxc_dxtn[multilib] )
+			x86? ( media-libs/libtxc_dxtn )
 			)
-		steamgames_unwritten_tales? ( media-libs/jasper )
+		testdeps? (
+			x86? (
+				dev-games/ogre
+				dev-lang/mono
+				media-libs/freealut
+				media-libs/sdl-image
+				media-libs/sdl-mixer
+				media-libs/sdl-ttf
+				media-libs/tiff
+				net-dns/libidn
+				net-misc/curl
+				sys-apps/pciutils
+				x11-misc/xclip
+				)
+			)
+		steamgames_unwritten_tales? (
+			x86? ( media-libs/jasper )
+			)
 		steamgames_tf2? (
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
 			)
@@ -50,8 +58,20 @@ REQUIRED_USE="
 		"
 
 pkg_postinst() {
-	elog "If a game does not start, please enable \"testdeps\" use-flag and"
-	elog "check if it fixes the issue. Please report, if and which one of the"
-	elog "dependencies is required for a game, so we can mark it accordingly."
-	elog "Development website: https://github.com/anyc/steam-overlay"
+	if use x86; then
+		elog "If a game does not start, please enable \"testdeps\" use-flag and"
+		elog "check if it fixes the issue. Please report, if and which one of the"
+		elog "dependencies is required for a game, so we can mark it accordingly."
+	fi
+
+	if use amd64; then
+		elog "If a game does not start, please take a look at the dependencies"
+		elog "for the x86 architecture in this ebuild. It might be required that"
+		elog "you build them in a x86 chroot environment or using crossdev (see"
+		elog "http://en.gentoo-wiki.com/wiki/Crossdev ). Please report, if and"
+		elog "which one of the dependencies is required for a game, so we can"
+		elog "request the inclusion in the emul-linux-x86* packages, see:"
+		elog "https://bugs.gentoo.org/show_bug.cgi?id=446682"
+	fi
+	elog "Ebuild development website: https://github.com/anyc/steam-overlay"
 }
