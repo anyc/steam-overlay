@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI=5
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
-inherit eutils unpacker
+inherit eutils unpacker gnome2-utils fdo-mime
 
 DESCRIPTION="Supplementary files for Valve's Steam client for Linux"
 HOMEPAGE="https://steampowered.com"
@@ -50,6 +50,11 @@ src_unpack() {
 	unpack_deb ${A}
 }
 
+src_prepare() {
+	# remove carriage return
+	sed -i "s/\r//g" usr/share/applications/steam.desktop
+}
+
 src_install() {
 	dobin "usr/bin/steam"
 
@@ -59,8 +64,7 @@ src_install() {
 	dodoc usr/share/doc/steam/changelog.gz
 	doman usr/share/man/man6/steam.6.gz
 
-	insinto /usr/share/applications/
-	doins usr/share/applications/steam.desktop
+	domenu usr/share/applications/steam.desktop
 
 	insinto /usr/share/icons/
 	doins -r usr/share/icons/
@@ -69,10 +73,18 @@ src_install() {
 }
 
 pkg_postinst() {
+	fdo-mime_desktop_database_update
+	gnome2_icon_cache_update
+
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
 
 	ewarn "The steam client and the games are _not_ controlled by portage."
 	ewarn "Updates are handled by the client itself."
+}
+
+pkg_postrm() {
+	fdo-mime_desktop_database_update
+	gnome2_icon_cache_update
 }
