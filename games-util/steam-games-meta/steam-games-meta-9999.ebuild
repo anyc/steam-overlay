@@ -30,9 +30,9 @@ RDEPEND="
 			x86? ( media-libs/libtxc_dxtn )
 			)
 		testdeps? (
+			dev-lang/mono
 			x86? (
 				dev-games/ogre
-				dev-lang/mono
 				media-libs/freealut
 				media-libs/sdl-image
 				media-libs/sdl-mixer
