@@ -6,7 +6,7 @@ Gentoo overlay for Valve's Steam client and Steam-based games. Stable ebuilds ar
 Using the overlay
 -----------------
 
-To use this overlay follow the instructions at [Layman with custom git repo](http://samuelololol.blogspot.de/2010/10/layman-with-custom-git-repo-ie-github.html). You can use steam-overlay.xml for convenience.
+To use this overlay either execute `layman -a steam` or follow the instructions at [Layman with custom git repo](http://samuelololol.blogspot.de/2010/10/layman-with-custom-git-repo-ie-github.html). You can use steam-overlay.xml for convenience.
 
 To install, emerge `steam-meta` ebuild.
 
