@@ -1,0 +1,16 @@
+#! /bin/sh
+
+# show dependencies as message instead of processing list with non-existent
+# dpkg tool as upstream steamdeps does
+
+# check arguments
+if [ "$#" -ne 1 ]; then
+	echo "Usage: $0 dependencies.txt"
+	exit 1
+fi
+
+# skip config lines
+DEPS="$(grep -ve "[[:alpha:]_]=[[:alnum:]]" "$1")"
+
+# show dialog
+zenity --info --text "Required dependencies reported by Steam:\n $DEPS"
