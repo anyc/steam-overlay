@@ -34,6 +34,10 @@ RDEPEND="
 			x86? (
 				dev-games/ogre
 				media-libs/freealut
+				media-libs/freeglut
+				media-libs/libtheora
+				media-libs/libvorbis
+				media-libs/openal
 				media-libs/sdl-image
 				media-libs/sdl-mixer
 				media-libs/sdl-ttf
@@ -41,6 +45,10 @@ RDEPEND="
 				net-dns/libidn
 				net-misc/curl
 				sys-apps/pciutils
+				x11-libs/libXaw
+				x11-libs/libXft
+				x11-libs/libXmu
+				x11-libs/libXxf86vm
 				x11-misc/xclip
 				)
 			)
