@@ -11,6 +11,7 @@ fi
 
 # skip config lines
 DEPS="$(grep -ve "[[:alpha:]_]=[[:alnum:]]" "$1")"
+DEPS="$(echo "$DEPS" | grep -v "^#.*" | grep -v "^$")"
 
 # show dialog
-zenity --info --text "Required dependencies reported by Steam:\n $DEPS"
+zenity --info --text "Required dependencies reported by Steam:\n$DEPS"

@@ -58,9 +58,9 @@ src_prepare() {
 }
 
 src_install() {
-	dobin "usr/bin/steam"
+	dobin usr/bin/steam
 
-	insinto "/usr/lib/"
+	insinto /usr/lib/
 	doins -r usr/lib/steam
 
 	dodoc usr/share/doc/steam/changelog.gz
