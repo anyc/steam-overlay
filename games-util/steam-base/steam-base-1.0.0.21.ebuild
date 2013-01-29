@@ -10,7 +10,7 @@ EAPI=5
 inherit eutils unpacker gnome2-utils fdo-mime
 
 DESCRIPTION="Supplementary files for Valve's Steam client for Linux"
-HOMEPAGE="https://steampowered.com"
+HOMEPAGE="http://steampowered.com"
 
 if [[ "${PV}" == "9999" ]] ; then
 	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
@@ -27,6 +27,7 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="
+		app-shells/bash
 		gnome-extra/zenity
 
 		amd64? (

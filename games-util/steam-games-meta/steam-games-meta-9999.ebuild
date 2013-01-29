@@ -8,13 +8,14 @@ EAPI=5
 # or come to #gentoo-gamerlay in freenode IRC
 
 DESCRIPTION="Meta package for Steam games"
-HOMEPAGE="https://steampowered.com"
+HOMEPAGE="http://steampowered.com"
 SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="s3tc testdeps video_cards_intel video_cards_fglrx"
+IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
+	video_cards_nvidia video_cards_radeon"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
@@ -50,10 +51,12 @@ RDEPEND="
 				x11-libs/libXmu
 				x11-libs/libXxf86vm
 				x11-misc/xclip
+
+				video_cards_nvidia? ( media-gfx/nvidia-cg-toolkit )
 				)
 			)
 		steamgames_unwritten_tales? (
-			x86? ( media-libs/jasper )
+				x86? ( media-libs/jasper )
 			)
 		steamgames_tf2? (
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
@@ -62,6 +65,8 @@ RDEPEND="
 REQUIRED_USE="
 		steamgames_tf2? (
 				video_cards_intel? ( s3tc )
+				video_cards_radeon? ( s3tc )
+				video_cards_nouveau? ( s3tc )
 			)
 		"
 

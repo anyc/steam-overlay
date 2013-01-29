@@ -8,7 +8,7 @@ EAPI=5
 # or come to #gentoo-gamerlay in freenode IRC
 
 DESCRIPTION="Meta package for Valve's native Steam client"
-HOMEPAGE="https://steampowered.com"
+HOMEPAGE="http://steampowered.com"
 SRC_URI=""
 LICENSE="metapackage"
 
