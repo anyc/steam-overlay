@@ -1,0 +1,16 @@
+--- a/usr/bin/steam       2013-02-08 21:11:49.634241372 +0100
++++ b/usr/bin/steam       2013-02-08 21:12:03.251354781 +0100
+@@ -175,10 +175,9 @@
+        exit 1
+ fi
+ 
+-# Uncomment this if your distribution supports the Steam Linux Runtime
+-#if [ -z "$STEAM_RUNTIME" ]; then
+-#	STEAM_RUNTIME=1
+-#fi
++if [ -z "$STEAM_RUNTIME" ]; then
++	export STEAM_RUNTIME=0
++fi
+ 
+ # go to the install directory and run the client
+ cp "$LAUNCHSTEAMBOOTSTRAPFILE" "$LAUNCHSTEAMDIR/bootstrap.tar.xz"
