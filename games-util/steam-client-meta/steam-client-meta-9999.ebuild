@@ -19,6 +19,7 @@ IUSE="flash video_cards_intel windows-games"
 RDEPEND="
 		virtual/opengl
 
+		media-fonts/font-mutt-misc
 		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
 
 		windows-games? ( app-emulation/wine )
