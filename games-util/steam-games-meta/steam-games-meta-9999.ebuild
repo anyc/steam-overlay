@@ -33,6 +33,7 @@ RDEPEND="
 		testdeps? (
 			dev-lang/mono
 			x86? (
+				dev-db/sqlite
 				dev-games/ogre
 				media-libs/freealut
 				media-libs/freeglut
