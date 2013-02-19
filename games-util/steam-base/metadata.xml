@@ -12,4 +12,10 @@
 	<upstream>
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
+	<use>
+		<flag name='steamruntime'>
+			Enables the Steam runtime environment that uses bundled
+			libraries instead of installed system libraries.
+		</flag>
+	</use>
 </pkgmetadata>
