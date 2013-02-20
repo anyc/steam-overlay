@@ -58,6 +58,7 @@ RDEPEND="
 			)
 		steamgames_unwritten_tales? (
 				x86? ( media-libs/jasper )
+				amd64? ( >=media-libs/jasper-1.900.1-r6[abi_x86_32] )
 			)
 		steamgames_tf2? (
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
