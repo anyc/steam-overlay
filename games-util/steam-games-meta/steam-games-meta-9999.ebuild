@@ -19,7 +19,7 @@ IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="unwritten_tales tf2"
+IUSE_STEAMGAMES="dwarfs unwritten_tales tf2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -55,6 +55,11 @@ RDEPEND="
 
 				video_cards_nvidia? ( media-gfx/nvidia-cg-toolkit )
 				)
+			)
+		steamgames_dwarfs? (
+				dev-lang/mono
+				x86? ( media-libs/libexif )
+				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
 			)
 		steamgames_unwritten_tales? (
 				x86? ( media-libs/jasper )

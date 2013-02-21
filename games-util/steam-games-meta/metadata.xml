@@ -14,6 +14,7 @@
 	</upstream>
 	<use>
 		<flag name='s3tc'>Pull in library for S3TC compression support</flag>
+		<flag name='steamgames_dwarfs'>Dwarfs</flag>
 		<flag name='steamgames_unwritten_tales'>
 			Dependencies for "The Book of Unwritten Tales: The Critter
 			Chronicles"
