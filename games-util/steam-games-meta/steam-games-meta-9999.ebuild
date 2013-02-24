@@ -57,9 +57,7 @@ RDEPEND="
 				)
 			)
 		steamgames_dwarfs? (
-				x86? (
-					media-libs/libexif
-					)
+				x86? ( media-libs/libexif )
 				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
 			)
 		steamgames_unwritten_tales? (
