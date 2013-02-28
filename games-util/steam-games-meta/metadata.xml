@@ -20,6 +20,7 @@
 			Chronicles"
 		</flag>
 		<flag name='steamgames_tf2'>Team Fortress 2</flag>
+		<flag name='steamgames_journey_down'>The journy down</flag>
 		<flag name='testdeps'>
 			Pull in dependencies that are not yet confirmed as strictly
 			required.
