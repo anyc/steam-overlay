@@ -19,7 +19,7 @@ IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="unwritten_tales tf2"
+IUSE_STEAMGAMES="unwritten_tales tf2 the_journey_down"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -60,6 +60,9 @@ RDEPEND="
 			)
 		steamgames_tf2? (
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
+			)
+		steamgames_the_journey_down? (
+				media-libs/openal
 			)
 		"
 REQUIRED_USE="
