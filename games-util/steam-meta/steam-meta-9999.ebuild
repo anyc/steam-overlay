@@ -17,7 +17,7 @@ KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-		games-util/steam-base
+		games-util/steam-launcher
 		games-util/steam-client-meta
 		games-util/steam-games-meta
 		"
