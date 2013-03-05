@@ -4,17 +4,19 @@
 
 EAPI=5
 
-inherit cmake-multilib
+inherit cmake-multilib versionator
 
 # This ebuild is based on the one from gamerlay. It pulls a tarball
 # from the official website, multibuilds and adds a symlink required
 # for the steam client.
 
 MY_PN="SDL"
+REV="$(get_version_component_range 4)"
+MY_P="${MY_PN}-2.0.0-${REV/pre/}"
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
-SRC_URI="http://www.libsdl.org/tmp/${MY_PN}-${PV}.tar.gz"
+SRC_URI="http://www.libsdl.org/tmp/${MY_P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="2"
@@ -68,12 +70,7 @@ DEPEND="${RDEPEND}
 
 DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
 
-src_unpack() {
-	unpack ${A}
-
-	# tarball contains revision number
-	mv ${WORKDIR}/SDL* ${S}
-}
+S=${WORKDIR}/${MY_P}
 
 src_configure() {
 	mycmakeargs=(
