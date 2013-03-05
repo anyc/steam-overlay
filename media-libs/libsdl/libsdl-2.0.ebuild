@@ -6,6 +6,10 @@ EAPI=5
 
 inherit cmake-multilib
 
+# This ebuild is based on the one from gamerlay. It pulls a tarball
+# from the official website, multibuilds and adds a symlink required
+# for the steam client.
+
 MY_PN="SDL"
 
 DESCRIPTION="Simple Direct Media Layer"
@@ -64,8 +68,6 @@ DEPEND="${RDEPEND}
 
 DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
 
-S=${WORKDIR}/${MY_PN}
-
 src_unpack() {
 	unpack ${A}
 
@@ -116,6 +118,11 @@ src_configure() {
 src_install() {
 	cmake-multilib_src_install
 
-	cd ${D}/usr/lib32/
+	# the steam client requires other naming scheme
+	if use abi_x86_32; then
+		cd ${D}/usr/lib32/
+	else
+		cd ${D}/usr/lib/
+	fi
 	ln -s libSDL2.so.2.0.0 libSDL2-2.0.so.0
 }
