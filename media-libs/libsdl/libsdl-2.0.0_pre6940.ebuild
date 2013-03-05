@@ -12,7 +12,7 @@ inherit cmake-multilib versionator
 
 MY_PN="SDL"
 REV="$(get_version_component_range 4)"
-MY_P="${MY_PN}-2.0.0-${REV/pre/}"
+MY_P="${MY_PN}-$(get_version_component_range 1-3)-${REV/pre/}"
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
@@ -112,14 +112,14 @@ src_configure() {
 	cmake-multilib_src_configure
 }
 
+create_symlink_for_steam() {
+	cd ${D}/usr/$(get_libdir)
+	ln -s libSDL2.so.2.0.0 libSDL2-2.0.so.0
+}
+
 src_install() {
 	cmake-multilib_src_install
 
-	# the steam client requires other naming scheme
-	if use abi_x86_32; then
-		cd ${D}/usr/lib32/
-	else
-		cd ${D}/usr/lib/
-	fi
-	ln -s libSDL2.so.2.0.0 libSDL2-2.0.so.0
+	# create symlink for Valve's steam client
+	multilib_foreach_abi create_symlink_for_steam
 }
