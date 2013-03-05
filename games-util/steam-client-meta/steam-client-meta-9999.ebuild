@@ -27,6 +27,7 @@ RDEPEND="
 		amd64? (
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
+			media-libs/libsdl:2[abi_x86_32]
 
 			flash? ( www-plugins/adobe-flash[32bit] )
 			video_cards_intel? (
@@ -58,6 +59,7 @@ RDEPEND="
 			media-libs/libogg
 			media-libs/libpng:1.2
 			media-libs/libsdl
+			media-libs/libsdl:2[abi_x86_32]
 			media-libs/libtheora
 			media-libs/libvorbis
 			media-libs/openal
