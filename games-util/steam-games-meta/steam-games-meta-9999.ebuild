@@ -19,7 +19,7 @@ IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 journey_down"
+IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -69,6 +69,9 @@ RDEPEND="
 			)
 		steamgames_journey_down? (
 				x86? ( media-libs/openal )
+			)
+		steamgames_trine2? (
+				x11-apps/xwininfo
 			)
 		"
 REQUIRED_USE="
