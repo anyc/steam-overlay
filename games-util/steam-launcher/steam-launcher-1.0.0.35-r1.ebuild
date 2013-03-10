@@ -94,20 +94,23 @@ pkg_postinst() {
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
+	elog ""
 
 	if use steamruntime; then
 		ewarn "You enabled the steam runtime environment. Steam will use bundled"
 		ewarn "libraries instead of system libraries which is _not_ supported."
+		ewarn ""
 	else
-		elog ""
 		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
 		elog "and use installed system libraries instead. If you have problems,"
 		elog "try starting steam with: STEAM_RUNTIME=1 steam"
+		elog ""
 	fi
 
 	if ! has_version "gnome-extra/zenity"; then
 		ewarn "Valve does not provide a xterm fallback for all calls of zenity."
 		ewarn "Please install gnome-extra/zenity for full support."
+		ewarn ""
 	fi
 
 	ewarn "The steam client and the games are _not_ controlled by portage."
