@@ -105,4 +105,5 @@ pkg_postinst() {
 		elog "https://bugs.gentoo.org/show_bug.cgi?id=446682"
 	fi
 	elog "Ebuild development website: https://github.com/anyc/steam-overlay"
+	elog "If you have problems, please also see http://wiki.gentoo.org/wiki/Steam"
 }

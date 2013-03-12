@@ -6,7 +6,7 @@ EAPI=5
 
 inherit eutils fdo-mime multilib
 
-DESCRIPTION="Adobe AIR SDK"
+DESCRIPTION="Adobe AIR runtime"
 HOMEPAGE="http://www.adobe.com/products/air/tools/sdk/"
 SRC_URI="http://airdownload.adobe.com/air/lin/download/${PV}/AdobeAIRSDK.tbz2 -> AdobeAIRSDK-${PV}.tbz2"
 
@@ -30,10 +30,10 @@ RDEPEND="app-arch/unzip
 	amd64? ( app-emulation/emul-linux-x86-baselibs
 		app-emulation/emul-linux-x86-gtklibs )"
 
-QA_PRESTRIPPED=".*\.so /opt/Adobe/AirSDK/bin/adl"
+QA_PRESTRIPPED=".*\.so"
 QA_EXECSTACK="*/libCore.so */libcurl.so */libadobecertstore.so */libadobecp.so"
 QA_TEXTRELS="*/libcurl.so */libadobecertstore.so"
-QA_PREBUILT=".*\.so */bin/adl */bin/naip */bin/adb */Resources/rpmbuilder */Resources/appentry"
+QA_PREBUILT=".*\.so */Resources/rpmbuilder */Resources/appentry"
 
 S=${WORKDIR}
 
@@ -54,7 +54,7 @@ src_install() {
 
 pkg_postinst() {
 	ewarn "Adobe AIR is officially unsupported on Linux."
-	ewarn "Use it at on your own risk."
+	ewarn "Use it on your own risk."
 	ewarn ""
 
 	elog "To run AIR apps, you have to accept the EULA."
