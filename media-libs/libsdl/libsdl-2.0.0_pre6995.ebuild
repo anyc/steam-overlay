@@ -6,8 +6,8 @@ EAPI=5
 
 inherit cmake-multilib versionator mercurial
 
-# This ebuild is based on the one from gamerlay. It multibuilds 
-# and adds a symlink required for the steam client.
+# This ebuild is based on the one from gamerlay. It multibuilds and
+# adds a symlink required for the steam client.
 
 MY_PN="SDL"
 REV="$(get_version_component_range 4)"
@@ -16,11 +16,11 @@ MY_P="${MY_PN}-$(get_version_component_range 1-3)-${REV/pre/}"
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
 EHG_REPO_URI="http://hg.libsdl.org/SDL/"
-#EHG_REVISION="${REV/pre/}"
+EHG_REVISION="${REV/pre/}"
 
 LICENSE="ZLIB"
 SLOT="2"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="3dnow alsa altivec +asm aqua fusionsound gles mmx nas opengl oss pulseaudio sse sse2 static-libs +threads tslib +video X +xcursor +xinput xinerama xscreensaver xrandr xvidmode"
 
 #FIXME: Replace "gles" deps with "virtual/opengles", after hitting Portage.
