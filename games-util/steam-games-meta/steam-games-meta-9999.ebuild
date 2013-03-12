@@ -28,7 +28,7 @@ done
 RDEPEND="
 		s3tc? (
 			amd64? ( || (
-				>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_x32]
+				>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
 				<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
 				) )
 			x86? ( media-libs/libtxc_dxtn )
