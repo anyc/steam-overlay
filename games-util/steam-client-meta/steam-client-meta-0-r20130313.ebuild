@@ -29,23 +29,30 @@ RDEPEND="
 			>=sys-libs/glibc-2.15[multilib]
 			>=media-libs/libsdl-2.0.0_pre6964:2[abi_x86_32]
 
-			flash? ( www-plugins/adobe-flash[32bit] )
-			video_cards_intel? (
-				>=app-emulation/emul-linux-x86-baselibs-20121202
-				>=app-emulation/emul-linux-x86-gtklibs-20121202
-				>=app-emulation/emul-linux-x86-opengl-20121202
-				>=app-emulation/emul-linux-x86-sdl-20121202
-				>=app-emulation/emul-linux-x86-soundlibs-20121202
+			>=app-emulation/emul-linux-x86-baselibs-20121202
+			>=app-emulation/emul-linux-x86-gtklibs-20121202
+			>=app-emulation/emul-linux-x86-opengl-20121202
+			>=app-emulation/emul-linux-x86-sdl-20121202
+			>=app-emulation/emul-linux-x86-soundlibs-20121202
+			|| (
 				>=app-emulation/emul-linux-x86-xlibs-20121202
+				(
+					x11-libs/libX11[abi_x86_32]
+					x11-libs/libXcomposite[abi_x86_32]
+					x11-libs/libXcursor[abi_x86_32]
+					x11-libs/libXdamage[abi_x86_32]
+					x11-libs/libXext[abi_x86_32]
+					x11-libs/libXfixes[abi_x86_32]
+					media-libs/fontconfig[abi_x86_32]
+					media-libs/freetype[abi_x86_32]
+					x11-libs/libXi[abi_x86_32]
+					x11-libs/libXinerama[abi_x86_32]
+					x11-libs/libXrandr[abi_x86_32]
+					x11-libs/libXrender[abi_x86_32]
 				)
-			!video_cards_intel? (
-				>=app-emulation/emul-linux-x86-baselibs-20121028
-				>=app-emulation/emul-linux-x86-gtklibs-20121028
-				>=app-emulation/emul-linux-x86-opengl-20121028
-				>=app-emulation/emul-linux-x86-sdl-20121028
-				>=app-emulation/emul-linux-x86-soundlibs-20121028
-				>=app-emulation/emul-linux-x86-xlibs-20121028
-				)
+			)
+
+			flash? ( www-plugins/adobe-flash[32bit] )
 			)
 		x86? (
 			dev-libs/glib:2

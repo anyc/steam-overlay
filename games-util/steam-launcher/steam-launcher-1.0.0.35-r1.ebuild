@@ -37,7 +37,15 @@ RDEPEND="
 
 		amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
-			>=app-emulation/emul-linux-x86-xlibs-20121028
+			|| (
+				>=app-emulation/emul-linux-x86-xlibs-20121028
+				(
+					x11-libs/libX11[abi_x86_32]
+					x11-libs/libXau[abi_x86_32]
+		                        x11-libs/libxcb[abi_x86_32]
+		                        x11-libs/libXdmcp[abi_x86_32]
+				)
+			)
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
 			)
