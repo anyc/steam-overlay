@@ -16,7 +16,9 @@ KEYWORDS="~amd64 ~x86"
 IUSE="test gtk3"
 
 RDEPEND=">=dev-libs/glib-2.22
-	gtk3? ( >=x11-libs/gtk+-3.2:3 ) "
+	gtk3? ( >=x11-libs/gtk+-3.2:3 )
+	!gtk3? ( x11-libs/gtk+:2 )
+	"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? ( dev-util/dbus-test-runner )"
@@ -26,12 +28,12 @@ ECONF_SOURCE=${S}
 multilib_src_configure() {
 	append-flags -Wno-error
 	
-	use gtk3 && USE_GTK3="--with-gtk=3" || USE_GTK3="--with-gtk=2"
+	use gtk3 && GTK_SWITCH="--with-gtk=3" || GTK_SWITCH="--with-gtk=2"
 	
 	econf \
 		--disable-silent-rules \
 		--disable-static \
-		${USE_GTK3}
+		${GTK_SWITCH}
 }
 
 multilib_src_test() {

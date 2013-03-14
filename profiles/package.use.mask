@@ -1,0 +1,1 @@
+dev-libs/libappindicator introspection

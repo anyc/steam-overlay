@@ -21,6 +21,7 @@ RDEPEND=">=dev-libs/glib-2.32
 	>=dev-libs/dbus-glib-0.100
 	dev-libs/libxml2
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
+	gtk? ( x11-libs/gtk+:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1 )
 	!<${CATEGORY}/${PN}-0.5.1-r200"
 DEPEND="${RDEPEND}
@@ -28,6 +29,7 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig
 	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
+REQUIRED_USE="gtk3? ( gtk )"
 
 ECONF_SOURCE=${S}
 
@@ -36,7 +38,7 @@ multilib_src_configure() {
 	export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/usr/share/pkgconfig/
 
 	use introspection && export VALA_API_GEN="$(type -P vapigen-${AYATANA_VALA_VERSION})"
-	use gtk3 && USE_GTK3="--with-gtk=3" || USE_GTK3="--with-gtk=2"
+	use gtk3 && GTK_SWITCH="--with-gtk=3" || GTK_SWITCH="--with-gtk=2"
 	
 	# dumper extra tool is only for GTK+-2.x, tests use valgrind which is stupid
 	econf \
@@ -51,7 +53,7 @@ multilib_src_configure() {
 		$(use_enable introspection vala) \
 		$(use_enable debug massivedebugging) \
 		--with-html-dir=/usr/share/doc/${PF}/html \
-		${USE_GTK3}
+		${GTK_SWITCH}
 }
 
 multilib_src_test() { :; } #440192

@@ -21,6 +21,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/libdbusmenu-0.6.2:3[gtk3=,abi_x86_32?]
 	>=dev-libs/libindicator-12.10.0:3[gtk3=,abi_x86_32?]
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
+	!gtk3? ( x11-libs/gtk+:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
@@ -45,13 +46,14 @@ multilib_src_configure() {
 	
 	use introspection && export VALAC="$(type -P valac-${AYATANA_VALA_VERSION})"
 	
-	use gtk3 && USE_GTK3="--with-gtk=3" || USE_GTK3="--with-gtk=2"
+	use gtk3 && GTK_SWITCH="--with-gtk=3" || GTK_SWITCH="--with-gtk=2"
 	
 	econf \
 		--disable-silent-rules \
 		--disable-static \
 		--with-html-dir=/usr/share/doc/${PF}/html \
-		${USE_GTK3}
+		$(use_enable introspection) \
+		${GTK_SWITCH}
 }
 
 multilib_src_install() {
