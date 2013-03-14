@@ -14,13 +14,14 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="flash video_cards_intel windows-games"
+IUSE="flash trayicon video_cards_intel windows-games"
 
 RDEPEND="
 		virtual/opengl
 
 		media-fonts/font-mutt-misc
 		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
+
 
 		windows-games? ( app-emulation/wine )
 
@@ -51,6 +52,8 @@ RDEPEND="
 					x11-libs/libXrender[abi_x86_32]
 				)
 			)
+
+			trayicon? ( =dev-libs/libappindicator-12.10.0-r1[-gtk3,abi_x86_32] )
 
 			flash? ( www-plugins/adobe-flash[32bit] )
 			)
@@ -88,6 +91,7 @@ RDEPEND="
 			x11-libs/pango
 			>=x11-libs/pixman-0.24.4
 
+			trayicon? ( =dev-libs/libappindicator-12.10.0-r1[-gtk3] )
 			flash? ( www-plugins/adobe-flash )
 			video_cards_intel? ( >=media-libs/mesa-9 )
 			)"
