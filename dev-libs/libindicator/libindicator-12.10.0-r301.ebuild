@@ -23,8 +23,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? ( dev-util/dbus-test-runner )
 	amd64? (
-		x11-proto/kbproto[abi_x86_32]
-		x11-proto/xproto[abi_x86_32]
+		x11-proto/kbproto[abi_x86_32?]
+		x11-proto/xproto[abi_x86_32?]
 		)
 	"
 
