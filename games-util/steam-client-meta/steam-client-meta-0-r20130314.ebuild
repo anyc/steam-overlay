@@ -52,10 +52,7 @@ RDEPEND="
 				)
 			)
 
-			trayicon? (
-				>=dev-libs/libappindicator-12.10.0-r1[-gtk3,abi_x86_32]
-				>=dev-libs/libdbusmenu-0.6.2:3[-gtk3,gtk,abi_x86_32]
-				)
+			trayicon? ( >=dev-libs/libappindicator-12.10.0-r1[-gtk3,abi_x86_32] )
 
 			flash? ( www-plugins/adobe-flash[32bit] )
 			)

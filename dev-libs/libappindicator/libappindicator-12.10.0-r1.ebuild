@@ -18,7 +18,7 @@ IUSE="+introspection gtk3"
 
 RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/glib-2.26
-	>=dev-libs/libdbusmenu-0.6.2:3[gtk3=,abi_x86_32?]
+	>=dev-libs/libdbusmenu-0.6.2:3[gtk3=,gtk,abi_x86_32?]
 	>=dev-libs/libindicator-12.10.0:3[gtk3=,abi_x86_32?]
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
 	!gtk3? ( x11-libs/gtk+:2 )
