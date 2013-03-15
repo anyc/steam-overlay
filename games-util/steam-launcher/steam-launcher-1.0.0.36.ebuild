@@ -89,6 +89,10 @@ src_install() {
 	for s in * ; do
 		doicon -s ${s} ${s}/steam.png
 	done
+	
+	# tgz archive contains no separate pixmap, see #38
+	insinto /usr/share/pixmaps/
+	newins 48/steam.png steam_tray_mono.png
 }
 
 pkg_preinst() {
