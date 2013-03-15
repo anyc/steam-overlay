@@ -21,7 +21,7 @@ RDEPEND=">=dev-libs/glib-2.32
 	>=dev-libs/dbus-glib-0.100
 	dev-libs/libxml2
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
-	gtk? ( x11-libs/gtk+:2 )
+	!gtk3? ( gtk? ( x11-libs/gtk+:2 ) )
 	introspection? ( >=dev-libs/gobject-introspection-1 )
 	!<${CATEGORY}/${PN}-0.5.1-r200"
 DEPEND="${RDEPEND}
