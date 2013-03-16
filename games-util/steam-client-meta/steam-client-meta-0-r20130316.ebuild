@@ -14,15 +14,13 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="flash trayicon video_cards_intel windows-games"
+IUSE="flash trayicon video_cards_intel"
 
 RDEPEND="
 		virtual/opengl
 
 		media-fonts/font-mutt-misc
 		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
-
-		windows-games? ( app-emulation/wine )
 
 		amd64? (
 			>=sys-devel/gcc-4.6.0[multilib]
@@ -98,12 +96,6 @@ RDEPEND="
 pkg_postinst() {
 	elog "This is only a meta package that pulls in the required"
 	elog "dependencies for the steam client."
-
-	if use windows-games; then
-		elog ""
-		elog "To start games automatically with wine, follow"
-		elog "https://wiki.archlinux.org/index.php/Wine#Using_Wine_as_an_interpreter_for_Win16.2FWin32_binaries"
-	fi
 
 	if use flash; then
 		elog ""

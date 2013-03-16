@@ -13,7 +13,6 @@
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
 	<use>
-		<flag name='windows-games'>Pull in app-emulation/wine to play windows-only games</flag>
 		<flag name='flash'>Pull in www-plugins/adobe-flash for the internal browser</flag>
 		<flag name='trayicon'>Enable system tray icon with libappindicator</flag>
 	</use>
