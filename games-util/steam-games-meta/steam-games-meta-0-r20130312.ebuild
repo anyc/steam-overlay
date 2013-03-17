@@ -19,7 +19,8 @@ IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest"
+IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
+	shatter"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -55,8 +56,6 @@ RDEPEND="
 				x11-libs/libXmu
 				x11-libs/libXxf86vm
 				x11-misc/xclip
-
-				video_cards_nvidia? ( media-gfx/nvidia-cg-toolkit )
 				)
 			)
 		steamgames_dwarfs? (
@@ -79,6 +78,10 @@ RDEPEND="
 		steamgames_defenders_quest? (
 				dev-util/adobe-air-runtime
 			)
+		steamgames_shatter? (
+				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013 )
+				x86? ( media-gfx/nvidia-cg-toolkit )
+			)
 		"
 REQUIRED_USE="
 		steamgames_tf2? (
@@ -93,17 +96,18 @@ pkg_postinst() {
 		elog "If a game does not start, please enable \"testdeps\" use-flag and"
 		elog "check if it fixes the issue. Please report, if and which one of the"
 		elog "dependencies is required for a game, so we can mark it accordingly."
+		elog ""
 	fi
 
 	if use amd64; then
 		elog "If a game does not start, please take a look at the dependencies"
 		elog "for the x86 architecture in this ebuild. It might be required that"
-		elog "you build them in a x86 chroot environment or using crossdev (see"
-		elog "http://en.gentoo-wiki.com/wiki/Crossdev ). Please report, if and"
-		elog "which one of the dependencies is required for a game, so we can"
-		elog "request the inclusion in the emul-linux-x86* packages, see:"
-		elog "https://bugs.gentoo.org/show_bug.cgi?id=446682"
+		elog "we create a multilib ebuild for x86. Please report, if and which"
+		elog "one of the dependencies is required for a game, so we can mark it"
+		elog "accordingly."
+		elog ""
 	fi
 	elog "Ebuild development website: https://github.com/anyc/steam-overlay"
+	elog ""
 	elog "If you have problems, please also see http://wiki.gentoo.org/wiki/Steam"
 }
