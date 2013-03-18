@@ -1,0 +1,26 @@
+Tested games:
+-------------
+
+And Yet It Moves
+Cave Story+
+Champions of Regnum
+Closure
+Cogs
+Counter Strike 1.6
+Counter Strike Source
+Dwarfs F2P
+Frozen Synapse
+FTL
+Gratuitous Space Battles
+Red Orchestra: Ostfront 41-45
+Rochard
+Shank 2
+Space Pirates and Zombies
+Steel Storm: Burning Retribution (both x86 and x86_64)
+Team Fortress 2
+VVVVVV (both x86 and x86_64)
+
+Do not work for everyone:
+-------------------------
+
+Anomaly Warzone earth
