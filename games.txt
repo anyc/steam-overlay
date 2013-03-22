@@ -2,6 +2,7 @@ Tested games:
 -------------
 
 And Yet It Moves
+Bastion
 Cave Story+
 Champions of Regnum
 Closure
