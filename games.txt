@@ -2,6 +2,7 @@ Tested games:
 -------------
 
 And Yet It Moves
+Bastion
 Cave Story+
 Champions of Regnum
 Closure
@@ -10,8 +11,10 @@ Counter Strike 1.6
 Counter Strike Source
 Dwarfs F2P
 Frozen Synapse
-FTL
+FTL: Faster Than Light
 Gratuitous Space Battles
+Hacker Evolution Duality
+Killing Floor
 Red Orchestra: Ostfront 41-45
 Rochard
 Shank 2
