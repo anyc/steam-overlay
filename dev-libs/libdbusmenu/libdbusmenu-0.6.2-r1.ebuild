@@ -22,7 +22,7 @@ RDEPEND=">=dev-libs/glib-2.32
 	dev-libs/libxml2
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
 	!gtk3? ( gtk? ( x11-libs/gtk+:2 ) )
-	introspection? ( >=dev-libs/gobject-introspection-1 )
+	introspection? ( >=dev-libs/gobject-introspection-1[abi_x86_32?] )
 	!<${CATEGORY}/${PN}-0.5.1-r200"
 DEPEND="${RDEPEND}
 	app-text/gnome-doc-utils

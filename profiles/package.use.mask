@@ -1,2 +1,0 @@
-dev-libs/libappindicator introspection
-dev-libs/libdbusmenu introspection

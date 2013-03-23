@@ -22,7 +22,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/libindicator-12.10.0:3[gtk3=,abi_x86_32?]
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
 	!gtk3? ( x11-libs/gtk+:2 )
-	introspection? ( >=dev-libs/gobject-introspection-1 )"
+	introspection? ( >=dev-libs/gobject-introspection-1[abi_x86_x32?] )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
@@ -31,8 +31,8 @@ ECONF_SOURCE=${S}
 
 src_prepare() {
 	epatch ${FILESDIR}/multilib_disable_python.patch
-	sed -i "s/.*python.*/\\\/" bindings/Makefile.am || die not found
-	sed -i "s/ python //" bindings/Makefile.in || die not found
+	sed -i "s/.*python.*/\\\/" bindings/Makefile.am || die "Bindings patch failed"
+	sed -i "s/ python //" bindings/Makefile.in || die "Bindings patch failed"
 	eautoreconf
 	
 	# Disable MONO for now because of http://bugs.gentoo.org/382491
