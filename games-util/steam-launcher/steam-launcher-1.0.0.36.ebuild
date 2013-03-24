@@ -89,7 +89,7 @@ src_install() {
 	for s in * ; do
 		doicon -s ${s} ${s}/steam.png
 	done
-	
+
 	# tgz archive contains no separate pixmap, see #38
 	insinto /usr/share/pixmaps/
 	newins 48/steam.png steam_tray_mono.png
@@ -102,6 +102,11 @@ pkg_preinst() {
 pkg_postinst() {
 	fdo-mime_desktop_database_update
 	gnome2_icon_cache_update
+
+	ewarn "This ebuild only installs the launcher. To start the client"
+	ewarn "and play games, you'll need further libraries that you can"
+	ewarn "pull in using the steam-meta ebuild."
+	ewarn ""
 
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
