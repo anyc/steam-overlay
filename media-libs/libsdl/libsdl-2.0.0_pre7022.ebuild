@@ -4,11 +4,10 @@
 
 EAPI=5
 
-inherit cmake-multilib versionator
+inherit cmake-multilib versionator mercurial
 
-# This ebuild is based on the one from gamerlay. It pulls a tarball
-# from the official website, multibuilds and adds a symlink required
-# for the steam client.
+# This ebuild is based on the one from gamerlay. It multibuilds and
+# adds a symlink required for the steam client.
 
 MY_PN="SDL"
 REV="$(get_version_component_range 4)"
@@ -16,7 +15,8 @@ MY_P="${MY_PN}-$(get_version_component_range 1-3)-${REV/pre/}"
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
-SRC_URI="http://www.libsdl.org/tmp/${MY_P}.tar.gz"
+EHG_REPO_URI="http://hg.libsdl.org/SDL/"
+EHG_REVISION="${REV/pre/}"
 
 LICENSE="ZLIB"
 SLOT="2"
@@ -68,9 +68,15 @@ DEPEND="${RDEPEND}
 	xscreensaver? ( x11-proto/scrnsaverproto )
 "
 
+# see https://bugs.gentoo.org/show_bug.cgi?id=462036 or #45
+REQUIRED_USE="amd64? ( abi_x86_32? ( !nas ) )"
+
 DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
 
-S=${WORKDIR}/${MY_P}
+src_prepare() {
+	einfo "Patching header to make them arch-independent"
+	sed -i "s/#cmakedefine SIZEOF_VOIDP @SIZEOF_VOIDP@.*/#define SIZEOF_VOIDP sizeof(void*)/" ${S}/include/SDL_config.h.cmake || die asd
+}
 
 src_configure() {
 	mycmakeargs=(
