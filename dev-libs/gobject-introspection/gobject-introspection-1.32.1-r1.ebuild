@@ -48,8 +48,11 @@ pkg_setup() {
 	python_pkg_setup
 }
 
-disable_unrequired_stuff_for_x86() {
-	if [ "$(get_libdir)" == "lib32" ]; then
+disable_python_for_x86() {
+	# x86 build on AMD64 fails due to missing 32bit python. We just remove the
+	# Python parts and those that depend on it as they are not required.
+	
+	if use amd64 && [ "$ABI" == "x86" ]; then
 		cd ${BUILD_DIR}
 		
 		# disable configure checks
@@ -58,7 +61,7 @@ disable_unrequired_stuff_for_x86() {
 		# disable python bindings
 		sed -i "s/include Makefile-giscanner.am//" Makefile.am || die "sed failed"
 		
-		# disable stuff we won't install for x86 anyways
+		# disable stuff that doesn't get installed anyways
 		sed -i "s/include Makefile-tools.am//" Makefile.am || die "sed failed"
 		sed -i "s/include Makefile-gir.am//" Makefile.am || die "sed failed"
 		
@@ -96,7 +99,7 @@ src_prepare() {
 	fi
 	
 	multilib_copy_sources
-	multilib_foreach_abi disable_unrequired_stuff_for_x86
+	multilib_foreach_abi disable_python_for_x86
 }
 
 multilib_src_test() {
