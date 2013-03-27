@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -26,12 +26,16 @@ RDEPEND=">=dev-libs/gobject-introspection-common-${PV}
 	virtual/libffi"
 # Wants real bison, not virtual/yacc
 DEPEND="${RDEPEND}
+	x11-proto/xproto[abi_x86_32?]
 	virtual/pkgconfig
 	sys-devel/bison
 	sys-devel/flex
 	doc? ( >=dev-util/gtk-doc-1.15 )"
 # PDEPEND to avoid circular dependencies, bug #391213
 PDEPEND="x11-libs/cairo[glib]"
+
+# TODO, see https://github.com/anyc/steam-overlay/issues/47
+REQUIRED_USE="amd64? ( abi_x86_32? ( !doctool ) )"
 
 pkg_setup() {
 	# To prevent crosscompiling problems, bug #414105
