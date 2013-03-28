@@ -34,19 +34,9 @@ DEPEND="${RDEPEND}
 # PDEPEND to avoid circular dependencies, bug #391213
 PDEPEND="x11-libs/cairo[glib]"
 
-# TODO, see https://github.com/anyc/steam-overlay/issues/47
-REQUIRED_USE="amd64? ( abi_x86_32? ( !doctool ) )"
-
 pkg_setup() {
 	# To prevent crosscompiling problems, bug #414105
 	CC=$(tc-getCC)
-
-	DOCS="AUTHORS CONTRIBUTORS ChangeLog NEWS README TODO"
-	G2CONF="${G2CONF}
-		--disable-static
-		YACC=$(type -p yacc)
-		$(use_enable doctool)
-		$(use_enable test tests)"
 
 	python_set_active_version 2
 	python_pkg_setup
@@ -104,6 +94,17 @@ src_prepare() {
 	
 	multilib_copy_sources
 	multilib_foreach_abi disable_python_for_x86
+}
+
+multilib_src_configure() {
+	DOCS="AUTHORS CONTRIBUTORS ChangeLog NEWS README TODO"
+	G2CONF="${G2CONF}
+		--disable-static
+		YACC=$(type -p yacc)
+		$(use_enable doctool)
+		$(use_enable test tests)"
+
+	gnome2_src_configure
 }
 
 multilib_src_test() {
