@@ -12,16 +12,16 @@ HOMEPAGE="http://launchpad.net/libappindicator"
 SRC_URI="http://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 LGPL-3"
-SLOT="3"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+introspection gtk3"
 
 RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/glib-2.26
-	>=dev-libs/libdbusmenu-0.6.2:3[gtk3=,gtk,abi_x86_32?]
-	>=dev-libs/libindicator-12.10.0:3[gtk3=,abi_x86_32?]
+	=dev-libs/libdbusmenu-0.6.2-r1[gtk3=,gtk,abi_x86_32?]
+	=dev-libs/libindicator-12.10.0-r1[gtk3=,abi_x86_32?]
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
-	!gtk3? ( x11-libs/gtk+:2 )
+	!gtk3? ( >=x11-libs/gtk+-2.18:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1[abi_x86_x32?] )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig

@@ -11,13 +11,13 @@ HOMEPAGE="http://launchpad.net/libindicator"
 SRC_URI="http://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="3"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test gtk3"
 
 RDEPEND=">=dev-libs/glib-2.22
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
-	!gtk3? ( x11-libs/gtk+:2 )
+	!gtk3? ( >=x11-libs/gtk+-2.18:2 )
 	"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
