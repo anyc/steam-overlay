@@ -22,8 +22,8 @@ RDEPEND=">=dev-libs/glib-2.22
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? ( dev-util/dbus-test-runner )
-	x11-proto/kbproto[abi_x86_32?]
-	x11-proto/xproto[abi_x86_32?]
+	x11-proto/kbproto[${MULTILIB_USEDEP}]
+	x11-proto/xproto[${MULTILIB_USEDEP}]
 	"
 
 ECONF_SOURCE=${S}

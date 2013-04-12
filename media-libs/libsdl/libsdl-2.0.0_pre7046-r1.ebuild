@@ -19,52 +19,52 @@ SRC_URI="http://www.libsdl.org/tmp/${MY_P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="3dnow alsa altivec +asm aqua fusionsound gles mmx nas opengl oss pulseaudio sse sse2 static-libs +threads tslib +video X +xcursor +xinput xinerama xscreensaver xrandr xvidmode"
 
 #FIXME: Replace "gles" deps with "virtual/opengles", after hitting Portage.
 RDEPEND="
 	nas? (
 		media-libs/nas[${MULTILIB_USEDEP}]
-		x11-libs/libX11
-		x11-libs/libXext
-		x11-libs/libXt
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+		x11-libs/libXt[${MULTILIB_USEDEP}]
 	)
 	X? (
-		x11-libs/libX11
-		x11-libs/libXcursor
-		x11-libs/libXext
-		x11-libs/libXi
-		x11-libs/libXt
-		x11-libs/libXrandr
-		x11-libs/libXrender
-		x11-libs/libXxf86vm
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXcursor[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+		x11-libs/libXi[${MULTILIB_USEDEP}]
+		x11-libs/libXt[${MULTILIB_USEDEP}]
+		x11-libs/libXrandr[${MULTILIB_USEDEP}]
+		x11-libs/libXrender[${MULTILIB_USEDEP}]
+		x11-libs/libXxf86vm[${MULTILIB_USEDEP}]
 	)
-	xinerama? ( x11-libs/libXinerama )
-	xscreensaver? ( x11-libs/libXScrnSaver )
+	xinerama? ( x11-libs/libXinerama[${MULTILIB_USEDEP}] )
+	xscreensaver? ( x11-libs/libXScrnSaver[${MULTILIB_USEDEP}] )
 	alsa? ( media-libs/alsa-lib )
 	fusionsound? ( >=media-libs/FusionSound-1.1.1 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9 )
 	gles? ( || ( media-libs/mesa[gles2] media-libs/mesa[gles] ) )
 	opengl? ( virtual/opengl )
-	tslib? ( x11-libs/tslib )
+	tslib? ( x11-libs/tslib[${MULTILIB_USEDEP}] )
 "
 
 DEPEND="${RDEPEND}
 	nas? (
-		x11-proto/xextproto
-		x11-proto/xproto
+		x11-proto/xextproto[${MULTILIB_USEDEP}]
+		x11-proto/xproto[${MULTILIB_USEDEP}]
 	)
 	X? (
-		x11-proto/inputproto
-		x11-proto/xextproto
-		x11-proto/xf86vidmodeproto
-		x11-proto/xproto
-		x11-proto/randrproto
-		x11-proto/renderproto
+		x11-proto/inputproto[${MULTILIB_USEDEP}]
+		x11-proto/xextproto[${MULTILIB_USEDEP}]
+		x11-proto/xf86vidmodeproto[${MULTILIB_USEDEP}]
+		x11-proto/xproto[${MULTILIB_USEDEP}]
+		x11-proto/randrproto[${MULTILIB_USEDEP}]
+		x11-proto/renderproto[${MULTILIB_USEDEP}]
 	)
-	xinerama? ( x11-proto/xineramaproto )
-	xscreensaver? ( x11-proto/scrnsaverproto )
+	xinerama? ( x11-proto/xineramaproto[${MULTILIB_USEDEP}] )
+	xscreensaver? ( x11-proto/scrnsaverproto[${MULTILIB_USEDEP}] )
 "
 
 DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )

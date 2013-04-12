@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/gobject-introspection-common-${PV}
 	virtual/libffi"
 # Wants real bison, not virtual/yacc
 DEPEND="${RDEPEND}
-	x11-proto/xproto[abi_x86_32?]
+	x11-proto/xproto[${MULTILIB_USEDEP}]
 	virtual/pkgconfig
 	sys-devel/bison
 	sys-devel/flex

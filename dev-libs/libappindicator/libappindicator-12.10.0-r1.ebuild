@@ -18,11 +18,11 @@ IUSE="+introspection gtk3"
 
 RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/glib-2.26
-	=dev-libs/libdbusmenu-0.6.2-r1[gtk3=,gtk,abi_x86_32?]
-	=dev-libs/libindicator-12.10.0-r1[gtk3=,abi_x86_32?]
+	=dev-libs/libdbusmenu-0.6.2-r1[gtk3=,gtk,${MULTILIB_USEDEP}]
+	=dev-libs/libindicator-12.10.0-r1[gtk3=,${MULTILIB_USEDEP}]
 	gtk3? ( >=x11-libs/gtk+-3.2:3 )
 	!gtk3? ( >=x11-libs/gtk+-2.18:2 )
-	introspection? ( >=dev-libs/gobject-introspection-1[abi_x86_x32?] )"
+	introspection? ( >=dev-libs/gobject-introspection-1[${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
