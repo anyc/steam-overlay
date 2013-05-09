@@ -24,7 +24,7 @@ LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
 SLOT="0"
-IUSE="-steamruntime"
+IUSE="+steamruntime"
 
 RDEPEND="
 		app-arch/xz-utils
@@ -42,8 +42,8 @@ RDEPEND="
 				(
 					x11-libs/libX11[abi_x86_32]
 					x11-libs/libXau[abi_x86_32]
-		                        x11-libs/libxcb[abi_x86_32]
-		                        x11-libs/libXdmcp[abi_x86_32]
+					x11-libs/libxcb[abi_x86_32]
+					x11-libs/libXdmcp[abi_x86_32]
 				)
 			)
 			>=sys-devel/gcc-4.6.0[multilib]
@@ -113,17 +113,18 @@ pkg_postinst() {
 	elog "also starts the client from your home folder."
 	elog ""
 
-	if use steamruntime; then
-		ewarn "You enabled the steam runtime environment. Steam will use bundled"
-		ewarn "libraries instead of system libraries which is _not_ supported."
-		ewarn ""
-	else
-		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
-		elog "and use installed system libraries instead. If you have problems,"
-		elog "try starting steam with: STEAM_RUNTIME=1 steam"
-		elog ""
+# 	if use steamruntime; then
+# 		ewarn "You enabled the steam runtime environment. Steam will use bundled"
+# 		ewarn "libraries instead of system libraries which is _not_ supported."
+# 		ewarn ""
+# 	else
+# 		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
+# 		elog "and use installed system libraries instead. If you have problems,"
+# 		elog "try starting steam with: STEAM_RUNTIME=1 steam"
+# 		elog ""
+	if use amd64 && ! use steamruntime; then
 		ewarn "Due to new dependencies, the steam beta client currently only works"
-		ewarn "with steam runtime enabled."
+		ewarn "with steam runtime enabled on AMD64."
 		ewarn ""
 	fi
 
