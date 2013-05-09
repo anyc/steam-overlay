@@ -113,6 +113,7 @@ pkg_postinst() {
 	elog "also starts the client from your home folder."
 	elog ""
 
+### disabled as we currently need steamruntime
 # 	if use steamruntime; then
 # 		ewarn "You enabled the steam runtime environment. Steam will use bundled"
 # 		ewarn "libraries instead of system libraries which is _not_ supported."

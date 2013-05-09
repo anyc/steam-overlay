@@ -10,6 +10,8 @@ You can add this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/us
 
 To install, emerge `steam-meta` ebuild.
 
+Note: due to new 32bit dependencies of the client, we cannot support steam without steam-runtime on AMD64 at the moment.
+
 Troubleshooting Steam
 ---------------------
 
