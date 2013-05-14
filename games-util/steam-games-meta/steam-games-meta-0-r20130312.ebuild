@@ -107,7 +107,7 @@ pkg_postinst() {
 		elog "accordingly."
 		elog ""
 	fi
-	elog "Ebuild development website: https://github.com/anyc/steam-overlay"
+	elog "Ebuild development website: http://github.com/anyc/steam-overlay"
 	elog ""
 	elog "If you have problems, please also see http://wiki.gentoo.org/wiki/Steam"
 }
