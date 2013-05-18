@@ -114,6 +114,7 @@ pkg_postinst() {
  		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
  		elog "and use installed system libraries instead. If you have problems,"
  		elog "try starting steam with: STEAM_RUNTIME=1 steam"
+		ewarn ""
  		ewarn "Notice: Valve only supports Steam with the runtime enabled!"
 		ewarn ""
 	fi

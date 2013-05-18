@@ -24,7 +24,7 @@ LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
 SLOT="0"
-IUSE="-steamruntime"
+IUSE="steamruntime"
 
 RDEPEND="
 		app-arch/xz-utils
@@ -42,8 +42,8 @@ RDEPEND="
 				(
 					x11-libs/libX11[abi_x86_32]
 					x11-libs/libXau[abi_x86_32]
-		                        x11-libs/libxcb[abi_x86_32]
-		                        x11-libs/libXdmcp[abi_x86_32]
+					x11-libs/libxcb[abi_x86_32]
+					x11-libs/libXdmcp[abi_x86_32]
 				)
 			)
 			>=sys-devel/gcc-4.6.0[multilib]
@@ -64,9 +64,7 @@ src_prepare() {
 	if [[ "${PV}" != "9999" ]] ; then
 		if ! use steamruntime; then
 			# use system libraries
-			sed -i -r 's/#(if \[ -z "\$STEAM_RUNTIME" \]; then)/\1/' steam
-			sed -i -r "s/#	STEAM_RUNTIME=1/ export STEAM_RUNTIME=0/" steam
-			sed -i -r "s/#(fi)/\1/" steam
+			sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi/" steam || die
 		fi
 
 		# we use our ebuild functions to install the files
@@ -103,25 +101,22 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 	gnome2_icon_cache_update
 
-	ewarn "This ebuild only installs the launcher. To start the client"
-	ewarn "and play games, you'll need further libraries that you can"
-	ewarn "pull in using the steam-meta ebuild."
-	ewarn ""
-
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
 	elog ""
 
-	if use steamruntime; then
-		ewarn "You enabled the steam runtime environment. Steam will use bundled"
-		ewarn "libraries instead of system libraries which is _not_ supported."
+ 	if use steamruntime; then
+ 		ewarn "You enabled the steam runtime environment. Steam will use bundled"
+ 		ewarn "libraries instead of Gentoo's system libraries."
+ 		ewarn ""
+ 	else
+ 		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
+ 		elog "and use installed system libraries instead. If you have problems,"
+ 		elog "try starting steam with: STEAM_RUNTIME=1 steam"
 		ewarn ""
-	else
-		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
-		elog "and use installed system libraries instead. If you have problems,"
-		elog "try starting steam with: STEAM_RUNTIME=1 steam"
-		elog ""
+ 		ewarn "Notice: Valve only supports Steam with the runtime enabled!"
+		ewarn ""
 	fi
 
 	if ! has_version "gnome-extra/zenity"; then
