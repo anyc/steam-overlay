@@ -4,6 +4,8 @@
 
 EAPI=5
 
+inherit pax-utils
+
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
@@ -97,13 +99,20 @@ RDEPEND="
 pkg_postinst() {
 	elog "This is only a meta package that pulls in the required"
 	elog "dependencies for the steam client."
+	elog ""
 
 	if use flash; then
-		elog ""
 		elog "In order to use flash, link the 32bit libflashplayer.so to"
 		elog "\${STEAM_FOLDER}/ubuntu12_32/plugins/"
+		elog ""
 	fi
 
+	if host-is-pax; then
+		elog "If you're using PAX, please see:"
+		elog "http://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
+		elog ""
+	fi
+	
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }
