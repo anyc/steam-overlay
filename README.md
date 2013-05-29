@@ -1,7 +1,7 @@
 steam-overlay
 =============
 
-Gentoo overlay for Valve's Steam client and Steam-based games. Stable ebuilds are also transferred to [Gamerlay overlay](http://dev.gentoo.org/~mrpouet/pub/gamerlay/main_page.xml) ([repo](http://git.overlays.gentoo.org/gitweb/?p=proj/gamerlay.git;a=summary)). 
+Gentoo overlay for Valve's Steam client and Steam-based games.
 
 Using the overlay
 -----------------
