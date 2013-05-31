@@ -68,7 +68,7 @@ DEPEND="${RDEPEND}
 	xscreensaver? ( x11-proto/scrnsaverproto )
 "
 
-DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
+DOCS=( BUGS.txt CREDITS.txt README.txt README-hg.txt README-SDL.txt TODO.txt WhatsNew.txt )
 
 src_configure() {
 	mycmakeargs=(
