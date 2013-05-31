@@ -3,12 +3,20 @@ steam-overlay
 
 Gentoo overlay for Valve's Steam client and Steam-based games.
 
-Using the overlay
------------------
+Valve only provides a 32-bit version of the client, uses an own update mechanism for the client and games that is not under control 
+of package managers and ships a customized runtime with all precompiled libraries. This overlay provides an ebuild for the steam
+installer and meta ebuilds as well as patched (multilib) ebuilds from main tree that enable the execution of the client and games with 
+(almost only) system libraries on x86_64 and x86 systems.
 
-You can add this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam`.
+*Please note*: Valve only supports Steam with an enabled steam runtime. If you have problems, enable the runtime with the use flag or 
+start steam with `STEAM_RUNTIME=1 steam` before reporting a bug at the [official bug tracker](https://github.com/ValveSoftware/steam-for-linux/issues).
 
-To install, emerge `steam-meta` ebuild.
+Usage
+-----
+
+* Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam`
+* Emerge `steam-meta` ebuild
+* Start the client by executing `steam`
 
 Troubleshooting Steam
 ---------------------

@@ -68,8 +68,6 @@ DEPEND="${RDEPEND}
 	xscreensaver? ( x11-proto/scrnsaverproto )
 "
 
-DOCS=( BUGS.txt CREDITS.txt README.txt README-hg.txt README-SDL.txt TODO.txt WhatsNew.txt )
-
 src_configure() {
 	mycmakeargs=(
 		# Disable assertion tests.
@@ -117,6 +115,8 @@ create_symlink_for_steam() {
 
 src_install() {
 	cmake-multilib_src_install
+
+	dodoc BUGS.txt CREDITS.txt TODO.txt WhatsNew.txt README*
 
 	# create symlink for Valve's steam client
 	multilib_foreach_abi create_symlink_for_steam
