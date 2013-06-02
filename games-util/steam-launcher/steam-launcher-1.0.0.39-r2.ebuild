@@ -9,17 +9,11 @@ EAPI=5
 
 inherit eutils gnome2-utils fdo-mime
 
-DESCRIPTION="Supplementary files for Valve's Steam client for Linux"
+DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
+SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
 
-if [[ "${PV}" == "9999" ]] ; then
-	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
-	KEYWORDS=""
-else
-	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
-	KEYWORDS="-* ~amd64 ~x86"
-fi
-
+KEYWORDS="-* ~amd64 ~x86"
 LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
@@ -61,15 +55,13 @@ RDEPEND="
 S=${WORKDIR}/steam/
 
 src_prepare() {
-	if [[ "${PV}" != "9999" ]] ; then
-		if ! use steamruntime; then
-			# use system libraries
-			sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi/" steam || die
-		fi
-
-		# we use our ebuild functions to install the files
-		rm Makefile
+	if ! use steamruntime; then
+		# use system libraries
+		sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi/" steam || die
 	fi
+
+	# we use our ebuild functions to install the files
+	rm Makefile
 }
 
 src_install() {
