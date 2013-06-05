@@ -1,0 +1,49 @@
+# HG changeset patch
+# User Azamat H. Hackimov <azamat.hackimov@gmail.com>
+# Date 1370413935 -21600
+# Node ID 00d5ada80b60f6e163a2ebbb5949515dd9646458
+# Parent  2a858d938e21eb4f6f4496f29557a1fa14b566b4
+Make _XData32 checking universal for 32 and 64 architectures.
+_XData32 is used only for 64, so there should be no regression in 32bit
+enviroment.
+This commit intended for making universal SDL_config.h in mixed 32/64
+enviroment.
+
+diff -r 2a858d938e21 -r 00d5ada80b60 cmake/sdlchecks.cmake
+--- a/cmake/sdlchecks.cmake	Wed Jun 05 12:28:53 2013 +0600
++++ b/cmake/sdlchecks.cmake	Wed Jun 05 12:32:15 2013 +0600
+@@ -357,6 +357,7 @@
+       endif(HAVE_XGENERICEVENT)
+ 
+       check_c_source_compiles("
++          #define LONG64
+           #include <X11/Xlibint.h>
+           extern int _XData32(Display *dpy,register _Xconst long *data,unsigned len);
+           int main(int argc, char **argv) {}" HAVE_CONST_XDATA32)
+diff -r 2a858d938e21 -r 00d5ada80b60 configure.in
+--- a/configure.in	Wed Jun 05 12:28:53 2013 +0600
++++ b/configure.in	Wed Jun 05 12:32:15 2013 +0600
+@@ -1147,14 +1147,15 @@
+             AC_MSG_CHECKING(for const parameter to _XData32)
+ 	    have_const_param_xdata32=no
+ 	    AC_TRY_COMPILE([
+-	      #include <X11/Xlibint.h>
+-	      extern int _XData32(Display *dpy,register _Xconst long *data,unsigned len);
+-	    ],[
+-	    ],[
+-	    have_const_param_xdata32=yes
+-	    AC_DEFINE(SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32)
+-	    ])
+-	    AC_MSG_RESULT($have_const_param_xdata32)
++              #define LONG64
++              #include <X11/Xlibint.h>
++              extern int _XData32(Display *dpy,register _Xconst long *data,unsigned len);
++            ],[
++            ],[
++            have_const_param_xdata32=yes
++            AC_DEFINE(SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32)
++            ])
++            AC_MSG_RESULT($have_const_param_xdata32)
+ 
+             dnl AC_CHECK_LIB(X11, XGetEventData, AC_DEFINE(SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS, 1, [Have XGenericEvent]))
+             AC_MSG_CHECKING([for XGenericEvent])

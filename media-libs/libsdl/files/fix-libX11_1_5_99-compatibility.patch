@@ -1,0 +1,128 @@
+
+# HG changeset patch
+# User Azamat H. Hackimov <azamat.hackimov@gmail.com>
+# Date 1370182818 -21600
+# Node ID 6caad66a4966d99e5ddd58d80198d7b09e0205f2
+# Parent  3bb309bb6bfeac087fe4869ea8a8d286a9170e14
+Fix compilation with libX11 >= 1.5.99.902.
+
+These changes fixes bug #1769 for SDL2
+(http://bugzilla.libsdl.org/show_bug.cgi?id=1769).
+
+diff -r 3bb309bb6bfe -r 6caad66a4966 cmake/sdlchecks.cmake
+--- a/cmake/sdlchecks.cmake	Sun Jun 02 08:48:52 2013 -0700
++++ b/cmake/sdlchecks.cmake	Sun Jun 02 20:20:18 2013 +0600
+@@ -356,6 +356,14 @@
+         set(SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS 1)
+       endif(HAVE_XGENERICEVENT)
+ 
++      check_c_source_compiles("
++          #include <X11/Xlibint.h>
++          extern int _XData32(Display *dpy,register _Xconst long *data,unsigned len);
++          int main(int argc, char **argv) {}" HAVE_CONST_XDATA32)
++      if(HAVE_CONST_XDATA32)
++        set(SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32 1)
++      endif(HAVE_CONST_XDATA32)
++
+       check_function_exists(XkbKeycodeToKeysym SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM)
+ 
+       if(VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
+diff -r 3bb309bb6bfe -r 6caad66a4966 configure
+--- a/configure	Sun Jun 02 08:48:52 2013 -0700
++++ b/configure	Sun Jun 02 20:20:18 2013 +0600
+@@ -19492,6 +19492,35 @@
+             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $have_const_param_XextAddDisplay" >&5
+ $as_echo "$have_const_param_XextAddDisplay" >&6; }
+ 
++            { $as_echo "$as_me:${as_lineno-$LINENO}: checking for const parameter to _XData32" >&5
++$as_echo_n "checking for const parameter to _XData32... " >&6; }
++	    have_const_param_xdata32=no
++	    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++
++	      #include <X11/Xlibint.h>
++	      extern int _XData32(Display *dpy,register _Xconst long *data,unsigned len);
++
++int
++main ()
++{
++
++
++  ;
++  return 0;
++}
++_ACEOF
++if ac_fn_c_try_compile "$LINENO"; then :
++
++	    have_const_param_xdata32=yes
++	    $as_echo "#define SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32 1" >>confdefs.h
++
++
++fi
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
++	    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $have_const_param_xdata32" >&5
++$as_echo "$have_const_param_xdata32" >&6; }
++
+                         { $as_echo "$as_me:${as_lineno-$LINENO}: checking for XGenericEvent" >&5
+ $as_echo_n "checking for XGenericEvent... " >&6; }
+             have_XGenericEvent=no
+diff -r 3bb309bb6bfe -r 6caad66a4966 configure.in
+--- a/configure.in	Sun Jun 02 08:48:52 2013 -0700
++++ b/configure.in	Sun Jun 02 20:20:18 2013 +0600
+@@ -1144,6 +1144,18 @@
+             ])
+             AC_MSG_RESULT($have_const_param_XextAddDisplay)
+ 
++            AC_MSG_CHECKING(for const parameter to _XData32)
++	    have_const_param_xdata32=no
++	    AC_TRY_COMPILE([
++	      #include <X11/Xlibint.h>
++	      extern int _XData32(Display *dpy,register _Xconst long *data,unsigned len);
++	    ],[
++	    ],[
++	    have_const_param_xdata32=yes
++	    AC_DEFINE(SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32)
++	    ])
++	    AC_MSG_RESULT($have_const_param_xdata32)
++
+             dnl AC_CHECK_LIB(X11, XGetEventData, AC_DEFINE(SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS, 1, [Have XGenericEvent]))
+             AC_MSG_CHECKING([for XGenericEvent])
+             have_XGenericEvent=no
+diff -r 3bb309bb6bfe -r 6caad66a4966 include/SDL_config.h.cmake
+--- a/include/SDL_config.h.cmake	Sun Jun 02 08:48:52 2013 -0700
++++ b/include/SDL_config.h.cmake	Sun Jun 02 20:20:18 2013 +0600
+@@ -266,6 +266,7 @@
+ #cmakedefine SDL_VIDEO_DRIVER_X11_XSHAPE @SDL_VIDEO_DRIVER_X11_XSHAPE@
+ #cmakedefine SDL_VIDEO_DRIVER_X11_XVIDMODE @SDL_VIDEO_DRIVER_X11_XVIDMODE@
+ #cmakedefine SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS @SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS@
++#cmakedefine SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32 @SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32@
+ #cmakedefine SDL_VIDEO_DRIVER_X11_CONST_PARAM_XEXTADDDISPLAY @SDL_VIDEO_DRIVER_X11_CONST_PARAM_XEXTADDDISPLAY@
+ #cmakedefine SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM @SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM@
+ 
+diff -r 3bb309bb6bfe -r 6caad66a4966 include/SDL_config.h.in
+--- a/include/SDL_config.h.in	Sun Jun 02 08:48:52 2013 -0700
++++ b/include/SDL_config.h.in	Sun Jun 02 20:20:18 2013 +0600
+@@ -268,6 +268,7 @@
+ #undef SDL_VIDEO_DRIVER_X11_XSHAPE
+ #undef SDL_VIDEO_DRIVER_X11_XVIDMODE
+ #undef SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS
++#undef SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32
+ #undef SDL_VIDEO_DRIVER_X11_CONST_PARAM_XEXTADDDISPLAY
+ #undef SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM
+ 
+diff -r 3bb309bb6bfe -r 6caad66a4966 src/video/x11/SDL_x11sym.h
+--- a/src/video/x11/SDL_x11sym.h	Sun Jun 02 08:48:52 2013 -0700
++++ b/src/video/x11/SDL_x11sym.h	Sun Jun 02 20:20:18 2013 +0600
+@@ -203,7 +203,11 @@
+  */
+ #ifdef LONG64
+ SDL_X11_MODULE(IO_32BIT)
++#if SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32
++SDL_X11_SYM(int,_XData32,(Display *dpy,register _Xconst long *data,unsigned len),(dpy,data,len),return)
++#else
+ SDL_X11_SYM(int,_XData32,(Display *dpy,register long *data,unsigned len),(dpy,data,len),return)
++#endif
+ SDL_X11_SYM(void,_XRead32,(Display *dpy,register long *data,long len),(dpy,data,len),)
+ #endif
+ 
+
