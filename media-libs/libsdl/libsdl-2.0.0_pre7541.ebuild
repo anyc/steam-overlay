@@ -69,11 +69,6 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${MY_P}
 
-#src_prepare() {
-#	einfo "Patching header to make them arch-independent"
-#	sed -i "s/#cmakedefine SIZEOF_VOIDP @SIZEOF_VOIDP@.*/#define SIZEOF_VOIDP sizeof(void*)/" ${S}/include/SDL_config.h.cmake || die asd
-#}
-
 src_configure() {
 	mycmakeargs=(
 		# Disable assertion tests.
@@ -114,16 +109,8 @@ src_configure() {
 	cmake-multilib_src_configure
 }
 
-#create_symlink_for_steam() {
-#	cd ${D}/usr/$(get_libdir)
-#	ln -s libSDL2.so.2.0.0 libSDL2-2.0.so.0
-#}
-
 src_install() {
 	cmake-multilib_src_install
 
 	dodoc BUGS.txt CREDITS.txt TODO.txt WhatsNew.txt README*
-
-	# create symlink for Valve's steam client
-#	multilib_foreach_abi create_symlink_for_steam
 }
