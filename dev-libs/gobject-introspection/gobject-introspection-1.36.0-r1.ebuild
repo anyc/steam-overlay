@@ -14,7 +14,7 @@ HOMEPAGE="http://live.gnome.org/GObjectIntrospection/"
 
 LICENSE="LGPL-2+ GPL-2+"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS=""
 
 IUSE="cairo doctool test"
 REQUIRED_USE="test? ( cairo )"
@@ -33,6 +33,7 @@ DEPEND="${RDEPEND}
 	sys-devel/bison
 	sys-devel/flex
 	virtual/pkgconfig
+	amd64? ( abi_x86_32? ( =sys-devel/automake-1.13.1 ) )
 "
 # PDEPEND to avoid circular dependencies, bug #391213
 PDEPEND="cairo? ( x11-libs/cairo[glib] )"
@@ -61,6 +62,7 @@ disable_python_for_x86() {
 		# disable tests
 		sed -i "s/SUBDIRS = . docs tests/SUBDIRS = . docs/" Makefile.am || die "sed failed"
 		eautoreconf
+# 		eautomake
 	fi
 }
 
