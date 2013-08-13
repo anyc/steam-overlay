@@ -29,8 +29,8 @@ RDEPEND="
 		abi_x86_32? (
 			|| (
 				(
-					>=app-emulation/emul-linux-x86-soundlibs-20121202
-					>=app-emulation/emul-linux-x86-xlibs-20121202
+					nas? ( >=app-emulation/emul-linux-x86-soundlibs-20121202 )
+					X? ( >=app-emulation/emul-linux-x86-xlibs-20121202 )
 				)
 				(
 					nas? (
@@ -85,20 +85,28 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	amd64? (
 		abi_x86_32? (
-			nas? (
-				x11-proto/xextproto[${MULTILIB_USEDEP}]
-				x11-proto/xproto[${MULTILIB_USEDEP}]
+			|| (
+				(
+					nas? ( >=app-emulation/emul-linux-x86-soundlibs-20121202 )
+					X? ( >=app-emulation/emul-linux-x86-xlibs-20121202 )
+				)
+				(
+				nas? (
+					x11-proto/xextproto[${MULTILIB_USEDEP}]
+					x11-proto/xproto[${MULTILIB_USEDEP}]
+				)
+				X? (
+					x11-proto/inputproto[${MULTILIB_USEDEP}]
+					x11-proto/xextproto[${MULTILIB_USEDEP}]
+					x11-proto/xf86vidmodeproto[${MULTILIB_USEDEP}]
+					x11-proto/xproto[${MULTILIB_USEDEP}]
+					x11-proto/randrproto[${MULTILIB_USEDEP}]
+					x11-proto/renderproto[${MULTILIB_USEDEP}]
+				)
+				xinerama? ( x11-proto/xineramaproto[${MULTILIB_USEDEP}] )
+				xscreensaver? ( x11-proto/scrnsaverproto[${MULTILIB_USEDEP}] )
+				)
 			)
-			X? (
-				x11-proto/inputproto[${MULTILIB_USEDEP}]
-				x11-proto/xextproto[${MULTILIB_USEDEP}]
-				x11-proto/xf86vidmodeproto[${MULTILIB_USEDEP}]
-				x11-proto/xproto[${MULTILIB_USEDEP}]
-				x11-proto/randrproto[${MULTILIB_USEDEP}]
-				x11-proto/renderproto[${MULTILIB_USEDEP}]
-			)
-			xinerama? ( x11-proto/xineramaproto[${MULTILIB_USEDEP}] )
-			xscreensaver? ( x11-proto/scrnsaverproto[${MULTILIB_USEDEP}] )
 		)
 	)
 	nas? (
