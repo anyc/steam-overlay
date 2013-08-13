@@ -62,7 +62,6 @@ disable_python_for_x86() {
 		# disable tests
 		sed -i "s/SUBDIRS = . docs tests/SUBDIRS = . docs/" Makefile.am || die "sed failed"
 		eautoreconf
-# 		eautomake
 	fi
 }
 
@@ -92,6 +91,11 @@ multilib_src_configure(){
 		YACC=$(type -p yacc) \
 		$(use_with cairo) \
 		$(use_enable doctool)
+
+	# ugly hack. somehow pkgconfig uses the 64bit .pc file for the x86 part
+	if use amd64 && [ "$ABI" == "x86" ]; then
+		sed -i "s/\/usr\/lib64/\/usr\/lib32/g" Makefile || die
+	fi
 }
 
 multilib_src_install() {
