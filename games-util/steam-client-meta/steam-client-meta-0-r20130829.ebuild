@@ -4,6 +4,8 @@
 
 EAPI=5
 
+inherit pax-utils
+
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
@@ -25,7 +27,11 @@ RDEPEND="
 		amd64? (
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
-			>=media-libs/libsdl-2.0.0_pre6964:2[abi_x86_32]
+			|| (
+				media-libs/libsdl2[abi_x86_32]
+				>=media-libs/libsdl-2.0.0_pre6964:2[abi_x86_32]
+			)
+			app-emulation/steam-runtime-bin
 
 			>=app-emulation/emul-linux-x86-baselibs-20121202
 			>=app-emulation/emul-linux-x86-gtklibs-20121202
@@ -65,7 +71,10 @@ RDEPEND="
 			media-libs/libjpeg-turbo
 			media-libs/libogg
 			media-libs/libpng:1.2
-			>=media-libs/libsdl-2.0.0_pre6964
+			|| (
+				media-libs/libsdl2
+				>=media-libs/libsdl-2.0.0_pre6964
+			)
 			media-libs/libtheora
 			media-libs/libvorbis
 			media-libs/openal
@@ -96,13 +105,20 @@ RDEPEND="
 pkg_postinst() {
 	elog "This is only a meta package that pulls in the required"
 	elog "dependencies for the steam client."
+	elog ""
 
 	if use flash; then
-		elog ""
 		elog "In order to use flash, link the 32bit libflashplayer.so to"
 		elog "\${STEAM_FOLDER}/ubuntu12_32/plugins/"
+		elog ""
 	fi
 
+	if host-is-pax; then
+		elog "If you're using PAX, please see:"
+		elog "http://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
+		elog ""
+	fi
+	
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }
