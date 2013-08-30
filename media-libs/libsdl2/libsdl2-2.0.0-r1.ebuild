@@ -41,7 +41,7 @@ RDEPEND="
 	nas? ( media-libs/nas[${MULTILIB_USEDEP}] )
 	opengl? ( virtual/opengl virtual/glu )
 	pulseaudio? ( media-sound/pulseaudio )
-	tslib? ( x11-libs/tslib[${MULTILIB_USEDEP}] )
+	tslib? ( x11-libs/tslib )
 	udev? ( virtual/udev )
 	X? (
 		x11-libs/libX11[${MULTILIB_USEDEP}]

@@ -30,7 +30,7 @@ app-emulation/steam-runtime-bin
 =media-libs/jasper-1.900.1-r6
 =media-libs/libexif-0.6.21-r1
 =media-libs/openal-1.15.1-r1
-media-libs/libsdl:2 ~amd64
+#media-libs/libsdl:2 ~amd64
 
 =dev-libs/libappindicator-12.10.0-r1 ~amd64
 =dev-libs/libdbusmenu-0.6.2-r1 ~amd64
@@ -78,7 +78,6 @@ media-libs/libsdl:2 ~amd64
 =x11-libs/libX11-1.5.0-r1 ~amd64
 =x11-libs/libvdpau-0.5-r1 ~amd64
 =x11-libs/libXvMC-1.0.7-r1 ~amd64
-=media-libs/fontconfig-2.10.2-r1 ~amd64
 =x11-proto/renderproto-0.11.1-r1 ~amd64
 =x11-libs/libXmu-1.1.1-r1 ~amd64
 =x11-libs/libXxf86vm-1.1.2-r1 ~amd64
@@ -201,3 +200,8 @@ media-libs/libsdl:2 ~amd64
 =sys-libs/ncurses-5.9-r3 ~amd64
 =sys-libs/e2fsprogs-libs-1.42.7-r1 ~amd64
 =sys-libs/gpm-1.20.7-r2 ~amd64
+=media-libs/tiff-4.0.3-r5 ~amd64
+
+media-libs/libsdl2 **
+
+=media-libs/fontconfig-2.10.92 ~amd64
