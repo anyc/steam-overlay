@@ -33,7 +33,7 @@ DEPEND="${RDEPEND}
 	sys-devel/bison
 	sys-devel/flex
 	virtual/pkgconfig
-	amd64? ( abi_x86_32? ( =sys-devel/automake-1.13.1 ) )
+	amd64? ( abi_x86_32? ( sys-devel/automake:1.13 ) )
 "
 # PDEPEND to avoid circular dependencies, bug #391213
 PDEPEND="cairo? ( x11-libs/cairo[glib] )"
