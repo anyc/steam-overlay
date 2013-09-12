@@ -26,6 +26,8 @@ games-util/steam-meta
 games-util/steam-client-meta
 games-util/steam-games-meta
 app-emulation/steam-runtime-bin
+sys-libs/steam-runtime-libsepol
+sys-libs/steam-runtime-libselinux
 
 =media-libs/jasper-1.900.1-r6
 =media-libs/libexif-0.6.21-r1
