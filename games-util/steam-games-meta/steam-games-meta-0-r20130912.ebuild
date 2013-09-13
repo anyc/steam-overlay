@@ -14,13 +14,13 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS=""
-IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
+IUSE="s3tc mono testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 	video_cards_nvidia video_cards_radeon"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
 IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
-	shatter"
+	shatter hammerwatch"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -34,8 +34,10 @@ RDEPEND="
 				) )
 			x86? ( media-libs/libtxc_dxtn )
 			)
-		testdeps? (
+		mono? (
 			dev-lang/mono
+			)
+		testdeps? (
 			x86? (
 				dev-db/sqlite
 				dev-games/ogre
@@ -98,6 +100,7 @@ REQUIRED_USE="
 				video_cards_radeon? ( s3tc )
 				video_cards_nouveau? ( s3tc )
 			)
+		steamgames_hammerwatch? ( mono )
 		"
 
 S=${WORKDIR}
