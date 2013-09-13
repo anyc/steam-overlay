@@ -53,14 +53,14 @@ disable_python_for_x86() {
 		epatch ${FILESDIR}/disable_python.patch
 		
 		# disable python bindings
-		sed -i "s/include Makefile-giscanner.am//" Makefile.am || die "sed failed"
+		sed -i -e "s/include Makefile-giscanner.am//" Makefile.am || die "sed failed"
 		
 		# disable stuff that doesn't get installed anyways
-		sed -i "s/include Makefile-tools.am//" Makefile.am || die "sed failed"
-		sed -i "s/include Makefile-gir.am//" Makefile.am || die "sed failed"
+		sed -i -e "s/include Makefile-tools.am//" Makefile.am || die "sed failed"
+		sed -i -e "s/include Makefile-gir.am//" Makefile.am || die "sed failed"
 		
 		# disable tests
-		sed -i "s/SUBDIRS = . docs tests/SUBDIRS = . docs/" Makefile.am || die "sed failed"
+		sed -i -e "s/SUBDIRS = . docs tests/SUBDIRS = . docs/" Makefile.am || die "sed failed"
 		eautoreconf
 	fi
 }
@@ -94,7 +94,7 @@ multilib_src_configure(){
 
 	# ugly hack. somehow pkgconfig uses the 64bit .pc file for the x86 part
 	if use amd64 && [ "$ABI" == "x86" ]; then
-		sed -i "s/\/usr\/lib64/\/usr\/lib32/g" Makefile || die
+		sed -i -e "/^INSTALL/b; s#/usr/lib64#/usr/lib32#g" Makefile || die
 	fi
 }
 
