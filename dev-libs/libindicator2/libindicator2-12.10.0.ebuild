@@ -6,18 +6,20 @@ EAPI=5
 
 inherit eutils flag-o-matic virtualx multilib-minimal
 
+MY_PN=${PN/libindicator2/libindicator}
+MY_P=${P/libindicator2/libindicator}
+
 DESCRIPTION="A set of symbols and convience functions that all indicators would like to use"
 HOMEPAGE="http://launchpad.net/libindicator"
-SRC_URI="http://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
+SRC_URI="http://launchpad.net/${MY_PN}/${PV%.*}/${PV}/+download/${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="test gtk3"
+IUSE="test"
 
 RDEPEND=">=dev-libs/glib-2.22
-	gtk3? ( >=x11-libs/gtk+-3.2:3 )
-	!gtk3? ( >=x11-libs/gtk+-2.18:2 )
+	>=x11-libs/gtk+-2.18:2
 	"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
@@ -26,14 +28,17 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto[${MULTILIB_USEDEP}]
 	"
 
+S=${WORKDIR}/${MY_P}
 ECONF_SOURCE=${S}
 
 multilib_src_configure() {
 	append-flags -Wno-error
 	
-	use gtk3 && GTK_SWITCH="--with-gtk=3" || GTK_SWITCH="--with-gtk=2"
+	GTK_SWITCH="--with-gtk=2"
 	
 	econf \
+		--prefix=/opt/steam-runtime/ \
+		--libdir=/opt/steam-runtime/usr/$(get_libdir) \
 		--disable-silent-rules \
 		--disable-static \
 		${GTK_SWITCH}

@@ -6,22 +6,24 @@ EAPI=5
 
 AYATANA_VALA_VERSION=0.16
 
+MY_PN=${PN/libdbusmenu2/libdbusmenu}
+MY_P=${P/libdbusmenu2/libdbusmenu}
+
 inherit eutils flag-o-matic multilib-minimal
 
 DESCRIPTION="Library to pass menu structure across DBus"
 HOMEPAGE="http://launchpad.net/dbusmenu"
-SRC_URI="http://launchpad.net/${PN/lib}/${PV%.*}/${PV}/+download/${P}.tar.gz"
+SRC_URI="http://launchpad.net/${MY_PN/lib}/${PV%.*}/${PV}/+download/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug gtk gtk3 +introspection"
+IUSE="debug gtk +introspection"
 
 RDEPEND=">=dev-libs/glib-2.32
 	>=dev-libs/dbus-glib-0.100
 	dev-libs/libxml2
-	gtk3? ( >=x11-libs/gtk+-3.2:3 )
-	!gtk3? ( gtk? ( >=x11-libs/gtk+-2.18:2 ) )
+	gtk? ( >=x11-libs/gtk+-2.18:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1[${MULTILIB_USEDEP}] )
 	"
 DEPEND="${RDEPEND}
@@ -29,19 +31,23 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig
 	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
-REQUIRED_USE="gtk3? ( gtk )"
 
+S=${WORKDIR}/${MY_P}
 ECONF_SOURCE=${S}
 
 multilib_src_configure() {
 	append-flags -Wno-error #414323
-	export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/usr/share/pkgconfig/
+	
+	export PKG_CONFIG=pkg-config
+	export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/usr/share/pkgconfig/:/usr/$(get_libdir)/pkgconfig/
 
 	use introspection && export VALA_API_GEN="$(type -P vapigen-${AYATANA_VALA_VERSION})"
-	use gtk3 && GTK_SWITCH="--with-gtk=3" || GTK_SWITCH="--with-gtk=2"
+	GTK_SWITCH="--with-gtk=2"
 	
 	# dumper extra tool is only for GTK+-2.x, tests use valgrind which is stupid
 	econf \
+		--prefix=/opt/steam-runtime/ \
+		--libdir=/opt/steam-runtime/usr/$(get_libdir) \
 		--docdir=/usr/share/doc/${PF} \
 		--disable-static \
 		--disable-silent-rules \

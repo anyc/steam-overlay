@@ -7,26 +7,29 @@ inherit eutils autotools multilib-minimal
 
 AYATANA_VALA_VERSION=0.16
 
+MY_PN=${PN/libappindicator2/libappindicator}
+MY_P=${P/libappindicator2/libappindicator}
+
 DESCRIPTION="A library to allow applications to export a menu into the Unity Menu bar"
 HOMEPAGE="http://launchpad.net/libappindicator"
-SRC_URI="http://launchpad.net/${PN}/${PV%.*}/${PV}/+download/${P}.tar.gz"
+SRC_URI="http://launchpad.net/${MY_PN}/${PV%.*}/${PV}/+download/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+introspection gtk3"
+IUSE="+introspection"
 
 RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/glib-2.26
-	=dev-libs/libdbusmenu-0.6.2-r1[gtk3=,gtk,${MULTILIB_USEDEP}]
-	=dev-libs/libindicator-12.10.0-r1[gtk3=,${MULTILIB_USEDEP}]
-	gtk3? ( >=x11-libs/gtk+-3.2:3 )
-	!gtk3? ( >=x11-libs/gtk+-2.18:2 )
+	=dev-libs/libdbusmenu2-0.6.2[gtk,${MULTILIB_USEDEP}]
+	=dev-libs/libindicator2-12.10.0[${MULTILIB_USEDEP}]
+	>=x11-libs/gtk+-2.18:2
 	introspection? ( >=dev-libs/gobject-introspection-1[${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
 
+S=${WORKDIR}/${MY_P}
 ECONF_SOURCE=${S}
 
 src_prepare() {
@@ -44,11 +47,16 @@ multilib_src_configure() {
 	export APPINDICATOR_PYTHON_CFLAGS=' '
 	export APPINDICATOR_PYTHON_LIBS=' '
 	
+	export PKG_CONFIG=pkg-config
+	export PKG_CONFIG_PATH=/opt/steam-runtime/usr/$(get_libdir)/pkgconfig/
+	
 	use introspection && export VALAC="$(type -P valac-${AYATANA_VALA_VERSION})"
 	
-	use gtk3 && GTK_SWITCH="--with-gtk=3" || GTK_SWITCH="--with-gtk=2"
+	GTK_SWITCH="--with-gtk=2"
 	
 	econf \
+		--prefix=/opt/steam-runtime/ \
+		--libdir=/opt/steam-runtime/usr/$(get_libdir) \
 		--disable-silent-rules \
 		--disable-static \
 		--with-html-dir=/usr/share/doc/${PF}/html \

@@ -32,11 +32,12 @@ sys-libs/steam-runtime-libselinux
 =media-libs/jasper-1.900.1-r6
 =media-libs/libexif-0.6.21-r1
 =media-libs/openal-1.15.1-r1
-#media-libs/libsdl:2 ~amd64
 
-=dev-libs/libappindicator-12.10.0-r1 ~amd64
-=dev-libs/libdbusmenu-0.6.2-r1 ~amd64
-=dev-libs/libindicator-12.10.0-r1 ~amd64
+media-libs/libsdl2 **
+
+dev-libs/libappindicator2
+dev-libs/libdbusmenu2
+dev-libs/libindicator2
 
 #######
 # multilib
@@ -116,7 +117,7 @@ sys-libs/steam-runtime-libselinux
 =media-libs/libsamplerate-0.1.8-r1 ~amd64
 =media-libs/speex-1.2_rc1-r2 ~amd64
 =media-libs/libdvdnav-4.2.0-r1 ~amd64
-=media-libs/libpng-1.6.3-r1 ~amd64
+=media-libs/libpng-1.6.6 ~amd64
 =media-sound/musepack-tools-465-r1 ~amd64
 =virtual/jpeg-0-r1 ~amd64
 =sys-libs/zlib-1.2.8-r1 ~amd64
@@ -162,8 +163,7 @@ sys-libs/steam-runtime-libselinux
 =dev-libs/expat-2.1.0-r3 ~amd64
 =kde-base/gwenview-4.10.5-r1 ~amd64
 
-#=sys-fs/udev-206-r1 ~amd64
-=virtual/udev-206-r2 ~amd64
+=virtual/udev-206-r3 ~amd64
 =dev-libs/libusbx-1.0.16-r3 ~amd64
 =virtual/libusb-0-r1 ~amd64
 =sys-apps/kmod-14-r1 ~amd64
@@ -203,7 +203,5 @@ sys-libs/steam-runtime-libselinux
 =sys-libs/e2fsprogs-libs-1.42.7-r1 ~amd64
 =sys-libs/gpm-1.20.7-r2 ~amd64
 =media-libs/tiff-4.0.3-r5 ~amd64
-
-media-libs/libsdl2 **
 
 =media-libs/fontconfig-2.10.92 ~amd64

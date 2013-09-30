@@ -13,7 +13,7 @@ SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="s3tc mono testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 	video_cards_nvidia video_cards_radeon"
 

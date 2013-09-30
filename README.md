@@ -18,6 +18,15 @@ Usage
 * Emerge `steam-meta` ebuild
 * Start the client by executing `steam`
 
+Notes for AMD64
+---------------
+
+This overlay depends on the split multilib packages that (partially) replace the emul-linux-x86* packages 
+([background](http://kicherer.org/joomla/index.php/en/blog/liste/29-transition-of-emul-packages-to-true-multilib)). In order to use 
+them, you have to unmask certain ebuilds and enable the ```abi_x86_32``` use flag. For convenience, we provide the multilib-keywords
+file that can be placed in the ```/etc/portage/package.keywords/``` directory. For recent packages, you also have to add 
+```-abi_x86_32``` to ```/etc/portage/profile/use.mask```.
+
 Troubleshooting Steam
 ---------------------
 
