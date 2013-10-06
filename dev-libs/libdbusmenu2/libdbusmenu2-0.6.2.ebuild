@@ -18,19 +18,17 @@ SRC_URI="http://launchpad.net/${MY_PN/lib}/${PV%.*}/${PV}/+download/${MY_P}.tar.
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug gtk +introspection"
+IUSE="debug gtk"
 
 RDEPEND=">=dev-libs/glib-2.32
 	>=dev-libs/dbus-glib-0.100
 	dev-libs/libxml2
 	gtk? ( >=x11-libs/gtk+-2.18:2 )
-	introspection? ( >=dev-libs/gobject-introspection-1[${MULTILIB_USEDEP}] )
 	"
 DEPEND="${RDEPEND}
 	app-text/gnome-doc-utils
 	dev-util/intltool
-	virtual/pkgconfig
-	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
 ECONF_SOURCE=${S}
@@ -41,7 +39,6 @@ multilib_src_configure() {
 	export PKG_CONFIG=pkg-config
 	export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/usr/share/pkgconfig/:/usr/$(get_libdir)/pkgconfig/
 
-	use introspection && export VALA_API_GEN="$(type -P vapigen-${AYATANA_VALA_VERSION})"
 	GTK_SWITCH="--with-gtk=2"
 	
 	# dumper extra tool is only for GTK+-2.x, tests use valgrind which is stupid
@@ -55,8 +52,8 @@ multilib_src_configure() {
 		$(use_enable gtk) \
 		--disable-dumper \
 		--disable-tests \
-		$(use_enable introspection) \
-		$(use_enable introspection vala) \
+		--disable-introspection \
+		--disable-vala \
 		$(use_enable debug massivedebugging) \
 		--with-html-dir=/usr/share/doc/${PF}/html \
 		${GTK_SWITCH}

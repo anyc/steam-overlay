@@ -17,17 +17,15 @@ SRC_URI="http://launchpad.net/${MY_PN}/${PV%.*}/${PV}/+download/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+introspection"
+IUSE=""
 
 RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/glib-2.26
 	=dev-libs/libdbusmenu2-0.6.2[gtk,${MULTILIB_USEDEP}]
 	=dev-libs/libindicator2-12.10.0[${MULTILIB_USEDEP}]
-	>=x11-libs/gtk+-2.18:2
-	introspection? ( >=dev-libs/gobject-introspection-1[${MULTILIB_USEDEP}] )"
+	>=x11-libs/gtk+-2.18:2"
 DEPEND="${RDEPEND}
-	virtual/pkgconfig
-	introspection? ( dev-lang/vala:${AYATANA_VALA_VERSION}[vapigen] )"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
 ECONF_SOURCE=${S}
@@ -50,8 +48,6 @@ multilib_src_configure() {
 	export PKG_CONFIG=pkg-config
 	export PKG_CONFIG_PATH=/opt/steam-runtime/usr/$(get_libdir)/pkgconfig/
 	
-	use introspection && export VALAC="$(type -P valac-${AYATANA_VALA_VERSION})"
-	
 	GTK_SWITCH="--with-gtk=2"
 	
 	econf \
@@ -60,7 +56,7 @@ multilib_src_configure() {
 		--disable-silent-rules \
 		--disable-static \
 		--with-html-dir=/usr/share/doc/${PF}/html \
-		$(use_enable introspection) \
+		--disable-introspection \
 		${GTK_SWITCH}
 }
 
