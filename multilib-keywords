@@ -20,6 +20,7 @@ app-emulation/emul-linux-x86-soundlibs
 app-emulation/emul-linux-x86-sdl
 app-emulation/emul-linux-x86-opengl
 app-emulation/emul-linux-x86-gtklibs
+app-emulation/emul-linux-x86-gstplugins
 
 games-util/steam-launcher
 games-util/steam-meta
@@ -125,7 +126,6 @@ dev-libs/libindicator2
 =media-libs/libv4l-0.9.5-r1 ~amd64
 =media-libs/libmad-0.15.1b-r8 ~amd64
 =sys-devel/llvm-3.3-r1 ~amd64
-=sys-devel/clang-3.3 ~amd64
 =media-sound/cdparanoia-3.10.2-r6 ~amd64
 =virtual/libiconv-0-r1 ~amd64
 =media-libs/libcuefile-477-r1 ~amd64
@@ -188,7 +188,6 @@ dev-libs/libindicator2
 =media-libs/libvisual-0.4.0-r3 ~amd64
 =dev-libs/fribidi-0.19.5-r2 ~amd64
 =dev-libs/libcdio-paranoia-0.90_p1-r1 ~amd64
-=dev-libs/glib-2.36.3-r2 ~amd64
 =dev-libs/libcdio-0.90-r1 ~amd64
 =dev-libs/liboil-0.3.17-r2 ~amd64
 
@@ -205,3 +204,26 @@ dev-libs/libindicator2
 =media-libs/tiff-4.0.3-r5 ~amd64
 
 =media-libs/fontconfig-2.10.92 ~amd64
+
+=dev-libs/glib-2.36.4-r1 ~amd64
+=dev-libs/elfutils-0.156 ~amd64
+
+
+###############
+### 2013-10-09
+
+=media-libs/glew-1.10.0-r2 ~amd64
+=media-libs/glu-9.0.0-r1 ~amd64
+=media-libs/freeglut-2.8.1-r1 ~amd64
+
+=x11-proto/dri2proto-2.8-r1 ~amd64
+=dev-libs/libclc-0.0.1_pre20130819 ~amd64
+=virtual/glu-9.0-r1 ~amd64
+=media-libs/mesa-9.2.0-r1 ~amd64
+=x11-proto/glproto-1.4.16-r1 ~amd64
+=virtual/opengl-7.0-r1 ~amd64
+=x11-proto/xf86driproto-2.1.1-r1 ~amd64
+=sys-devel/clang-3.3-r100 ~amd64
+=x11-libs/libdrm-2.4.46-r1 ~amd64
+=sys-apps/hwids-20130915.1 ~amd64
+=sys-fs/udev-208 ~amd64
