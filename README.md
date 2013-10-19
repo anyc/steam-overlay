@@ -15,7 +15,7 @@ Usage
 -----
 
 * Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam`
-* Choose if you want to use the official Steam runtime or system libraries by en-/disabling the `steamruntime` use flag (see "Notes for 
+* Choose if you want to use the official Steam runtime along with its bundled libraries or system libraries by en-/disabling the `steamruntime` use flag (see "Notes for 
 AMD64")
 * Emerge `steam-meta` ebuild
 * Start the client by executing `steam`
@@ -26,7 +26,7 @@ Notes for AMD64
 If you disable `steamruntime`, our ebuilds depend on the split multilib packages that (partially) replace the emul-linux-x86* packages 
 ([background](http://kicherer.org/joomla/index.php/en/blog/liste/29-transition-of-emul-packages-to-true-multilib)). In order to use 
 them, you have to unmask certain ebuilds and enable the ```abi_x86_32``` use flag. For convenience, we provide the file 
-`multilib-keywords` that can be placed in the ```/etc/portage/package.keywords/``` directory. For recent packages, you also have to add 
+`multilib-keywords` that can be placed in the ```/etc/portage/package.keywords/``` directory. You also have to add 
 ```-abi_x86_32``` to ```/etc/portage/profile/use.mask```.
 
 Troubleshooting Steam
