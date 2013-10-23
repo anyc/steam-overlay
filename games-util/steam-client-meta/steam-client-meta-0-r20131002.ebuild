@@ -55,7 +55,12 @@ RDEPEND="
 
 			trayicon? ( dev-libs/libappindicator2[abi_x86_32] )
 
-			flash? ( www-plugins/adobe-flash[32bit] )
+			flash? (
+				|| (
+					<www-plugins/adobe-flash-11.2.202.310-r1[32bit]
+					>=www-plugins/adobe-flash-11.2.202.310-r1[abi_x86_32]
+					)
+				)
 			)
 		x86? (
 			dev-libs/glib:2
