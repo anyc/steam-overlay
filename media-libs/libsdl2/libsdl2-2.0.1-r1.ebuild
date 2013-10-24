@@ -12,7 +12,7 @@ SRC_URI="http://www.libsdl.org/release/${MY_P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 
 IUSE="3dnow alsa altivec +audio dbus directfb fusionsound gles haptic +joystick mmx nas opengl oss pulseaudio sse sse2 static-libs tslib udev +video X xinerama xscreensaver"
 REQUIRED_USE="
