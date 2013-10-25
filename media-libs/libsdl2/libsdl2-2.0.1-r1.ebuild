@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl2/libsdl2-2.0.0.ebuild,v 1.1 2013/08/28 21:36:52 hasufell Exp $
+# $Header: $
 
 EAPI=5
 inherit autotools flag-o-matic toolchain-funcs eutils multilib-minimal
@@ -14,7 +14,7 @@ LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS=""
 
-IUSE="3dnow alsa altivec +audio dbus directfb fusionsound gles haptic +joystick mmx nas opengl oss pulseaudio sse sse2 static-libs tslib udev +video X xinerama xscreensaver"
+IUSE="3dnow alsa altivec +audio custom-cflags dbus directfb fusionsound gles haptic +joystick mmx nas opengl oss pulseaudio sse sse2 static-libs +threads tslib udev +video X xinerama xscreensaver"
 REQUIRED_USE="
 	alsa? ( audio )
 	fusionsound? ( audio )
@@ -78,6 +78,8 @@ src_prepare() {
 }
 
 multilib_src_configure() {
+	use custom-cflags || strip-flags
+
 	local directfbconf="--disable-video-directfb"
 	if use directfb ; then
 		# since DirectFB can link against SDL and trigger a
@@ -90,9 +92,6 @@ multilib_src_configure() {
 	fi
 
 	# sorted by `./configure --help`
-	#
-	# --disable-threads broken
-	# https://bugzilla.libsdl.org/show_bug.cgi?id=2070
 	econf \
 		$(use_enable static-libs static) \
 		$(use_enable audio) \
@@ -102,7 +101,7 @@ multilib_src_configure() {
 		$(use_enable joystick) \
 		$(use_enable haptic) \
 		--enable-power \
-		--enable-threads \
+		$(use_enable threads) \
 		--enable-timers \
 		--enable-file \
 		--disable-loadso \
