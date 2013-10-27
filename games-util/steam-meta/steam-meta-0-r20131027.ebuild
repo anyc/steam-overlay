@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="steamruntime"
+IUSE="+steamruntime"
 
 RDEPEND="
 		games-util/steam-launcher
