@@ -14,10 +14,25 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE=""
+IUSE="steamruntime"
 
 RDEPEND="
 		games-util/steam-launcher
-		games-util/steam-client-meta
-		games-util/steam-games-meta
+
+		steamruntime? (
+			amd64? (
+				|| (
+					app-emulation/emul-linux-x86-opengl
+					virtual/opengl[abi_x86_32]
+				)
+			)
+			x86? (
+				virtual/opengl
+			)
+		)
+
+		!steamruntime? (
+			games-util/steam-client-meta
+			games-util/steam-games-meta
+		)
 		"
