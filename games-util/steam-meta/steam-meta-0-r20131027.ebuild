@@ -17,7 +17,7 @@ KEYWORDS="-* ~amd64 ~x86"
 IUSE="+steamruntime"
 
 RDEPEND="
-		games-util/steam-launcher
+		games-util/steam-launcher[steamruntime?]
 
 		steamruntime? (
 			amd64? (
