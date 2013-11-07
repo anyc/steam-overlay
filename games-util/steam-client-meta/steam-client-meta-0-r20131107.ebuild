@@ -20,6 +20,7 @@ IUSE="flash trayicon video_cards_intel"
 
 RDEPEND="
 		virtual/opengl
+		net-misc/curl
 
 		media-fonts/font-mutt-misc
 		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
