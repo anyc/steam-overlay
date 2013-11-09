@@ -48,7 +48,8 @@ RDEPEND="
 				>=sys-devel/gcc-4.6.0[multilib]
 				>=sys-libs/glibc-2.15[multilib]
 				media-libs/libsdl2[abi_x86_32]
-				app-emulation/steam-runtime-bin
+				>=app-emulation/steam-runtime-bin-20131109
+				=sys-fs/steam-runtime-udev-175[abi_x86_32,gudev]
 
 				>=app-emulation/emul-linux-x86-baselibs-20121202
 				>=app-emulation/emul-linux-x86-gtklibs-20121202
@@ -89,6 +90,7 @@ RDEPEND="
 				net-misc/networkmanager
 				net-print/cups
 				sys-apps/dbus
+				=sys-fs/steam-runtime-udev-175[gudev]
 				>=sys-devel/gcc-4.6.0
 				>=sys-libs/glibc-2.15
 				>=sys-libs/zlib-1.2.4
