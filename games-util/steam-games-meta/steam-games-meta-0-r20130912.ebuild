@@ -107,12 +107,12 @@ S=${WORKDIR}
 
 src_install() {
 	local SR_DIR="/opt/steam-runtime/"
-	
+
 	if use steamgames_trine2; then
-		mkdir -p ${D}/${SR_DIR}/lib32/
+		mkdir -p "${D}/${SR_DIR}/lib32/"
 		ln -s /lib32/libpcre.so.1 "${D}/${SR_DIR}/lib32/libpcre.so.3"
 		if use amd64; then
-			mkdir -p ${D}/${SR_DIR}/lib64/
+			mkdir -p "${D}/${SR_DIR}/lib64/"
 			ln -s /lib/libpcre.so.1 "${D}/${SR_DIR}/lib64/libpcre.so.3"
 		fi
 	fi

@@ -18,7 +18,7 @@ LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
 SLOT="0"
-IUSE="steamruntime"
+IUSE="+steamruntime"
 
 RDEPEND="
 		app-arch/xz-utils
@@ -100,16 +100,16 @@ pkg_postinst() {
 	elog "also starts the client from your home folder."
 	elog ""
 
- 	if use steamruntime; then
- 		ewarn "You enabled the steam runtime environment. Steam will use bundled"
- 		ewarn "libraries instead of Gentoo's system libraries."
- 		ewarn ""
- 	else
- 		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
- 		elog "and use installed system libraries instead. If you have problems,"
- 		elog "try starting steam with: STEAM_RUNTIME=1 steam"
+	if use steamruntime; then
+		ewarn "You enabled the steam runtime environment. Steam will use bundled"
+		ewarn "libraries instead of Gentoo's system libraries."
 		ewarn ""
- 		ewarn "Notice: Valve only supports Steam with the runtime enabled!"
+	else
+		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
+		elog "and use installed system libraries instead. If you have problems,"
+		elog "try starting steam with: STEAM_RUNTIME=1 steam"
+		ewarn ""
+		ewarn "Notice: Valve only supports Steam with the runtime enabled!"
 		ewarn ""
 	fi
 

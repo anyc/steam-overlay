@@ -12,4 +12,7 @@
 	<upstream>
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
+	<use>
+		<flag name='steamruntime'>Use the official steam runtime libraries</flag>
+	</use>
 </pkgmetadata>

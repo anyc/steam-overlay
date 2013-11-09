@@ -117,7 +117,7 @@ pkg_postinst() {
 		elog "http://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
 		elog ""
 	fi
-	
+
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }

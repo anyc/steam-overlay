@@ -15,45 +15,20 @@ SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
-KEYWORDS="-* ~amd64 ~x86"
-IUSE="flash trayicon video_cards_intel"
+KEYWORDS=""
+IUSE="flash +steamruntime trayicon video_cards_intel"
 
 RDEPEND="
-		virtual/opengl
-		net-misc/curl
-
 		media-fonts/font-mutt-misc
 		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
 
+		trayicon? ( sys-apps/dbus )
+
 		amd64? (
-			>=sys-devel/gcc-4.6.0[multilib]
-			>=sys-libs/glibc-2.15[multilib]
-			app-emulation/steam-runtime-bin
-
-			>=app-emulation/emul-linux-x86-baselibs-20121202
-			>=app-emulation/emul-linux-x86-gtklibs-20121202
-			>=app-emulation/emul-linux-x86-opengl-20121202
-			>=app-emulation/emul-linux-x86-sdl-20121202
-			>=app-emulation/emul-linux-x86-soundlibs-20121202
 			|| (
-				>=app-emulation/emul-linux-x86-xlibs-20121202
-				(
-					x11-libs/libSM[abi_x86_32]
-					x11-libs/libICE[abi_x86_32]
-					x11-libs/libX11[abi_x86_32]
-					x11-libs/libXext[abi_x86_32]
-					x11-libs/libXfixes[abi_x86_32]
-					media-libs/fontconfig[abi_x86_32]
-					media-libs/freetype[abi_x86_32]
-					x11-libs/libXi[abi_x86_32]
-					x11-libs/libXinerama[abi_x86_32]
-					x11-libs/libXrandr[abi_x86_32]
-					x11-libs/libXrender[abi_x86_32]
+				app-emulation/emul-linux-x86-opengl
+				virtual/opengl[abi_x86_32]
 				)
-			)
-
-			trayicon? ( dev-libs/libappindicator2[abi_x86_32] )
-
 			flash? (
 				|| (
 					<www-plugins/adobe-flash-11.2.202.310-r1[32bit]
@@ -61,43 +36,80 @@ RDEPEND="
 					)
 				)
 			)
-		x86? (
-			dev-libs/glib:2
-			dev-libs/dbus-glib
-			dev-libs/libgcrypt
-			dev-libs/libusb
-			dev-libs/nspr
-			dev-libs/nss
-			media-libs/alsa-lib
-			media-libs/fontconfig
-			media-libs/freetype:2
-			media-libs/libpng:1.2
-			media-libs/openal
-			media-sound/pulseaudio
-			net-misc/networkmanager
-			net-print/cups
-			sys-apps/dbus
-			>=sys-devel/gcc-4.6.0
-			>=sys-libs/glibc-2.15
-			>=sys-libs/zlib-1.2.4
-			x11-libs/cairo
-			x11-libs/gdk-pixbuf
-			x11-libs/gtk+:2
-			x11-libs/libSM
-			x11-libs/libICE
-			>=x11-libs/libX11-1.5
-			x11-libs/libXext
-			x11-libs/libXfixes
-			x11-libs/libXi
-			x11-libs/libXinerama
-			x11-libs/libXrandr
-			x11-libs/libXrender
-			x11-libs/pango
 
-			trayicon? ( dev-libs/libappindicator2 )
-			flash? ( www-plugins/adobe-flash )
+		x86? (
+			virtual/opengl
 			video_cards_intel? ( >=media-libs/mesa-9 )
-			)"
+			flash? ( www-plugins/adobe-flash )
+			)
+
+		!steamruntime? (
+			amd64? (
+				>=sys-devel/gcc-4.6.0[multilib]
+				>=sys-libs/glibc-2.15[multilib]
+				media-libs/libsdl2[abi_x86_32]
+				app-emulation/steam-runtime-bin
+
+				>=app-emulation/emul-linux-x86-baselibs-20121202
+				>=app-emulation/emul-linux-x86-gtklibs-20121202
+				>=app-emulation/emul-linux-x86-sdl-20121202
+				>=app-emulation/emul-linux-x86-soundlibs-20121202
+				|| (
+					>=app-emulation/emul-linux-x86-xlibs-20121202
+					(
+						x11-libs/libSM[abi_x86_32]
+						x11-libs/libICE[abi_x86_32]
+						x11-libs/libX11[abi_x86_32]
+						x11-libs/libXext[abi_x86_32]
+						x11-libs/libXfixes[abi_x86_32]
+						media-libs/fontconfig[abi_x86_32]
+						media-libs/freetype[abi_x86_32]
+						x11-libs/libXi[abi_x86_32]
+						x11-libs/libXinerama[abi_x86_32]
+						x11-libs/libXrandr[abi_x86_32]
+						x11-libs/libXrender[abi_x86_32]
+					)
+				)
+
+				trayicon? ( dev-libs/libappindicator2[abi_x86_32] )
+				)
+			x86? (
+				dev-libs/glib:2
+				dev-libs/dbus-glib
+				dev-libs/libgcrypt
+				virtual/libusb
+				dev-libs/nspr
+				dev-libs/nss
+				media-libs/alsa-lib
+				media-libs/fontconfig
+				media-libs/freetype:2
+				media-libs/libpng:1.2
+				media-libs/openal
+				media-sound/pulseaudio
+				net-misc/networkmanager
+				net-print/cups
+				sys-apps/dbus
+				>=sys-devel/gcc-4.6.0
+				>=sys-libs/glibc-2.15
+				>=sys-libs/zlib-1.2.4
+				x11-libs/cairo
+				x11-libs/gdk-pixbuf
+				x11-libs/gtk+:2
+				x11-libs/libSM
+				x11-libs/libICE
+				>=x11-libs/libX11-1.5
+				x11-libs/libXext
+				x11-libs/libXfixes
+				x11-libs/libXi
+				x11-libs/libXinerama
+				x11-libs/libXrandr
+				x11-libs/libXrender
+				x11-libs/pango
+
+				trayicon? ( dev-libs/libappindicator2 )
+				)
+			)
+		"
 
 pkg_postinst() {
 	elog "This is only a meta package that pulls in the required"
@@ -115,7 +127,7 @@ pkg_postinst() {
 		elog "http://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
 		elog ""
 	fi
-	
+
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }

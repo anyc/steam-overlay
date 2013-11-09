@@ -13,17 +13,21 @@ SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
-KEYWORDS="-* ~amd64 ~x86"
-IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
-	video_cards_nvidia video_cards_radeon"
+KEYWORDS=""
+IUSE="s3tc mono +steamruntime testdeps"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
 IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
-	shatter"
+	shatter hammerwatch source_engine"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
+done
+
+IUSE_VIDEOCARDS="intel fglrx nouveau nvidia radeon"
+for scard in ${IUSE_VIDEOCARDS}; do
+	IUSE="${IUSE} video_cards_${scard}"
 done
 
 RDEPEND="
@@ -34,8 +38,10 @@ RDEPEND="
 				) )
 			x86? ( media-libs/libtxc_dxtn )
 			)
-		testdeps? (
+		mono? (
 			dev-lang/mono
+			)
+		testdeps? (
 			x86? (
 				dev-db/sqlite
 				dev-games/ogre
@@ -66,7 +72,7 @@ RDEPEND="
 				x86? ( media-libs/jasper )
 				amd64? ( >=media-libs/jasper-1.900.1-r6[abi_x86_32] )
 			)
-		steamgames_tf2? (
+		steamgames_source_engine? (
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
 			)
 		steamgames_journey_down? (
@@ -74,6 +80,15 @@ RDEPEND="
 			)
 		steamgames_trine2? (
 				x11-apps/xwininfo
+				x86? (
+					|| (
+						sys-libs/libselinux
+						sys-libs/steam-runtime-libselinux
+						)
+					)
+				amd64? (
+						sys-libs/steam-runtime-libselinux[abi_x86_32]
+					)
 			)
 		steamgames_defenders_quest? (
 				dev-util/adobe-air-runtime
@@ -84,12 +99,16 @@ RDEPEND="
 			)
 		"
 REQUIRED_USE="
-		steamgames_tf2? (
+		steamgames_tf2? ( steamgames_source_engine )
+		steamgames_source_engine? (
 				video_cards_intel? ( s3tc )
 				video_cards_radeon? ( s3tc )
 				video_cards_nouveau? ( s3tc )
 			)
+		steamgames_hammerwatch? ( mono )
 		"
+
+S=${WORKDIR}
 
 pkg_postinst() {
 	if use x86; then

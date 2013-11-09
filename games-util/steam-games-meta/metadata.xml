@@ -13,16 +13,19 @@
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
 	<use>
+		<flag name='steamruntime'>Use the official steam runtime libraries</flag>
 		<flag name='s3tc'>Pull in library for S3TC compression support</flag>
 		<flag name='steamgames_dwarfs'>Dwarfs</flag>
 		<flag name='steamgames_unwritten_tales'>
 			Dependencies for "The Book of Unwritten Tales: The Critter
 			Chronicles"
 		</flag>
+		<flag name='steamgames_source_engine'>Games based on Valve's source engine (CSS,TF2,...)</flag>
 		<flag name='steamgames_tf2'>Team Fortress 2</flag>
 		<flag name='steamgames_journey_down'>The journy down</flag>
 		<flag name='steamgames_trine2'>Trine 2</flag>
 		<flag name='steamgames_shatter'>Sidhe's Shatter</flag>
+		<flag name='steamgames_hammerwatch'>Hammerwatch</flag>
 		<flag name='steamgames_defenders_quest'>Defender's Quest: Valley of the Forgotten</flag>
 		<flag name='testdeps'>
 			Pull in dependencies that are not yet confirmed as strictly
