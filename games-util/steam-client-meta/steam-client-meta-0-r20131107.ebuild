@@ -15,7 +15,7 @@ SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="flash +steamruntime trayicon video_cards_intel"
 
 RDEPEND="

@@ -11,7 +11,7 @@ MY_P=udev-${PV}
 
 inherit eutils flag-o-matic multilib toolchain-funcs linux-info libtool multilib-minimal
 
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 SRC_URI="https://www.kernel.org/pub/linux/utils/kernel/hotplug/${MY_P}.tar.gz"
 if [[ -n "${patchversion}" ]]
 then

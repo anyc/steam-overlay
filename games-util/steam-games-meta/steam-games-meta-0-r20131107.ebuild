@@ -13,7 +13,7 @@ SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="s3tc mono +steamruntime testdeps"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
