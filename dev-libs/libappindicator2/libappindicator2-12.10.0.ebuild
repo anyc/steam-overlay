@@ -21,8 +21,8 @@ IUSE=""
 
 RDEPEND=">=dev-libs/dbus-glib-0.98
 	>=dev-libs/glib-2.26
-	=dev-libs/libdbusmenu2-0.6.2[gtk,${MULTILIB_USEDEP}]
-	=dev-libs/libindicator2-12.10.0[${MULTILIB_USEDEP}]
+	dev-libs/libdbusmenu2[gtk,${MULTILIB_USEDEP}]
+	dev-libs/libindicator2[${MULTILIB_USEDEP}]
 	>=x11-libs/gtk+-2.18:2"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
