@@ -80,15 +80,6 @@ RDEPEND="
 			)
 		steamgames_trine2? (
 				x11-apps/xwininfo
-				x86? (
-					|| (
-						sys-libs/libselinux
-						sys-libs/steam-runtime-libselinux
-						)
-					)
-				amd64? (
-						sys-libs/steam-runtime-libselinux[abi_x86_32]
-					)
 			)
 		steamgames_defenders_quest? (
 				dev-util/adobe-air-runtime
