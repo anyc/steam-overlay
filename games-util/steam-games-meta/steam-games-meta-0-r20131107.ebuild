@@ -76,10 +76,25 @@ RDEPEND="
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
 			)
 		steamgames_journey_down? (
+				amd64? ( media-libs/openal[abi_x86_32] )
 				x86? ( media-libs/openal )
 			)
 		steamgames_trine2? (
 				x11-apps/xwininfo
+				!steamruntime? (
+					x86? (
+						media-gfx/nvidia-cg-toolkit
+						media-libs/libogg
+						media-libs/libvorbis
+						x11-libs/libXxf86vm
+						)
+					amd64? (
+						>=media-gfx/nvidia-cg-toolkit-3.1.0013
+						media-libs/libogg[abi_x86_32]
+						media-libs/libvorbis[abi_x86_32] 
+						x11-libs/libXxf86vm[abi_x86_32]
+						)
+				)
 			)
 		steamgames_defenders_quest? (
 				dev-util/adobe-air-runtime
