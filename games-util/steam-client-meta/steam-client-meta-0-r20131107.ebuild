@@ -29,12 +29,7 @@ RDEPEND="
 				app-emulation/emul-linux-x86-opengl
 				virtual/opengl[abi_x86_32]
 				)
-			flash? (
-				|| (
-					<www-plugins/adobe-flash-11.2.202.310-r1[32bit]
-					>=www-plugins/adobe-flash-11.2.202.310-r1[abi_x86_32]
-					)
-				)
+			flash? ( www-plugins/adobe-flash[abi_x86_32] )
 			)
 
 		x86? (
