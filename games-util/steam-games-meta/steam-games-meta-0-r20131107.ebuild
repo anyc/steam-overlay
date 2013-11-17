@@ -89,7 +89,7 @@ RDEPEND="
 						x11-libs/libXxf86vm
 						)
 					amd64? (
-						>=media-gfx/nvidia-cg-toolkit-3.1.0013
+						>=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib]
 						media-libs/libogg[abi_x86_32]
 						media-libs/libvorbis[abi_x86_32] 
 						x11-libs/libXxf86vm[abi_x86_32]
@@ -100,7 +100,7 @@ RDEPEND="
 				dev-util/adobe-air-runtime
 			)
 		steamgames_shatter? (
-				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013 )
+				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib] )
 				x86? ( media-gfx/nvidia-cg-toolkit )
 			)
 		"
