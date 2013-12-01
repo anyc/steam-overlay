@@ -219,7 +219,7 @@ dev-libs/libindicator2
 =x11-proto/dri2proto-2.8-r1 ~amd64
 =dev-libs/libclc-0.0.1_pre20130819 ~amd64
 =virtual/glu-9.0-r1 ~amd64
-=media-libs/mesa-9.2.0-r1 ~amd64
+=media-libs/mesa-9.2.4 ~amd64
 =x11-proto/glproto-1.4.16-r1 ~amd64
 =virtual/opengl-7.0-r1 ~amd64
 =x11-proto/xf86driproto-2.1.1-r1 ~amd64
@@ -244,3 +244,16 @@ dev-libs/libindicator2
 ### 2013-10-29
 
 =media-video/ffmpeg-1.2.4 ~amd64
+
+###############
+### 2013-12-01
+
+=sys-libs/gdbm-1.10-r1 ~amd64
+=dev-libs/json-c-0.11-r1 ~amd64
+=sys-apps/tcp-wrappers-7.6.22-r1 ~amd64
+=sys-apps/dbus-1.6.18-r1 ~amd64
+=media-sound/pulseaudio-4.0-r1 ~amd64
+=media-plugins/alsa-plugins-1.0.27-r1 ~amd64
+=media-libs/libao-1.1.0-r2 ~amd64
+=sys-libs/libcap-2.22-r2 ~amd64
+=net-libs/libasyncns-0.8-r3 ~amd64
