@@ -35,7 +35,7 @@ COMMON_DEPEND="selinux? ( sys-libs/libselinux )
 
 DEPEND="${COMMON_DEPEND}
 	keymap? ( dev-util/gperf )
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	virtual/os-headers
 	!<sys-kernel/linux-headers-2.6.34"
 
