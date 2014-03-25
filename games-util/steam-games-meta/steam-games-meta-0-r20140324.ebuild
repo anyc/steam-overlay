@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -35,7 +35,7 @@ RDEPEND="
 			amd64? ( || (
 					>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
 					<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
-					) 
+					)
 				video_cards_fglrx? ( x11-drivers/ati-drivers[multilib] )
 				video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
 				)
@@ -100,7 +100,7 @@ RDEPEND="
 					amd64? (
 						>=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib]
 						media-libs/libogg[abi_x86_32]
-						media-libs/libvorbis[abi_x86_32] 
+						media-libs/libvorbis[abi_x86_32]
 						x11-libs/libXxf86vm[abi_x86_32]
 						)
 				)

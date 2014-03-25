@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="s3tc mono +steamruntime testdeps"
+IUSE="s3tc mono +steamruntime"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
@@ -31,39 +31,22 @@ for scard in ${IUSE_VIDEOCARDS}; do
 done
 
 RDEPEND="
-		s3tc? (
-			amd64? ( || (
-				>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
-				<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
-				) )
-			x86? ( media-libs/libtxc_dxtn )
+		amd64? (
+			video_cards_fglrx? ( x11-drivers/ati-drivers[multilib] )
+			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
 			)
 		mono? (
 			dev-lang/mono
 			)
-		testdeps? (
-			x86? (
-				dev-db/sqlite
-				dev-games/ogre
-				media-libs/freealut
-				media-libs/freeglut
-				media-libs/libtheora
-				media-libs/libvorbis
-				media-libs/openal
-				media-libs/sdl-image
-				media-libs/sdl-mixer
-				media-libs/sdl-ttf
-				media-libs/tiff
-				net-dns/libidn
-				net-misc/curl
-				sys-apps/pciutils
-				x11-libs/libXaw
-				x11-libs/libXft
-				x11-libs/libXmu
-				x11-libs/libXxf86vm
-				x11-misc/xclip
+		s3tc? (
+			amd64? ( || (
+					>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
+					<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
+					)
 				)
+			x86? ( media-libs/libtxc_dxtn )
 			)
+
 		steamgames_dwarfs? (
 				x86? ( media-libs/libexif )
 				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
@@ -97,7 +80,7 @@ RDEPEND="
 					amd64? (
 						>=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib]
 						media-libs/libogg[abi_x86_32]
-						media-libs/libvorbis[abi_x86_32] 
+						media-libs/libvorbis[abi_x86_32]
 						x11-libs/libXxf86vm[abi_x86_32]
 						)
 				)
