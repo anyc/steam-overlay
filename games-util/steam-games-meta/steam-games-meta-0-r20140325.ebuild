@@ -19,7 +19,7 @@ IUSE="s3tc mono +steamruntime"
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
 IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
-	shatter hammerwatch source_engine painkiller"
+	shatter hammerwatch source_engine painkiller narcissu"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -61,6 +61,16 @@ RDEPEND="
 		steamgames_journey_down? (
 				amd64? ( media-libs/openal[abi_x86_32] )
 				x86? ( media-libs/openal )
+			)
+		steamgames_narcissu? (
+				amd64? (
+					media-libs/sdl2-image[abi_x86_32]
+					media-libs/sdl2-mixer[abi_x86_32]
+					)
+				x86? (
+					media-libs/sdl2-image
+					media-libs/sdl2-mixer
+					)
 			)
 		steamgames_painkiller? (
 			!steamruntime? (
