@@ -19,11 +19,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-libs/dbus-glib-0.98
-	>=dev-libs/glib-2.26
+RDEPEND=">=dev-libs/dbus-glib-0.98[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.26[${MULTILIB_USEDEP}]
 	dev-libs/libdbusmenu2[gtk,${MULTILIB_USEDEP}]
 	dev-libs/libindicator2[${MULTILIB_USEDEP}]
-	>=x11-libs/gtk+-2.18:2"
+	>=x11-libs/gtk+-2.18:2[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 

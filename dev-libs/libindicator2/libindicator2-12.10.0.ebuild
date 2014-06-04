@@ -18,8 +18,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
-RDEPEND=">=dev-libs/glib-2.22
-	>=x11-libs/gtk+-2.18:2
+RDEPEND=">=dev-libs/glib-2.22[${MULTILIB_USEDEP}]
+	>=x11-libs/gtk+-2.18:2[${MULTILIB_USEDEP}]
 	"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
