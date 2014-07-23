@@ -46,7 +46,7 @@ RDEPEND="
 			)
 
 		!steamruntime? (
-			video_cards_nvidia? ( <=x11-drivers/nvidia-drivers-331.79 )
+			video_cards_nvidia? ( <x11-drivers/nvidia-drivers-332 )
 
 			amd64? (
 				>=sys-devel/gcc-4.6.0[multilib]
