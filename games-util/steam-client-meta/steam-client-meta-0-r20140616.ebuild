@@ -53,7 +53,7 @@ RDEPEND="
 				>=sys-libs/glibc-2.15[multilib]
 				media-libs/libsdl2[abi_x86_32]
 				>=app-emulation/steam-runtime-bin-20131109
-				=sys-fs/steam-runtime-udev-175[abi_x86_32,gudev]
+				<sys-fs/steam-runtime-udev-176[abi_x86_32,gudev]
 
 				>=app-emulation/emul-linux-x86-baselibs-20121202
 				>=app-emulation/emul-linux-x86-gtklibs-20121202
