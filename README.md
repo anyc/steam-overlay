@@ -25,9 +25,7 @@ Notes for AMD64
 
 If you disable `steamruntime`, our ebuilds depend on the split multilib packages that (partially) replace the emul-linux-x86* packages 
 ([background](http://kicherer.org/joomla/index.php/en/blog/liste/29-transition-of-emul-packages-to-true-multilib)). In order to use 
-them, you have to unmask several ebuilds and enable the ```abi_x86_32``` use flag. For convenience, we provide the file 
-`multilib-keywords` that can be placed in the ```/etc/portage/package.keywords/``` directory. You also have to add 
-```-abi_x86_32``` to ```/etc/portage/profile/use.mask```.
+them, you have to unmask several ebuilds and enable the ```abi_x86_32``` use flag.
 
 Troubleshooting Steam
 ---------------------
