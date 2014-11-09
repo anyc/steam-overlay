@@ -39,6 +39,7 @@ RDEPEND="
 			dev-lang/mono
 			)
 		s3tc? (
+			media-libs/mesa[-bindist]
 			amd64? ( || (
 					>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
 					<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
