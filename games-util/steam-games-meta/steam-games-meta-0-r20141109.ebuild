@@ -14,12 +14,12 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="s3tc mono +steamruntime testdeps"
+IUSE="s3tc mono +steamruntime"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
 IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
-	shatter hammerwatch source_engine painkiller"
+	shatter hammerwatch source_engine painkiller narcissu witcher2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -31,42 +31,23 @@ for scard in ${IUSE_VIDEOCARDS}; do
 done
 
 RDEPEND="
-		s3tc? (
-			amd64? ( || (
-					>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
-					<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
-					)
-				video_cards_fglrx? ( x11-drivers/ati-drivers[multilib] )
-				video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
-				)
-			x86? ( media-libs/libtxc_dxtn )
+		amd64? (
+			video_cards_fglrx? ( x11-drivers/ati-drivers[multilib] )
+			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
 			)
 		mono? (
 			dev-lang/mono
 			)
-		testdeps? (
-			x86? (
-				dev-db/sqlite
-				dev-games/ogre
-				media-libs/freealut
-				media-libs/freeglut
-				media-libs/libtheora
-				media-libs/libvorbis
-				media-libs/openal
-				media-libs/sdl-image
-				media-libs/sdl-mixer
-				media-libs/sdl-ttf
-				media-libs/tiff
-				net-dns/libidn
-				net-misc/curl
-				sys-apps/pciutils
-				x11-libs/libXaw
-				x11-libs/libXft
-				x11-libs/libXmu
-				x11-libs/libXxf86vm
-				x11-misc/xclip
+		s3tc? (
+			media-libs/mesa[-bindist]
+			amd64? ( || (
+					>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
+					<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
+					)
 				)
+			x86? ( media-libs/libtxc_dxtn )
 			)
+
 		steamgames_dwarfs? (
 				x86? ( media-libs/libexif )
 				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
@@ -81,6 +62,16 @@ RDEPEND="
 		steamgames_journey_down? (
 				amd64? ( media-libs/openal[abi_x86_32] )
 				x86? ( media-libs/openal )
+			)
+		steamgames_narcissu? (
+				amd64? (
+					media-libs/sdl2-image[abi_x86_32]
+					media-libs/sdl2-mixer[abi_x86_32]
+					)
+				x86? (
+					media-libs/sdl2-image
+					media-libs/sdl2-mixer
+					)
 			)
 		steamgames_painkiller? (
 			!steamruntime? (
@@ -111,6 +102,9 @@ RDEPEND="
 		steamgames_shatter? (
 				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib] )
 				x86? ( media-gfx/nvidia-cg-toolkit )
+			)
+		steamgames_witcher2? (
+				!steamruntime? ( media-libs/libsdl2[haptic] )
 			)
 		"
 REQUIRED_USE="
