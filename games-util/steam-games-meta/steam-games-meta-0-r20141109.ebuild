@@ -32,7 +32,10 @@ done
 
 RDEPEND="
 		amd64? (
-			video_cards_fglrx? ( x11-drivers/ati-drivers[multilib] )
+			video_cards_fglrx? ( || (
+				<x11-drivers/ati-drivers-14.9-r1[multilib]
+				>=x11-drivers/ati-drivers-14.9-r1[abi_x86_32]
+				) )
 			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
 			)
 		mono? (
@@ -120,22 +123,8 @@ REQUIRED_USE="
 S=${WORKDIR}
 
 pkg_postinst() {
-	if use x86; then
-		elog "If a game does not start, please enable \"testdeps\" use-flag and"
-		elog "check if it fixes the issue. Please report, if and which one of the"
-		elog "dependencies is required for a game, so we can mark it accordingly."
-		elog ""
-	fi
-
-	if use amd64; then
-		elog "If a game does not start, please take a look at the dependencies"
-		elog "for the x86 architecture in this ebuild. It might be required that"
-		elog "we create a multilib ebuild for x86. Please report, if and which"
-		elog "one of the dependencies is required for a game, so we can mark it"
-		elog "accordingly."
-		elog ""
-	fi
-	elog "Ebuild development website: http://github.com/anyc/steam-overlay"
+	elog "Please report bugs at: http://github.com/anyc/steam-overlay"
 	elog ""
-	elog "If you have problems, please also see http://wiki.gentoo.org/wiki/Steam"
+	elog "If you have problems, please also see:"
+	elog "https://github.com/anyc/steam-overlay#troubleshooting-steam"
 }
