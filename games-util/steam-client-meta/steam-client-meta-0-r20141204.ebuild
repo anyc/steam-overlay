@@ -54,7 +54,6 @@ RDEPEND="
 			amd64? (
 				>=sys-devel/gcc-4.6.0[multilib]
 				>=sys-libs/glibc-2.15[multilib]
-				media-libs/libsdl2[abi_x86_32,alsa,dbus,gles,opengl,pulseaudio,udev,X]
 				>=app-emulation/steam-runtime-bin-20131109
 				=sys-fs/steam-runtime-udev-175-r2[abi_x86_32,gudev]
 
