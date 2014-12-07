@@ -61,7 +61,7 @@ src_prepare() {
 		# use system libraries if user has not set the variable otherwise
 		sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi/" steam || die
 		# use violent force to load the system's SDL library
-		sed -i '/export STEAM_RUNTIME=0; fi/a if \[ \"$STEAM_RUNTIME\" == "0" \]; then export LD_PRELOAD="/usr/lib32/libSDL2-2.0.so.0"; fi' steam || die
+		#sed -i '/export STEAM_RUNTIME=0; fi/a if \[ \"$STEAM_RUNTIME\" == "0" \]; then export LD_PRELOAD="/usr/lib32/libSDL2-2.0.so.0"; fi' steam || die
 	fi
 
 	# we use our ebuild functions to install the files
