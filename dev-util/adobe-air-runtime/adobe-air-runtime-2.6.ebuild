@@ -29,7 +29,6 @@ RDEPEND="app-arch/unzip
 		x11-libs/gtk+ )
 	amd64? (
 		|| (
-			app-emulation/emul-linux-x86-baselibs
 			(
 				dev-libs/glib[abi_x86_32]
 				dev-libs/libxml2[abi_x86_32]
@@ -38,15 +37,16 @@ RDEPEND="app-arch/unzip
 				net-misc/curl[abi_x86_32]
 				sys-libs/zlib[abi_x86_32]
 			)
+			app-emulation/emul-linux-x86-baselibs
 		)
 		|| (
-			app-emulation/emul-linux-x86-gtklibs
 			(
 				gnome-base/gconf:2[abi_x86_32]
 				x11-libs/gtk+:2[abi_x86_32,cups]
 				x11-libs/pango[abi_x86_32]
 				x11-libs/gdk-pixbuf[abi_x86_32]
 			)
+			app-emulation/emul-linux-x86-gtklibs
 		) )"
 
 QA_PRESTRIPPED=".*\.so"
