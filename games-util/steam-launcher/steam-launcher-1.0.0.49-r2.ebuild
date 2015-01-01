@@ -7,7 +7,7 @@ EAPI=5
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
-inherit eutils gnome2-utils fdo-mime
+inherit eutils gnome2-utils fdo-mime udev
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
@@ -32,7 +32,7 @@ RDEPEND="
 		amd64? (
 			steamruntime? (
 				|| (
-					>=app-emulation/emul-linux-x86-xlibs-20121028
+					>=app-emulation/emul-linux-x86-xlibs-20121028[-abi_x86_32(-)]
 					(
 						x11-libs/libX11[abi_x86_32]
 						x11-libs/libXau[abi_x86_32]
@@ -76,10 +76,7 @@ src_install() {
 	insinto /usr/lib/steam/
 	doins bootstraplinux_ubuntu12_32.tar.xz
 
-	local udevrulesdir="$($(tc-getPKG_CONFIG) --variable=udevdir udev)/rules.d"
-	dodir ${udevrulesdir}
-	insinto ${udevrulesdir}
-	doins lib/udev/rules.d/99-steam-controller-perms.rules
+	udev_dorules lib/udev/rules.d/99-steam-controller-perms.rules
 
 	dodoc debian/changelog steam_install_agreement.txt
 	doman steam.6
@@ -103,6 +100,7 @@ pkg_preinst() {
 pkg_postinst() {
 	fdo-mime_desktop_database_update
 	gnome2_icon_cache_update
+	udev_reload
 
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
