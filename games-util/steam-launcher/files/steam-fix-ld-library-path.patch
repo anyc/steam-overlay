@@ -1,0 +1,21 @@
+--- steam	2015-01-01 19:14:52.312377741 +0100
++++ steam_new	2015-01-01 19:13:59.023702762 +0100
+@@ -17,6 +17,18 @@
+ # Set up domain for script localization
+ export TEXTDOMAIN=steam
+ 
++# Steam appends /usr/lib32 to LD_LIBRARY_PATH. We need to make sure that
++# OpenGL implementation dir goes before that, so we need to append it
++# to user's LD_LIBRARY_PATH ourselves. But that's needed only with
++# the new eselect-opengl that uses 000opengl file.
++if [ -f /etc/env.d/000opengl ]; then
++    . /etc/env.d/000opengl
++    # Append only when LDPATH is non-empty -- i.e. using nvidia or ati.
++    if [ -n "${LDPATH}" ]; then
++        export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}${LD_LIBRARY_PATH+:}${LDPATH}
++    fi
++fi
++
+ function show_message()
+ {
+ 	style=$1
