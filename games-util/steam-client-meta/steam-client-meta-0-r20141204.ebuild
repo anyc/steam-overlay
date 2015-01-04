@@ -32,6 +32,7 @@ RDEPEND="
 			)
 
 		amd64? (
+			!x11-misc/virtualgl[-abi_x86_32]
 			|| (
 				app-emulation/emul-linux-x86-opengl
 				virtual/opengl[abi_x86_32]
