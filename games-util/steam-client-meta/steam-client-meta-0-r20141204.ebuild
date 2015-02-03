@@ -62,7 +62,7 @@ RDEPEND="
 					>=app-emulation/emul-linux-x86-baselibs-20121202
 					(
 						dev-libs/dbus-glib[abi_x86_32]
-						dev-libs/libgcrypt:11[abi_x86_32]
+						dev-libs/libgcrypt:0/11[abi_x86_32]
 						dev-libs/nspr[abi_x86_32]
 						dev-libs/nss[abi_x86_32]
 						net-misc/curl[abi_x86_32]
