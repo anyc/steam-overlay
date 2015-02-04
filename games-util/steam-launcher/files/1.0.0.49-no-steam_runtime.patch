@@ -1,0 +1,10 @@
+--- a/steam	2015-02-02 21:04:17.715311537 -0800
++++ b/steam	2015-02-02 21:02:01.770710316 -0800
+@@ -16,6 +16,7 @@
+ 
+ # Set up domain for script localization
+ export TEXTDOMAIN=steam
++if [ -z "$STEAM_RUNTIME" ]; then export STEAM_RUNTIME=0; fi
+ 
+ function show_message()
+ {

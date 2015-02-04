@@ -16,7 +16,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="flash steamfonts +steamruntime streaming trayicon video_cards_intel video_cards_nvidia"
+IUSE="flash steamfonts +steamruntime trayicon video_cards_intel video_cards_nvidia"
 
 RDEPEND="
 		media-fonts/font-mutt-misc
