@@ -26,11 +26,6 @@ RDEPEND="
 
 		steamfonts? ( media-fonts/steamfonts )
 
-		streaming? (
-				amd64? ( x11-libs/libva[abi_x86_32] )
-				x86? ( x11-libs/libva )
-			)
-
 		amd64? (
 			!x11-misc/virtualgl[-abi_x86_32]
 			|| (
@@ -109,6 +104,7 @@ RDEPEND="
 					)
 				)
 
+				streaming? ( x11-libs/libva[abi_x86_32] )
 				trayicon? ( dev-libs/libappindicator2[abi_x86_32] )
 				)
 			x86? (
@@ -145,6 +141,7 @@ RDEPEND="
 				x11-libs/libXrender
 				x11-libs/pango
 
+				streaming? ( x11-libs/libva )
 				trayicon? ( dev-libs/libappindicator2 )
 				)
 			)
