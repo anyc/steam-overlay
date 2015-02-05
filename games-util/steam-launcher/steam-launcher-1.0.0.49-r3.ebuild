@@ -60,8 +60,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/steam-fix-ld-library-path.patch
 
 	if ! use steamruntime; then
-		# use system libraries if user has not set the variable otherwise
-		sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi/" steam || die
+		# use system libraries if user has not set the variable otherwise and add dirty hack for unbound LD_LIBRARY_PATH if it is not set
+		sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi\nif [ -z \"\$LD_LIBRARY_PATH\" ]; then export LD_LIBRARY_PATH=\"\"; fi/" steam || die
 		# use violent force to load the system's SDL library
 		#sed -i '/export STEAM_RUNTIME=0; fi/a if \[ \"$STEAM_RUNTIME\" == "0" \]; then export LD_PRELOAD="/usr/lib32/libSDL2-2.0.so.0"; fi' steam || die
 	fi
