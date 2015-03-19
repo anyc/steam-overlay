@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,7 +18,7 @@ IUSE="s3tc mono +steamruntime"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
+IUSE_STEAMGAMES="bioshock_infinite dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
 	shatter hammerwatch source_engine painkiller portal narcissu witcher2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
@@ -51,6 +51,12 @@ RDEPEND="
 			x86? ( media-libs/libtxc_dxtn )
 			)
 
+		steamgames_bioshock_infinite? (
+			!steamruntime? (
+					amd64? ( media-libs/sdl2-image[abi_x86_32] )
+					x86? ( media-libs/sdl2-image )
+				)
+			)
 		steamgames_dwarfs? (
 				x86? ( media-libs/libexif )
 				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
