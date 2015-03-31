@@ -36,7 +36,6 @@ RDEPEND="
 				x11-libs/libxcb[abi_x86_32]
 				x11-libs/libXdmcp[abi_x86_32]
 				)
-			)
 			!steamruntime? ( >=games-util/steam-client-meta-0-r20141204[steamruntime?] )
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
