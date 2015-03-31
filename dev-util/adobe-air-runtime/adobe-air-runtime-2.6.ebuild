@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,26 +28,17 @@ RDEPEND="app-arch/unzip
 		x11-libs/cairo
 		x11-libs/gtk+ )
 	amd64? (
-		|| (
-			(
-				dev-libs/glib[abi_x86_32]
-				dev-libs/libxml2[abi_x86_32]
-				dev-libs/nspr[abi_x86_32]
-				dev-libs/nss[abi_x86_32]
-				net-misc/curl[abi_x86_32]
-				sys-libs/zlib[abi_x86_32]
-			)
-			app-emulation/emul-linux-x86-baselibs
-		)
-		|| (
-			(
-				gnome-base/gconf:2[abi_x86_32]
-				x11-libs/gtk+:2[abi_x86_32,cups]
-				x11-libs/pango[abi_x86_32]
-				x11-libs/gdk-pixbuf[abi_x86_32]
-			)
-			app-emulation/emul-linux-x86-gtklibs
-		) )"
+		dev-libs/glib[abi_x86_32]
+		dev-libs/libxml2[abi_x86_32]
+		dev-libs/nspr[abi_x86_32]
+		dev-libs/nss[abi_x86_32]
+		gnome-base/gconf:2[abi_x86_32]
+		net-misc/curl[abi_x86_32]
+		sys-libs/zlib[abi_x86_32]
+		x11-libs/gtk+:2[abi_x86_32,cups]
+		x11-libs/gdk-pixbuf[abi_x86_32]
+		x11-libs/pango[abi_x86_32]
+		)"
 
 QA_PRESTRIPPED=".*\.so"
 QA_EXECSTACK="*/libCore.so */libcurl.so */libadobecertstore.so */libadobecp.so"
