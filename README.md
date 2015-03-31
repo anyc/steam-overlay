@@ -14,7 +14,7 @@ start steam with `STEAM_RUNTIME=1 steam` before reporting a bug at the [official
 Usage
 -----
 
-* Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam`
+* Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam-overlay`
 * Choose if you want to use the official Steam runtime along with its bundled libraries or system libraries by en-/disabling the `steamruntime` use flag (see "Notes for 
 AMD64"). Disabling the official runtime is only recommended for advanced Gentoo users.
 * Emerge `steam-meta` ebuild
