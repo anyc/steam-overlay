@@ -16,7 +16,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="flash steamfonts +steamruntime streaming trayicon video_cards_intel video_cards_nvidia"
+IUSE="flash pulseaudio steamfonts +steamruntime streaming trayicon video_cards_intel video_cards_nvidia"
 
 RDEPEND="
 		media-fonts/font-mutt-misc
@@ -26,12 +26,8 @@ RDEPEND="
 
 		steamfonts? ( media-fonts/steamfonts )
 
-		streaming? (
-				amd64? ( x11-libs/libva[abi_x86_32] )
-				x86? ( x11-libs/libva )
-			)
-
 		amd64? (
+			!x11-misc/virtualgl[-abi_x86_32]
 			|| (
 				app-emulation/emul-linux-x86-opengl
 				virtual/opengl[abi_x86_32]
@@ -54,14 +50,44 @@ RDEPEND="
 			amd64? (
 				>=sys-devel/gcc-4.6.0[multilib]
 				>=sys-libs/glibc-2.15[multilib]
-				media-libs/libsdl2[abi_x86_32]
 				>=app-emulation/steam-runtime-bin-20131109
-				<sys-fs/steam-runtime-udev-176[abi_x86_32,gudev]
+				=sys-fs/steam-runtime-udev-175-r2[abi_x86_32,gudev]
 
-				>=app-emulation/emul-linux-x86-baselibs-20121202
-				>=app-emulation/emul-linux-x86-gtklibs-20121202
-				>=app-emulation/emul-linux-x86-sdl-20121202
-				>=app-emulation/emul-linux-x86-soundlibs-20121202
+				|| (
+					>=app-emulation/emul-linux-x86-baselibs-20121202
+					(
+						dev-libs/dbus-glib[abi_x86_32]
+						|| ( dev-libs/libgcrypt:0/11[abi_x86_32(-)] dev-libs/libgcrypt:11[abi_x86_32(-)] )
+						dev-libs/nspr[abi_x86_32]
+						dev-libs/nss[abi_x86_32]
+						net-misc/curl[abi_x86_32]
+					)
+				)
+				|| (
+					>=app-emulation/emul-linux-x86-gtklibs-20121202
+					(
+						gnome-base/gconf:2[abi_x86_32]
+						x11-libs/gtk+:2[abi_x86_32,cups]
+						x11-libs/pango[abi_x86_32]
+						x11-libs/gdk-pixbuf[abi_x86_32]
+					)
+				)
+				|| (
+					>=app-emulation/emul-linux-x86-sdl-20121202
+					(
+						media-libs/openal[abi_x86_32]
+					)
+				)
+				|| (
+					>=app-emulation/emul-linux-x86-soundlibs-20121202
+					(
+						media-libs/alsa-lib[abi_x86_32]
+						media-libs/flac[abi_x86_32]
+						media-libs/libvorbis[abi_x86_32]
+						pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
+						!pulseaudio? ( media-sound/apulse[abi_x86_32] )
+					)
+				)
 				|| (
 					>=app-emulation/emul-linux-x86-xlibs-20121202
 					(
@@ -79,12 +105,13 @@ RDEPEND="
 					)
 				)
 
+				streaming? ( x11-libs/libva[abi_x86_32] )
 				trayicon? ( dev-libs/libappindicator2[abi_x86_32] )
 				)
 			x86? (
 				dev-libs/glib:2
 				dev-libs/dbus-glib
-				dev-libs/libgcrypt
+				|| ( dev-libs/libgcrypt:0/11 dev-libs/libgcrypt:11 )
 				virtual/libusb
 				dev-libs/nspr
 				dev-libs/nss
@@ -93,7 +120,6 @@ RDEPEND="
 				media-libs/freetype:2
 				media-libs/libpng:1.2
 				media-libs/openal
-				media-sound/pulseaudio
 				net-misc/networkmanager
 				net-print/cups
 				sys-apps/dbus
@@ -115,7 +141,10 @@ RDEPEND="
 				x11-libs/libXrender
 				x11-libs/pango
 
+				streaming? ( x11-libs/libva )
 				trayicon? ( dev-libs/libappindicator2 )
+				pulseaudio? ( media-sound/pulseaudio[caps] )
+				!pulseaudio? ( media-sound/apulse )
 				)
 			)
 		"
@@ -135,6 +164,16 @@ pkg_postinst() {
 		elog "If you're using PAX, please see:"
 		elog "http://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
 		elog ""
+	fi
+
+	if ! use pulseaudio; then
+		ewarn "You have disabled pulseaudio. You have to use"
+		ewarn "media-sound/apulse instead to start steam. Please"
+		ewarn "add '/usr/lib32/apulse' to your LD_LIBRARY_PATH"
+		ewarn "environment variable or start steam with:"
+		ewarn ""
+		ewarn "# LD_LIBRARY_PATH=/usr/lib32/apulse steam"
+		ewarn ""
 	fi
 
 	ewarn "The steam client and the games are not controlled by"
