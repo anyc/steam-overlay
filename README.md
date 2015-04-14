@@ -15,17 +15,16 @@ Usage
 -----
 
 * Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam-overlay`
-* Choose if you want to use the official Steam runtime along with its bundled libraries or system libraries by en-/disabling the `steamruntime` use flag (see "Notes for 
-AMD64"). Disabling the official runtime is only recommended for advanced Gentoo users.
-* Emerge `steam-meta` ebuild
+* Choose if you want to use the official Steam runtime along with its bundled libraries or system libraries by en-/disabling the `steamruntime` use flag. Disabling the official runtime is only 
+recommended for advanced Gentoo users.
+* Emerge the `steam-meta` package
 * Start the client by executing `steam`
 
 Notes for AMD64
 ---------------
 
-If you disable `steamruntime`, our ebuilds depend on the split multilib packages that (partially) replace the emul-linux-x86* packages 
-([background](http://kicherer.org/joomla/index.php/en/blog/liste/29-transition-of-emul-packages-to-true-multilib)). In order to use 
-them, you have to unmask several ebuilds and enable the ```abi_x86_32``` use flag.
+As the client and most games use 32-bit executables, the ebuilds require that you enable the `abi_x86_32` use flag for some packages, see [this news 
+item](https://www.gentoo.org/support/news-items/2015-03-28-true-multilib.html) for more information.
 
 Troubleshooting Steam
 ---------------------
