@@ -23,7 +23,7 @@ IUSE="debug gtk"
 RDEPEND=">=dev-libs/glib-2.32[${MULTILIB_USEDEP}]
 	>=dev-libs/dbus-glib-0.100[${MULTILIB_USEDEP}]
 	dev-libs/libxml2[${MULTILIB_USEDEP}]
-	gtk? ( >=x11-libs/gtk+-2.18[${MULTILIB_USEDEP}] )
+	gtk? ( >=x11-libs/gtk+-2.18:2[${MULTILIB_USEDEP}] )
 	"
 DEPEND="${RDEPEND}
 	app-text/gnome-doc-utils
