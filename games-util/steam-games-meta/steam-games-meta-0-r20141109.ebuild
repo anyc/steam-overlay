@@ -19,7 +19,7 @@ IUSE="s3tc mono +steamruntime"
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
 IUSE_STEAMGAMES="bioshock_infinite dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
-	shatter hammerwatch source_engine painkiller portal narcissu witcher2"
+	shatter hammerwatch source_engine painkiller portal narcissu voidexpanse witcher2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -127,6 +127,7 @@ REQUIRED_USE="
 				video_cards_nouveau? ( s3tc )
 			)
 		steamgames_hammerwatch? ( mono )
+		steamgames_voidexpanse? ( mono )
 		"
 
 S=${WORKDIR}
