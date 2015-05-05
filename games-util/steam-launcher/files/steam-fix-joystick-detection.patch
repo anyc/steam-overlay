@@ -1,0 +1,30 @@
+--- /usr/bin/steam	2015-03-31 21:21:06.000000000 +0200
++++ steam	2015-05-05 13:34:16.462812460 +0200
+@@ -31,6 +31,27 @@
+     fi
+ fi
+ 
++# Finds joystick devices so we can coerce Steam's old SDL library into using them
++function enum_joysticks {
++  local joyprop=ID_INPUT_JOYSTICK=1
++  for f in /dev/input/*; do
++    if [ ! -c $f ]; then
++      continue
++    elif udevadm info --query=property --name=$f | grep --quiet $joyprop; then
++      echo $f
++    fi
++  done
++}
++
++# Uses the first arg as a separator to join the remaining args
++function join {
++  local IFS="$1"
++  shift
++  echo "$*"
++}
++
++export SDL_JOYSTICK_DEVICE=$(join : $(enum_joysticks))
++
+ function show_message()
+ {
+ 	style=$1
