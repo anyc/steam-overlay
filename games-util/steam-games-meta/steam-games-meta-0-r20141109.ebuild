@@ -18,8 +18,8 @@ IUSE="s3tc mono +steamruntime"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="bioshock_infinite dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest
-	shatter hammerwatch source_engine painkiller portal narcissu voidexpanse witcher2"
+IUSE_STEAMGAMES="bioshock_infinite defenders_quest dwarfs hammerwatch journey_down narcissu
+	painkiller portal shatter source_engine tf2 trine2 unwritten_tales voidexpanse witcher2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -57,16 +57,12 @@ RDEPEND="
 					x86? ( media-libs/sdl2-image )
 				)
 			)
+		steamgames_defenders_quest? (
+				dev-util/adobe-air-runtime
+			)
 		steamgames_dwarfs? (
 				x86? ( media-libs/libexif )
 				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
-			)
-		steamgames_unwritten_tales? (
-				x86? ( media-libs/jasper )
-				amd64? ( >=media-libs/jasper-1.900.1-r6[abi_x86_32] )
-			)
-		steamgames_source_engine? (
-				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
 			)
 		steamgames_journey_down? (
 				amd64? ( media-libs/openal[abi_x86_32] )
@@ -91,6 +87,13 @@ RDEPEND="
 		steamgames_portal? (
 			!steamruntime? ( media-libs/libpng:1.2 )
 			)
+		steamgames_shatter? (
+				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib] )
+				x86? ( media-gfx/nvidia-cg-toolkit )
+			)
+		steamgames_source_engine? (
+				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
+			)
 		steamgames_trine2? (
 				x11-apps/xwininfo
 				!steamruntime? (
@@ -108,25 +111,22 @@ RDEPEND="
 						)
 				)
 			)
-		steamgames_defenders_quest? (
-				dev-util/adobe-air-runtime
-			)
-		steamgames_shatter? (
-				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib] )
-				x86? ( media-gfx/nvidia-cg-toolkit )
+		steamgames_unwritten_tales? (
+				x86? ( media-libs/jasper )
+				amd64? ( >=media-libs/jasper-1.900.1-r6[abi_x86_32] )
 			)
 		steamgames_witcher2? (
 				!steamruntime? ( media-libs/libsdl2[haptic] )
 			)
 		"
 REQUIRED_USE="
-		steamgames_tf2? ( steamgames_source_engine )
+		steamgames_hammerwatch? ( mono )
 		steamgames_source_engine? (
 				video_cards_intel? ( s3tc )
 				video_cards_radeon? ( s3tc )
 				video_cards_nouveau? ( s3tc )
 			)
-		steamgames_hammerwatch? ( mono )
+		steamgames_tf2? ( steamgames_source_engine )
 		steamgames_voidexpanse? ( mono )
 		"
 
