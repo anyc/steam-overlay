@@ -18,8 +18,8 @@ IUSE="s3tc mono +steamruntime"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="bioshock_infinite defenders_quest dwarfs hammerwatch journey_down narcissu
-	painkiller portal shatter source_engine tf2 trine2 unwritten_tales voidexpanse witcher2"
+IUSE_STEAMGAMES="bioshock_infinite defenders_quest dwarfs hammerwatch ironclad_tactics journey_down
+	narcissu painkiller portal shatter source_engine tf2 trine2 unwritten_tales voidexpanse witcher2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -63,6 +63,14 @@ RDEPEND="
 		steamgames_dwarfs? (
 				x86? ( media-libs/libexif )
 				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
+			)
+		steamgames_ironclad_tactics? (
+				amd64? (
+					media-libs/sdl2-mixer[abi_x86_32]
+					)
+				x86? (
+					media-libs/sdl2-mixer
+					)
 			)
 		steamgames_journey_down? (
 				amd64? ( media-libs/openal[abi_x86_32] )
