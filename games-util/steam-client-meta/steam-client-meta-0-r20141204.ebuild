@@ -105,7 +105,7 @@ RDEPEND="
 				)
 
 				streaming? ( x11-libs/libva[abi_x86_32] )
-				trayicon? ( dev-libs/libappindicator2[abi_x86_32] )
+				trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 				)
 			x86? (
 				dev-libs/glib:2
@@ -142,7 +142,7 @@ RDEPEND="
 				x11-libs/pango
 
 				streaming? ( x11-libs/libva )
-				trayicon? ( dev-libs/libappindicator2 )
+				trayicon? ( dev-libs/libappindicator:2 )
 				)
 			)
 		"
