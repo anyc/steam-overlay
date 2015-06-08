@@ -79,10 +79,7 @@ RDEPEND="
 				x11-libs/pango[abi_x86_32]
 
 				streaming? ( x11-libs/libva[abi_x86_32] )
-				trayicon? ( || (
-					dev-libs/libappindicator:2[abi_x86_32]
-					dev-libs/libappindicator2[abi_x86_32]
-					) )
+				trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 				pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
 				!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 				)
@@ -120,10 +117,7 @@ RDEPEND="
 				x11-libs/pango
 
 				streaming? ( x11-libs/libva )
-				trayicon? ( || (
-					dev-libs/libappindicator:2
-					dev-libs/libappindicator2
-					) )
+				trayicon? ( dev-libs/libappindicator:2 )
 				pulseaudio? ( media-sound/pulseaudio[caps] )
 				!pulseaudio? ( media-sound/apulse )
 				)
