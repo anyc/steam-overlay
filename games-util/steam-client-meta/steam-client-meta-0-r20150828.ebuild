@@ -66,6 +66,7 @@ RDEPEND="
 				net-misc/curl[abi_x86_32]
 				sys-libs/libudev-compat[abi_x86_32]
 				virtual/libgudev[abi_x86_32]
+				virtual/libusb[abi_x86_32]
 				x11-libs/gtk+:2[abi_x86_32,cups]
 				x11-libs/gdk-pixbuf[abi_x86_32]
 				x11-libs/libXi[abi_x86_32]
