@@ -28,10 +28,7 @@ RDEPEND="
 
 		amd64? (
 			!x11-misc/virtualgl[-abi_x86_32]
-			|| (
-				app-emulation/emul-linux-x86-opengl
-				virtual/opengl[abi_x86_32]
-				)
+			virtual/opengl[abi_x86_32]
 			flash? ( www-plugins/adobe-flash[abi_x86_32] )
 			)
 
@@ -50,7 +47,6 @@ RDEPEND="
 			amd64? (
 				>=sys-devel/gcc-4.6.0[multilib]
 				>=sys-libs/glibc-2.15[multilib]
-				>=app-emulation/steam-runtime-bin-20131109
 
 				dev-libs/dbus-glib[abi_x86_32]
 				|| ( dev-libs/libgcrypt:0/11[abi_x86_32(-)] dev-libs/libgcrypt:11[abi_x86_32(-)] )
@@ -64,6 +60,7 @@ RDEPEND="
 				media-libs/fontconfig[abi_x86_32]
 				media-libs/freetype[abi_x86_32]
 				net-misc/curl[abi_x86_32]
+				net-misc/networkmanager[abi_x86_32]
 				sys-libs/libudev-compat[abi_x86_32]
 				virtual/libgudev[abi_x86_32]
 				virtual/libusb[abi_x86_32]
@@ -83,10 +80,7 @@ RDEPEND="
 				x11-libs/pango[abi_x86_32]
 
 				streaming? ( x11-libs/libva[abi_x86_32] )
-				trayicon? ( || (
-					dev-libs/libappindicator:2[abi_x86_32]
-					dev-libs/libappindicator2[abi_x86_32]
-					) )
+				trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 				pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
 				!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 				)
@@ -127,10 +121,7 @@ RDEPEND="
 				x11-libs/pango
 
 				streaming? ( x11-libs/libva )
-				trayicon? ( || (
-					dev-libs/libappindicator:2
-					dev-libs/libappindicator2
-					) )
+				trayicon? ( dev-libs/libappindicator:2 )
 				pulseaudio? ( media-sound/pulseaudio[caps] )
 				!pulseaudio? ( media-sound/apulse )
 				)
