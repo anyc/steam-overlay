@@ -79,6 +79,7 @@ RDEPEND="
 				x11-libs/libXext[abi_x86_32]
 				x11-libs/libXfixes[abi_x86_32]
 				x11-libs/libXScrnSaver[abi_x86_32]
+				x11-libs/libXtst[abi_x86_32]
 				x11-libs/pango[abi_x86_32]
 
 				streaming? ( x11-libs/libva[abi_x86_32] )
@@ -122,6 +123,7 @@ RDEPEND="
 				x11-libs/libXrandr
 				x11-libs/libXrender
 				x11-libs/libXScrnSaver
+				x11-libs/libXtst
 				x11-libs/pango
 
 				streaming? ( x11-libs/libva )
