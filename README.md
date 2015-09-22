@@ -14,9 +14,10 @@ start steam with `STEAM_RUNTIME=1 steam` before reporting a bug at the [official
 Usage
 -----
 
-* Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command `layman -a steam-overlay`
+* Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command: `layman -a steam-overlay` *or*
+  copy `steam-overlay.conf` from this repository into `/etc/portage/repos.conf/` to use the new [portage sync capabilities](https://wiki.gentoo.org/wiki/Project:Portage/Sync)
 * Choose if you want to use the official Steam runtime along with its bundled libraries or system libraries by en-/disabling the `steamruntime` use flag. Disabling the official runtime is only 
-recommended for advanced Gentoo users.
+  recommended for advanced Gentoo users
 * Emerge the `steam-meta` package
 * Start the client by executing `steam`
 
