@@ -120,8 +120,14 @@ RDEPEND="
 				)
 			)
 		steamgames_unwritten_tales? (
-				x86? ( media-libs/jasper )
-				amd64? ( >=media-libs/jasper-1.900.1-r6[abi_x86_32] )
+				x86? (
+					media-libs/jasper
+					media-libs/jpeg:8
+				)
+				amd64? (
+					>=media-libs/jasper-1.900.1-r6[abi_x86_32]
+					media-libs/jpeg:8[abi_x86_32]
+				)
 			)
 		steamgames_witcher2? (
 				!steamruntime? ( media-libs/libsdl2[haptic] )
