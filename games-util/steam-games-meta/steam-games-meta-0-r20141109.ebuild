@@ -92,15 +92,14 @@ RDEPEND="
 					x86? ( media-libs/steam-runtime-glew )
 				)
 			)
-		steamgames_portal? (
-			!steamruntime? ( media-libs/libpng:1.2 )
-			)
 		steamgames_shatter? (
 				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib] )
 				x86? ( media-gfx/nvidia-cg-toolkit )
 			)
 		steamgames_source_engine? (
 				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
+				amd64? ( media-libs/libpng:1.2[abi_x86_32] )
+				x86? ( media-libs/libpng:1.2 )
 			)
 		steamgames_trine2? (
 				x11-apps/xwininfo
@@ -135,6 +134,7 @@ RDEPEND="
 		"
 REQUIRED_USE="
 		steamgames_hammerwatch? ( mono )
+		steamgames_portal? ( steamgames_source_engine )
 		steamgames_source_engine? (
 				video_cards_intel? ( s3tc )
 				video_cards_radeon? ( s3tc )
