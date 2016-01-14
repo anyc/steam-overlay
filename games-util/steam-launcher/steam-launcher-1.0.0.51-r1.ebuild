@@ -7,7 +7,7 @@ EAPI=5
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
-inherit eutils gnome2-utils fdo-mime udev
+inherit eutils gnome2-utils fdo-mime udev linux-info
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
@@ -50,6 +50,20 @@ RDEPEND="
 			)"
 
 S=${WORKDIR}/steam/
+
+pkg_setup() {
+	linux-info_pkg_setup
+
+	if ! { linux_config_exists && linux_chkconfig_present INPUT_UINPUT; }; then
+		ewarn "If you want to use the steam controller, please make sure"
+		ewarn "CONFIG_INPUT_UINPUT is enabled in your kernel config."
+
+		# Device Drivers
+		#  -> Input device support
+		#   -> Miscellaneous devices
+		#    -> User level driver support
+	fi
+}
 
 src_prepare() {
 	epatch "${FILESDIR}"/steam-fix-ld-library-path.patch
