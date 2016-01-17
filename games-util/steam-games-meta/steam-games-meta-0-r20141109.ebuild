@@ -18,7 +18,7 @@ IUSE="s3tc mono +steamruntime"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="bioshock_infinite defenders_quest dwarfs hammerwatch ironclad_tactics journey_down
+IUSE_STEAMGAMES="bioshock_infinite defenders_quest dirt_showdown dwarfs hammerwatch ironclad_tactics journey_down
 	narcissu painkiller portal shatter source_engine tf2 trine2 unwritten_tales voidexpanse witcher2"
 
 for sgame in ${IUSE_STEAMGAMES}; do
@@ -134,6 +134,7 @@ RDEPEND="
 		"
 REQUIRED_USE="
 		steamgames_hammerwatch? ( mono )
+		steamgames_dirt_showdown? ( s3tc )
 		steamgames_portal? ( steamgames_source_engine )
 		steamgames_source_engine? (
 				video_cards_intel? ( s3tc )
