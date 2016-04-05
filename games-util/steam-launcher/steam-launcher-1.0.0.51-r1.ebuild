@@ -68,6 +68,7 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/steam-fix-ld-library-path.patch
 	epatch "${FILESDIR}"/steam-fix-joystick-detection.patch
+	epatch_user
 
 	sed -i -e 's:TAG+="uaccess":TAG+="uaccess", TAG+="udev-acl":g' lib/udev/rules.d/99-steam-controller-perms.rules || die
 
