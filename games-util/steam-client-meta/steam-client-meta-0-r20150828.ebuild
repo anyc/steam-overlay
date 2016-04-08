@@ -49,7 +49,7 @@ RDEPEND="
 				>=sys-libs/glibc-2.15[multilib]
 
 				dev-libs/dbus-glib[abi_x86_32]
-				|| ( dev-libs/libgcrypt:0/11[abi_x86_32(-)] dev-libs/libgcrypt:11[abi_x86_32(-)] )
+				dev-libs/libgcrypt[abi_x86_32]
 				dev-libs/nspr[abi_x86_32]
 				dev-libs/nss[abi_x86_32]
 				gnome-base/gconf:2[abi_x86_32]
@@ -87,7 +87,7 @@ RDEPEND="
 			x86? (
 				dev-libs/glib:2
 				dev-libs/dbus-glib
-				|| ( dev-libs/libgcrypt:0/11 dev-libs/libgcrypt:11 )
+				dev-libs/libgcrypt
 				virtual/libgudev
 				virtual/libusb
 				dev-libs/nspr
