@@ -54,6 +54,7 @@ S=${WORKDIR}/steam/
 src_prepare() {
 	epatch "${FILESDIR}"/steam-fix-ld-library-path.patch
 	epatch "${FILESDIR}"/steam-fix-joystick-detection.patch
+	epatch_user
 
 	if ! use steamruntime; then
 		# use system libraries if user has not set the variable otherwise and add dirty hack for unbound LD_LIBRARY_PATH if it is not set
