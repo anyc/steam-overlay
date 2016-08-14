@@ -1,19 +1,22 @@
---- steam	2015-01-01 19:14:52.312377741 +0100
-+++ steam_new	2015-01-01 19:13:59.023702762 +0100
-@@ -17,6 +17,18 @@
+diff -Naur a/steam b/steam
+--- a/steam	2016-03-29 21:03:30.000000000 +0100
++++ b/steam	2016-08-14 18:31:09.449120220 +0100
+@@ -17,6 +17,20 @@
  # Set up domain for script localization
  export TEXTDOMAIN=steam
  
++# A libpcre.so.3 symlink to libpcre.so.1 is installed here. It's
++# needed by some games when not using the Steam runtime.
++export LD_LIBRARY_PATH+="${LD_LIBRARY_PATH+:}@@DEBIAN_COMPAT@@"
++
 +# Steam appends /usr/lib32 to LD_LIBRARY_PATH. We need to make sure that
 +# OpenGL implementation dir goes before that, so we need to append it
 +# to user's LD_LIBRARY_PATH ourselves. But that's needed only with
 +# the new eselect-opengl that uses 000opengl file.
-+if [ -f /etc/env.d/000opengl ]; then
-+    . /etc/env.d/000opengl
-+    # Append only when LDPATH is non-empty -- i.e. using nvidia or ati.
-+    if [ -n "${LDPATH}" ]; then
-+        export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}${LD_LIBRARY_PATH+:}${LDPATH}
-+    fi
++if [[ -f "/etc/env.d/000opengl" ]]; then
++	. "/etc/env.d/000opengl"
++	# Append only when LDPATH is non-empty -- i.e. using nvidia or ati.
++	[[ -n "${LDPATH}" ]] && LD_LIBRARY_PATH+=":${LDPATH}"
 +fi
 +
  function show_message()

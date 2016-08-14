@@ -1,8 +1,9 @@
---- /usr/bin/steam	2015-03-31 21:21:06.000000000 +0200
-+++ steam	2015-05-05 13:34:16.462812460 +0200
-@@ -31,6 +31,27 @@
-     fi
- fi
+diff -Naur a/steam b/steam
+--- a/steam	2016-08-14 18:44:23.069675427 +0100
++++ b/steam	2016-08-14 18:44:29.853577578 +0100
+@@ -38,6 +38,27 @@
+ # Gentoo's lsb-release doesn't set this.
+ export DISTRIB_RELEASE="2.2"
  
 +# Finds joystick devices so we can coerce Steam's old SDL library into using them
 +function enum_joysticks {
