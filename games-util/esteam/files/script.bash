@@ -86,13 +86,21 @@ done
 unset IFS
 for DIR in "${!DIRS[@]}"; do
 	einfo "Scanning ${DIR} ..."
+	COMMON=${DIR}/SteamApps/common/
+
+	unset IFS
+	for DELETEABLE in "${DELETEABLES[@]}"; do
+		if [[ -f "${COMMON}${DELETEABLE}" ]]; then
+			rm "${COMMON}${DELETEABLE}"
+			einfo "Deleted: ${DELETEABLE}"
+		fi
+	done
 
 	case "${ARCH}" in
 		x86) SCAN_ARGS="-M 32" ;;
 		*) unset SCAN_ARGS ;;
 	esac
 
-	COMMON=${DIR}/SteamApps/common/
 	SCAN_RESULT=$(scanelf ${SCAN_ARGS} -BRF $'%F\t%a\t%n' "${COMMON}")
 
 	unset BINARIES

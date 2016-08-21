@@ -110,14 +110,13 @@ LIBS[libldap-2.4.so.2]=net-nds/openldap[@ABI@]
 LIBS[libldap_r-2.4.so.2]=net-nds/openldap[@ABI@]
 LIBS[libltdl.so.7]=dev-libs/libltdl:0[@ABI@]
 LIBS[libm.so.6]=${GLIBC}[@MULTILIB@]
+LIBS[libmad.so.0]=media-libs/libmad[@ABI@]
 LIBS[libmenu.so.5]=sys-libs/ncurses:5/5[@ABI@]
 LIBS[libmenu.so.6]=sys-libs/ncurses:0/6[@ABI@]
 LIBS[libmenuw.so.5]=sys-libs/ncurses:5/5[@ABI@,unicode]
 LIBS[libmenuw.so.6]=sys-libs/ncurses:0/6[@ABI@,unicode]
 LIBS[libmikmod.so.2]=media-libs/libmikmod[@ABI@]
 LIBS[libmikmod.so.3]=media-libs/libmikmod[@ABI@]
-LIBS[libmono-2.0.so.1]=dev-lang/mono
-LIBS[libmono-2.0.so]=dev-lang/mono
 LIBS[libncurses.so.5]=sys-libs/ncurses:5/5[@ABI@]
 LIBS[libncurses.so.6]=sys-libs/ncurses:0/6[@ABI@]
 LIBS[libncursesw.so.5]=sys-libs/ncurses:5/5[@ABI@,unicode]
@@ -125,6 +124,7 @@ LIBS[libncursesw.so.6]=sys-libs/ncurses:0/6[@ABI@,unicode]
 LIBS[libnm-glib.so.4]=net-misc/networkmanager[@ABI@]
 LIBS[libnm-util.so.2]=net-misc/networkmanager[@ABI@]
 LIBS[libnotify.so.4]=x11-libs/libnotify[@ABI@]
+LIBS[libnsl.so.1]=${GLIBC}[@MULTILIB@]
 LIBS[libnspr4.so]=dev-libs/nspr[@ABI@]
 LIBS[libnss3.so]=dev-libs/nss[@ABI@]
 LIBS[libnssutil3.so]=dev-libs/nss[@ABI@]
@@ -179,6 +179,7 @@ LIBS[libsqlite3.so.0]=dev-db/sqlite:3[@ABI@]
 LIBS[libss.so.2]=sys-libs/e2fsprogs-libs[@ABI@]
 LIBS[libssl.so.1.0.0]=dev-libs/openssl:0[@ABI@]
 LIBS[libssl3.so]=dev-libs/nss[@ABI@]
+LIBS[libstdc++.so.5]=sys-libs/libstdc++-v3[@MULTILIB@]
 LIBS[libstdc++.so.6]=${GCC}[@MULTILIB@,cxx]
 LIBS[libtbb.so.2]=dev-cpp/tbb[@ABI@]
 LIBS[libtbbmalloc.so.2]=dev-cpp/tbb[@ABI@]
@@ -189,6 +190,13 @@ LIBS[libtdb.so.1]=sys-libs/tdb[@ABI@]
 LIBS[libtheora.so.0]=media-libs/libtheora[@ABI@]
 LIBS[libtheoradec.so.1]=media-libs/libtheora[@ABI@]
 LIBS[libtheoraenc.so.1]=media-libs/libtheora[@ABI@,encode]
+LIBS[libthread_db.so.1]=${GLIBC}[@MULTILIB@]
+LIBS[libtiff.so.3]=media-libs/tiff:3[@ABI@]
+LIBS[libtiff.so.4]=media-libs/tiff:3[@ABI@]
+LIBS[libtiff.so.5]=media-libs/tiff:0[@ABI@]
+LIBS[libtiffxx.so.3]=media-libs/tiff:3[@ABI@,cxx]
+LIBS[libtiffxx.so.4]=media-libs/tiff:3[@ABI@,cxx]
+LIBS[libtiffxx.so.5]=media-libs/tiff:0[@ABI@,cxx]
 LIBS[libtinfo.so.5]=sys-libs/ncurses:5/5[@ABI@]
 LIBS[libtinfo.so.6]=sys-libs/ncurses:0/6[@ABI@]
 LIBS[libtxc_dxtn.so]=media-libs/libtxc_dxtn[@ABI@]
@@ -218,7 +226,7 @@ LIBS[libXdamage.so.1]=x11-libs/libXdamage[@ABI@]
 LIBS[libXdmcp.so.6]=x11-libs/libXdmcp[@ABI@]
 LIBS[libXext.so.6]=x11-libs/libXext[@ABI@]
 LIBS[libXfixes.so.3]=x11-libs/libXfixes[@ABI@]
-LIBS[libXft.so.2]=dev-libs/libXft[@ABI@]
+LIBS[libXft.so.2]=x11-libs/libXft[@ABI@]
 LIBS[libXi.so.6]=x11-libs/libXi[@ABI@]
 LIBS[libXinerama.so.1]=x11-libs/libXinerama[@ABI@]
 LIBS[libxkbcommon.so.0]=x11-libs/libxkbcommon[@ABI@]
@@ -229,8 +237,8 @@ LIBS[libXrandr.so.2]=x11-libs/libXrandr[@ABI@]
 LIBS[libXrender.so.1]=x11-libs/libXrender[@ABI@]
 LIBS[libxslt.so.1]=dev-libs/libxslt[@ABI@]
 LIBS[libXss.so.1]=x11-libs/libXScrnSaver[@ABI@]
-LIBS[libXt.so.6]=dev-libs/libXt[@ABI@]
-LIBS[libXtst.so.6]=dev-libs/libXtst[@ABI@]
+LIBS[libXt.so.6]=x11-libs/libXt[@ABI@]
+LIBS[libXtst.so.6]=x11-libs/libXtst[@ABI@]
 LIBS[libXxf86vm.so.1]=x11-libs/libXxf86vm[@ABI@]
 LIBS[libz.so.1]=sys-libs/zlib[@ABI@]
 
@@ -241,6 +249,7 @@ UNBUNDLEABLES=(
 	"A Boy and His Blob"
 	"Alien Isolation"
 	"Anodyne"
+	"Dwarfs - F2P"
 	"Sid Meier's Civilization V"
 	"Trine 2"
 )
@@ -249,11 +258,20 @@ UNBUNDLEABLES=(
 
 # 1001 Spikes
 # Binaries
+# Hammerwatch
+# Lovers in a Dangerous Spacetime
+# Octodad Dadliest Catch
 # Pix the Cat
 # The Talos Principle
 
 # The following should remain bundled:
 
+# Half-Life (VAC)
 # Half-Life 2 (VAC)
-# Hammerwatch (Mono crashes)
 # Portal (VAC?)
+
+# The following files will be deleted if found:
+
+DELETEABLES=(
+	"Dwarfs - F2P"/lib{tier0,vstdlib}_s.so
+)
