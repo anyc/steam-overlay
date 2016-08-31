@@ -20,7 +20,7 @@ RDEPEND="app-eselect/eselect-opengl
 S="${WORKDIR}"
 
 src_install() {
-	newsbin $(prefixify_ro "${FILESDIR}"/script.bash) ${PN}
+	newbin $(prefixify_ro "${FILESDIR}"/script.bash) ${PN}
 
 	insinto /usr/share/portage/config/sets
 	newins $(prefixify_ro "${FILESDIR}"/set.conf) ${PN}.conf
@@ -35,8 +35,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "Run esteam as root after installing or updating Steam games to"
-	elog "have Portage automatically install the necessary dependencies."
-	elog "Your games will probably not start otherwise. See esteam -h for"
-	elog "more information."
+	elog "Run esteam after installing or updating Steam games to have"
+	elog "Portage automatically install the necessary dependencies. Your"
+	elog "games will probably not start otherwise. See esteam -h for more"
+	elog "information."
 }

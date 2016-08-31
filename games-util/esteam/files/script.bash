@@ -1,9 +1,10 @@
-#!/bin/bash -e
+#!/bin/bash
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 source "@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh"
+set -e # Gentoo bug #592470
 
 while getopts vh OPT; do
 	case "${OPT}" in
@@ -57,6 +58,17 @@ shift $(( ${OPTIND} - 1 ))
 declare -A LIBS UNBUNDLEABLES_A DIRS ATOMS ATOMS64 ATOMS32
 source "@GENTOO_PORTAGE_EPREFIX@/usr/share/esteam/database.bash"
 
+if [[ ! -w "@GENTOO_PORTAGE_EPREFIX@/" ]]; then
+	if type sudo &>/dev/null; then
+		ewarn "esteam started as unprivileged user so scan may be incomplete"
+		SUDO=sudo
+	else
+		eerror "Error: esteam started as unprivileged user and sudo unavailable"
+	fi
+else
+	unset SUDO
+fi
+
 ARCH=$(portageq envvar ARCH || eerror "Error: Could not determine Portage ARCH")
 GL_DRIVER=$(eselect opengl show || eerror "Error: Could not determine OpenGL driver")
 
@@ -85,8 +97,14 @@ done
 
 unset IFS
 for DIR in "${!DIRS[@]}"; do
-	einfo "Scanning ${DIR} ..."
 	COMMON=${DIR}/SteamApps/common/
+
+	if [[ ! -w "${COMMON}" ]]; then
+		ewarn "Skipping unwritable ${DIR}"
+		continue
+	fi
+
+	einfo "Scanning ${DIR} ..."
 
 	unset IFS
 	for DELETEABLE in "${DELETEABLES[@]}"; do
@@ -186,8 +204,8 @@ for ATOM in "${!ATOMS64[@]}" "${!ATOMS32[@]}"; do
 	ATOMS[${ATOM}]=1
 done
 
+unset CONTENTS
 SET="@GENTOO_PORTAGE_EPREFIX@/var/lib/portage/esteam"
-truncate --size=0 "${SET}"
 
 unset IFS
 for ATOM in $(printf "%s\n" "${!ATOMS[@]}" | sort); do
@@ -207,7 +225,12 @@ for ATOM in $(printf "%s\n" "${!ATOMS[@]}" | sort); do
 
 	ATOM=${ATOM//,\]/\]}
 	ATOM=${ATOM//\[\]}
-	echo "${ATOM}" >> "${SET}"
+	CONTENTS+=${ATOM}$'\n'
 done
 
-exec emerge -an "${@}" @esteam
+echo
+einfo "Writing Portage set to ${SET} ..."
+echo -n "${CONTENTS}" | ${SUDO} tee "${SET}" >/dev/null
+
+einfo "Executing emerge -an${@+ }${@} @esteam ..."
+exec ${SUDO} emerge -an "${@}" @esteam
