@@ -258,6 +258,7 @@ UNBUNDLEABLES=(
 	"Anodyne"
 	"Dwarfs - F2P"
 	"Sid Meier's Civilization V"
+	"Tomb Raider"
 	"Trine 2"
 )
 
