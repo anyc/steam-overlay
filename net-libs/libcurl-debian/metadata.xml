@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>chewi@gentoo.org</email>
+		<name>James Le Cuirot</name>
+	</maintainer>
+	<longdescription>
+	  Unlike Gentoo, Debian allows multiple copies of libcurl built
+	  against different backends to be installed simultaneously. For
+	  reasons best known to themselves, some developers release
+	  binaries linked against libcurl-gnutls.so instead of libcurl.so,
+	  the latter being the OpenSSL variant. Although it is less than
+	  ideal, real world usage has shown that symlinking from one to
+	  the other doesn't cause any issues so this package provides such
+	  a symlink to satisfy prebuilt binaries. Usage of libcurl-nss.so
+	  seems less common but a symlink for that has also been included
+	  for completeness.
+	</longdescription>
+</pkgmetadata>

@@ -9,7 +9,6 @@ EAPI=6
 
 DESCRIPTION="Meta package for Steam games"
 HOMEPAGE="http://steampowered.com"
-SRC_URI=""
 LICENSE="metapackage"
 
 SLOT="0"
@@ -32,10 +31,7 @@ done
 
 RDEPEND="
 		amd64? (
-			video_cards_fglrx? ( || (
-				<x11-drivers/ati-drivers-14.9-r1[multilib]
-				>=x11-drivers/ati-drivers-14.9-r1[abi_x86_32]
-				) )
+			video_cards_fglrx? ( x11-drivers/ati-drivers[abi_x86_32] )
 			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
 			)
 		mono? (
@@ -43,96 +39,56 @@ RDEPEND="
 			)
 		s3tc? (
 			media-libs/mesa[-bindist]
-			amd64? ( || (
-					>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
-					<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
-					)
-				)
-			x86? ( media-libs/libtxc_dxtn )
+			media-libs/libtxc_dxtn[abi_x86_32]
 			)
 
 		steamgames_bioshock_infinite? (
-			!steamruntime? (
-					amd64? ( media-libs/sdl2-image[abi_x86_32] )
-					x86? ( media-libs/sdl2-image )
-				)
+			!steamruntime? ( media-libs/sdl2-image[abi_x86_32] )
 			)
 		steamgames_defenders_quest? (
-				dev-util/adobe-air-runtime
+			dev-util/adobe-air-runtime
 			)
 		steamgames_dwarfs? (
-				x86? ( media-libs/libexif )
-				amd64? ( >=media-libs/libexif-0.6.21-r1[abi_x86_32] )
-			)
+			media-libs/libexif[abi_x86_32]
+		)
 		steamgames_ironclad_tactics? (
-				amd64? (
-					media-libs/sdl2-mixer[abi_x86_32]
-					)
-				x86? (
-					media-libs/sdl2-mixer
-					)
+			media-libs/sdl2-mixer[abi_x86_32]
 			)
 		steamgames_journey_down? (
-				amd64? ( media-libs/openal[abi_x86_32] )
-				x86? ( media-libs/openal )
+			media-libs/openal[abi_x86_32]
 			)
 		steamgames_narcissu? (
-				amd64? (
-					media-libs/sdl2-image[abi_x86_32]
-					media-libs/sdl2-mixer[abi_x86_32]
-					)
-				x86? (
-					media-libs/sdl2-image
-					media-libs/sdl2-mixer
-					)
+			media-libs/sdl2-image[abi_x86_32]
+			media-libs/sdl2-mixer[abi_x86_32]
 			)
 		steamgames_painkiller? (
-			!steamruntime? (
-					amd64? ( media-libs/steam-runtime-glew[abi_x86_32] )
-					x86? ( media-libs/steam-runtime-glew )
-				)
+			!steamruntime? ( media-libs/glew:1.6[abi_x86_32] )
 			)
 		steamgames_shadow_mordor? (
 			!steamruntime? ( net-misc/curl[curl_ssl_gnutls] )
 			)
 		steamgames_shatter? (
-				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib] )
-				x86? ( media-gfx/nvidia-cg-toolkit )
+			media-gfx/nvidia-cg-toolkit[abi_x86_32]
 			)
 		steamgames_source_engine? (
-				video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
-				amd64? ( media-libs/libpng:1.2[abi_x86_32] )
-				x86? ( media-libs/libpng:1.2 )
+			video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
+			media-libs/libpng:1.2[abi_x86_32]
 			)
 		steamgames_trine2? (
-				x11-apps/xwininfo
-				!steamruntime? (
-					x86? (
-						media-gfx/nvidia-cg-toolkit
-						media-libs/libogg
-						media-libs/libvorbis
-						x11-libs/libXxf86vm
-						)
-					amd64? (
-						>=media-gfx/nvidia-cg-toolkit-3.1.0013[multilib]
-						media-libs/libogg[abi_x86_32]
-						media-libs/libvorbis[abi_x86_32]
-						x11-libs/libXxf86vm[abi_x86_32]
-						)
+			x11-apps/xwininfo
+			!steamruntime? (
+				media-gfx/nvidia-cg-toolkit[abi_x86_32]
+				media-libs/libogg[abi_x86_32]
+				media-libs/libvorbis[abi_x86_32]
+				x11-libs/libXxf86vm[abi_x86_32]
 				)
 			)
 		steamgames_unwritten_tales? (
-				x86? (
-					media-libs/jasper
-					media-libs/jpeg:8
-				)
-				amd64? (
-					>=media-libs/jasper-1.900.1-r6[abi_x86_32]
-					media-libs/jpeg:8[abi_x86_32]
-				)
+			media-libs/jasper[abi_x86_32]
+			media-libs/jpeg:8[abi_x86_32]
 			)
 		steamgames_witcher2? (
-				!steamruntime? ( media-libs/libsdl2[haptic] )
+			!steamruntime? ( media-libs/libsdl2[haptic] )
 			)
 		"
 REQUIRED_USE="

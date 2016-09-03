@@ -1,0 +1,13 @@
+diff -Naur a/steam b/steam
+--- a/steam	2016-08-14 18:38:48.226504733 +0100
++++ b/steam	2016-08-14 18:43:41.709271991 +0100
+@@ -35,6 +35,9 @@
+ : ${STEAM_RUNTIME:=@@STEAM_RUNTIME@@}
+ export STEAM_RUNTIME
+ 
++# Gentoo's lsb-release doesn't set this.
++export DISTRIB_RELEASE="2.2"
++
+ function show_message()
+ {
+ 	style=$1
