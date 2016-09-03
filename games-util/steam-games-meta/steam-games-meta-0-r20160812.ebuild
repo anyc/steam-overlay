@@ -73,7 +73,7 @@ RDEPEND="
 		steamgames_source_engine? (
 			video_cards_fglrx? ( >=x11-drivers/ati-drivers-12.8 )
 			media-libs/libpng:1.2[abi_x86_32]
-			dev-libs/libgcrypt:11/11
+			dev-libs/libgcrypt:11/11[abi_x86_32]
 			)
 		steamgames_trine2? (
 			x11-apps/xwininfo
