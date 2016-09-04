@@ -272,9 +272,12 @@ LIBS[vgui.so]=+
 UNBUNDLEABLES=(
 	"A Boy and His Blob"
 	"Alien Isolation"
+	"Altitude"
 	"Anodyne"
 	"Dwarfs - F2P"
+	"Revenge of the Titans"
 	"Sid Meier's Civilization V"
+	"Titan Attacks"
 	"Tomb Raider"
 	"Trine 2"
 )
