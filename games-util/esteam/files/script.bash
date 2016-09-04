@@ -1,10 +1,11 @@
-#!/bin/bash
+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 source "@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh"
 set -e # Gentoo bug #592470
+shopt -s nullglob
 
 while getopts vh OPT; do
 	case "${OPT}" in
@@ -119,6 +120,80 @@ for DIR in "${!DIRS[@]}"; do
 		*) unset SCAN_ARGS ;;
 	esac
 
+	# Reverse sort so that EM_X86_64 is handled before EM_386. This
+	# ensures that if both a 32-bit and 64-bit JRE are found within
+	# the same directory then 64-bit will take precedence.
+	SCAN_RESULT=$(find "${COMMON}" -type f -name libjvm.so -exec scanelf ${SCAN_ARGS} -BF $'%a\t%F' {} + | sort -r)
+
+	IFS=$'\n'
+	for SCAN_LINE in ${SCAN_RESULT}; do
+		IFS=$'\t' read EM SCANNED_PATH <<< "${SCAN_LINE}"
+
+		GAME=${SCANNED_PATH#${COMMON}}
+		GAME=${GAME%%/*}
+
+		if [[ ! -e "${SCANNED_PATH}" || ${UNBUNDLEABLES_A[${GAME}]} != 1 ]]; then
+			continue
+		fi
+
+		JAVA_ROOT=$(realpath -m "${SCANNED_PATH%/*}"/../../..)
+		JAVA=$(! ls -- "${JAVA_ROOT}"/bin/java{,32,64} 2>/dev/null)
+
+		if [[ -n "${JAVA}" ]]; then
+			GENTOO_JAVA="${COMMON}/${GAME}"/.gentoo-java
+
+			mkdir -p "${GENTOO_JAVA}"
+			echo "${EM}" > "${GENTOO_JAVA}"/em
+			echo "${JAVA//${COMMON}}" > "${GENTOO_JAVA}"/bin
+
+			chown -R --reference="${COMMON}" "${GENTOO_JAVA}"
+			chmod -R --reference="${COMMON}" "${GENTOO_JAVA}"
+			chmod a-sx "${GENTOO_JAVA}"/*
+
+			if [[ "${JAVA_ROOT}" = "${COMMON}${GAME}" ]]; then
+				rm -r "${JAVA_ROOT}"/{bin,lib}
+				einfo "Deleted: ${JAVA_ROOT}/{bin,lib} (Java)"
+			else
+				rm -r "${JAVA_ROOT}"
+				einfo "Deleted: ${JAVA_ROOT} (Java)"
+			fi
+		fi
+	done
+
+	unset IFS
+	for GENTOO_JAVA in "${COMMON}"/*/.gentoo-java; do
+		EM=$(cat "${GENTOO_JAVA}"/em)
+		BINS=$(cat "${GENTOO_JAVA}"/bin | sed "s:^:${COMMON}:")
+		IFS=$'\n'
+
+		for BIN in ${BINS}; do
+			mkdir -p "${BIN%/*}"
+		done
+
+		if [[ "${EM}" = EM_386 && "${ARCH}" != x86 ]]; then
+			ATOMS[dev-java/icedtea-bin:8[abi_x86_32,multilib]]=1
+			cat <<EOF | tee ${BINS} >/dev/null
+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
+export GENTOO_VM=icedtea-bin-8-x86
+exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/java "\${@}"
+EOF
+		else
+			ATOMS[virtual/jre:1.8]=1
+			cat <<EOF | tee ${BINS} >/dev/null
+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
+@GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -s "virtual/jre:1.8" >/dev/null || export GENTOO_VM=\$(@GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -v "virtual/jre:1.8")
+exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/java "\${@}"
+EOF
+		fi
+
+		for BIN in ${BINS}; do
+			chown -R --reference="${COMMON}" "${BIN%/*}"
+			chmod -R --reference="${COMMON}" "${BIN%/*}"
+		done
+
+		chmod a-s ${BINS}
+	done
+
 	SCAN_RESULT=$(scanelf ${SCAN_ARGS} -BRF $'%F\t%a\t%n' "${COMMON}")
 
 	unset BINARIES
@@ -208,7 +283,7 @@ unset CONTENTS
 SET="@GENTOO_PORTAGE_EPREFIX@/var/lib/portage/esteam"
 
 unset IFS
-for ATOM in $(printf "%s\n" "${!ATOMS[@]}" | sort); do
+for ATOM in "${!ATOMS[@]}"; do
 	if [[ "${ARCH}" != x86 && -n "${ATOMS32[${ATOM}]}" ]]; then
 		ATOM=${ATOM//@MULTILIB@/multilib}
 	else
@@ -230,7 +305,7 @@ done
 
 echo
 einfo "Writing Portage set to ${SET} ..."
-echo -n "${CONTENTS}" | ${SUDO} tee "${SET}" >/dev/null
+echo -n "${CONTENTS}" | sort | ${SUDO} tee "${SET}" >/dev/null
 
 einfo "Executing emerge -an${@+ }${@} @esteam ..."
 exec ${SUDO} emerge -an "${@}" @esteam
