@@ -208,7 +208,7 @@ EOF
 
 		SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
 
-		if [[ -n "${SCANNED_ATOM}" && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
+		if [[ -n "${SCANNED_ATOM}" && "${SCANNED_ATOM}" != + && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
 			rm "${SCANNED_PATH}"
 			einfo "Deleted: ${SCANNED_PATH#${COMMON}}"
 			continue
@@ -237,6 +237,7 @@ EOF
 		IFS=','
 		for NEEDED_FILE in ${NEEDEDS}; do
 			NEEDED_ATOM=${LIBS[${NEEDED_FILE}]}
+			[[ "${NEEDED_ATOM}" = + ]] && continue
 			MSG="${NEEDED_FILE} needed by ${SCANNED_PATH#${COMMON}}"
 
 			if [[ ${BINARIES[${GAME}/${EM}/${NEEDED_FILE}]} = 1 ]]; then
