@@ -83,13 +83,13 @@ for HOME in $(getent passwd | cut -d: -f6 | sort -u); do
 	DIR=${HOME%/}/.steam/steam
 
 	if [[ -d "${DIR}" ]]; then
-		if [[ -d "${DIR}"/SteamApps/common ]]; then
+		if [[ -d "${DIR}"/steamapps/common || -d "${DIR}"/SteamApps/common ]]; then
 			DIRS[${DIR}]=1
 		fi
 
 		IFS=$'\n'
-		for DIR in $(grep -s $'^\t"[0-9][0-9]*"' "${DIR}"/SteamApps/libraryfolders.vdf | cut -d\" -f4); do
-			if [[ -d "${DIR}"/SteamApps/common ]]; then
+		for DIR in $(grep -hs $'^\t"[0-9][0-9]*"' "${DIR}"/[Ss]team[Aa]pps/libraryfolders.vdf | cut -d\" -f4); do
+			if [[ -d "${DIR}"/steamapps/common || -d "${DIR}"/SteamApps/common ]]; then
 				DIRS[${DIR}]=1
 			fi
 		done
@@ -97,10 +97,12 @@ for HOME in $(getent passwd | cut -d: -f6 | sort -u); do
 done
 
 unset IFS
-for DIR in "${!DIRS[@]}"; do
-	COMMON=${DIR}/SteamApps/common/
+for COMMON in "${!DIRS[@]}"/steamapps/common/ "${!DIRS[@]}"/SteamApps/common/; do
+	DIR=${COMMON%/[Ss]team[Aa]pps/common/}
 
-	if [[ ! -w "${COMMON}" ]]; then
+	if [[ ! -d "${COMMON}" ]]; then
+		continue
+	elif [[ ! -w "${COMMON}" ]]; then
 		ewarn "Skipping unwritable ${DIR}"
 		continue
 	fi
