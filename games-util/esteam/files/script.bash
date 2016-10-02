@@ -299,6 +299,7 @@ for ATOM in "${!ATOMS[@]}"; do
 		ATOM=${ATOM//@ABI@/abi_x86_32}
 	fi
 
+	ATOM=${ATOM//\[,/\[}
 	ATOM=${ATOM//,\]/\]}
 	ATOM=${ATOM//\[\]}
 	CONTENTS+=${ATOM}$'\n'
