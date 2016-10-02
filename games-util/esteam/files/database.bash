@@ -295,9 +295,11 @@ UNBUNDLEABLES=(
 
 # The following should remain bundled:
 
+# dota 2 (VAC)
 # Half-Life (VAC)
 # Half-Life 2 (VAC)
 # Portal (VAC?)
+# rocketleague (unlisted but reportedly uses VAC, no libs anyway)
 
 # The following files will be deleted if found:
 
