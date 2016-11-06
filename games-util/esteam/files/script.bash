@@ -111,8 +111,8 @@ for COMMON in "${!DIRS[@]}"/steamapps/common/ "${!DIRS[@]}"/SteamApps/common/; d
 
 	unset IFS
 	for DELETEABLE in "${DELETEABLES[@]}"; do
-		if [[ -f "${COMMON}${DELETEABLE}" ]]; then
-			rm "${COMMON}${DELETEABLE}"
+		if [[ -e "${COMMON}${DELETEABLE}" ]]; then
+			rm -r "${COMMON}${DELETEABLE}"
 			einfo "Deleted: ${DELETEABLE}"
 		fi
 	done

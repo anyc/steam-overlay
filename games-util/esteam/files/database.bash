@@ -296,6 +296,7 @@ UNBUNDLEABLES=(
 # The following should remain bundled:
 
 # dota 2 (VAC)
+# Grim Fandango Remastered (custom SDL2? other libs are in DELETEABLES)
 # Half-Life (VAC)
 # Half-Life 2 (VAC)
 # Portal (VAC?)
@@ -304,5 +305,6 @@ UNBUNDLEABLES=(
 # The following files will be deleted if found:
 
 DELETEABLES=(
-	"Dwarfs - F2P"/lib{tier0,vstdlib}_s.so
+	"Dwarfs - F2P"/lib{tier0,vstdlib}_s.so # Crashes on startup with these.
+	"Grim Fandango Remastered"/{amd64,i386} # They bundled half a distro!
 )
