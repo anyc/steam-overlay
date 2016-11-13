@@ -253,7 +253,7 @@ EOF
 					case "${GL_DRIVER}" in
 						ati) NEEDED_ATOM=x11-drivers/ati-drivers[@ABI@] ;;
 						nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
-						xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@] ;;
+						xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@,nettle\(+\)] ;;
 					esac
 				fi
 
