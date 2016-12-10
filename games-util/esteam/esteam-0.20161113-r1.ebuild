@@ -22,9 +22,6 @@ S="${WORKDIR}"
 src_install() {
 	newbin $(prefixify_ro "${FILESDIR}"/script.bash) ${PN}
 
-	insinto /usr/share/portage/config/sets
-	newins $(prefixify_ro "${FILESDIR}"/set.conf) ${PN}.conf
-
 	insinto /usr/share/${PN}
 	doins "${FILESDIR}"/database.bash
 
