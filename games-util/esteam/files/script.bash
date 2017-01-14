@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -97,84 +97,83 @@ for HOME in $(getent passwd | cut -d: -f6 | sort -u); do
 done
 
 unset IFS
-for COMMON in "${!DIRS[@]}"/steamapps/common/ "${!DIRS[@]}"/SteamApps/common/; do
-	DIR=${COMMON%/[Ss]team[Aa]pps/common/}
-
-	if [[ ! -d "${COMMON}" ]]; then
-		continue
-	elif [[ ! -w "${COMMON}" ]]; then
-		ewarn "Skipping unwritable ${DIR}"
-		continue
-	fi
-
-	einfo "Scanning ${DIR} ..."
-
-	unset IFS
-	for DELETEABLE in "${DELETEABLES[@]}"; do
-		if [[ -e "${COMMON}${DELETEABLE}" ]]; then
-			rm -r "${COMMON}${DELETEABLE}"
-			einfo "Deleted: ${DELETEABLE}"
-		fi
-	done
-
-	case "${ARCH}" in
-		x86) SCAN_ARGS="-M 32" ;;
-		*) unset SCAN_ARGS ;;
-	esac
-
-	# Reverse sort so that EM_X86_64 is handled before EM_386. This
-	# ensures that if both a 32-bit and 64-bit JRE are found within
-	# the same directory then 64-bit will take precedence.
-	SCAN_RESULT=$(find "${COMMON}" -type f -name libjvm.so -exec scanelf ${SCAN_ARGS} -BF $'%a\t%F' {} + | sort -r)
-
-	IFS=$'\n'
-	for SCAN_LINE in ${SCAN_RESULT}; do
-		IFS=$'\t' read EM SCANNED_PATH <<< "${SCAN_LINE}"
-
-		GAME=${SCANNED_PATH#${COMMON}}
-		GAME=${GAME%%/*}
-
-		if [[ ! -e "${SCANNED_PATH}" || ${UNBUNDLEABLES_A[${GAME}]} != 1 ]]; then
+for DIR in "${!DIRS[@]}"; do
+	for COMMON in "${DIR}"/steamapps/common/ "${DIR}"/SteamApps/common/; do
+		if [[ ! -d "${COMMON}" ]]; then
+			continue
+		elif [[ ! -w "${COMMON}" ]]; then
+			ewarn "Skipping unwritable ${DIR}"
 			continue
 		fi
 
-		JAVA_ROOT=$(realpath -m "${SCANNED_PATH%/*}"/../../..)
-		JAVA=$(! ls -- "${JAVA_ROOT}"/bin/java{,32,64} 2>/dev/null)
+		einfo "Scanning ${DIR} ..."
 
-		if [[ -n "${JAVA}" ]]; then
-			GENTOO_JAVA="${COMMON}/${GAME}"/.gentoo-java
-
-			mkdir -p "${GENTOO_JAVA}"
-			echo "${EM}" > "${GENTOO_JAVA}"/em
-			echo "${JAVA//${COMMON}}" > "${GENTOO_JAVA}"/bin
-
-			chown -R --reference="${COMMON}" "${GENTOO_JAVA}"
-			chmod -R --reference="${COMMON}" "${GENTOO_JAVA}"
-			chmod a-sx "${GENTOO_JAVA}"/*
-
-			if [[ "${JAVA_ROOT}" = "${COMMON}${GAME}" ]]; then
-				rm -r "${JAVA_ROOT}"/{bin,lib}
-				einfo "Deleted: ${JAVA_ROOT}/{bin,lib} (Java)"
-			else
-				rm -r "${JAVA_ROOT}"
-				einfo "Deleted: ${JAVA_ROOT} (Java)"
+		unset IFS
+		for DELETEABLE in "${DELETEABLES[@]}"; do
+			if [[ -e "${COMMON}${DELETEABLE}" ]]; then
+				rm -r "${COMMON}${DELETEABLE}"
+				einfo "Deleted: ${DELETEABLE}"
 			fi
-		fi
-	done
-
-	unset IFS
-	for GENTOO_JAVA in "${COMMON}"/*/.gentoo-java; do
-		EM=$(cat "${GENTOO_JAVA}"/em)
-		BINS=$(cat "${GENTOO_JAVA}"/bin | sed "s:^:${COMMON}:")
-		IFS=$'\n'
-
-		for BIN in ${BINS}; do
-			mkdir -p "${BIN%/*}"
 		done
 
-		if [[ "${EM}" = EM_386 && "${ARCH}" != x86 ]]; then
-			ATOMS[dev-java/icedtea-bin:8[abi_x86_32,multilib]]=1
-			cat <<EOF | tee ${BINS} >/dev/null
+		case "${ARCH}" in
+			x86) SCAN_ARGS="-M 32" ;;
+			*) unset SCAN_ARGS ;;
+		esac
+
+		# Reverse sort so that EM_X86_64 is handled before EM_386. This
+		# ensures that if both a 32-bit and 64-bit JRE are found within
+		# the same directory then 64-bit will take precedence.
+		SCAN_RESULT=$(find "${COMMON}" -type f -name libjvm.so -exec scanelf ${SCAN_ARGS} -BF $'%a\t%F' {} + | sort -r)
+
+		IFS=$'\n'
+		for SCAN_LINE in ${SCAN_RESULT}; do
+			IFS=$'\t' read EM SCANNED_PATH <<< "${SCAN_LINE}"
+
+			GAME=${SCANNED_PATH#${COMMON}}
+			GAME=${GAME%%/*}
+
+			if [[ ! -e "${SCANNED_PATH}" || ${UNBUNDLEABLES_A[${GAME}]} != 1 ]]; then
+				continue
+			fi
+
+			JAVA_ROOT=$(realpath -m "${SCANNED_PATH%/*}"/../../..)
+			JAVA=$(! ls -- "${JAVA_ROOT}"/bin/java{,32,64} 2>/dev/null)
+
+			if [[ -n "${JAVA}" ]]; then
+				GENTOO_JAVA="${COMMON}/${GAME}"/.gentoo-java
+
+				mkdir -p "${GENTOO_JAVA}"
+				echo "${EM}" > "${GENTOO_JAVA}"/em
+				echo "${JAVA//${COMMON}}" > "${GENTOO_JAVA}"/bin
+
+				chown -R --reference="${COMMON}" "${GENTOO_JAVA}"
+				chmod -R --reference="${COMMON}" "${GENTOO_JAVA}"
+				chmod a-sx "${GENTOO_JAVA}"/*
+
+				if [[ "${JAVA_ROOT}" = "${COMMON}${GAME}" ]]; then
+					rm -r "${JAVA_ROOT}"/{bin,lib}
+					einfo "Deleted: ${JAVA_ROOT}/{bin,lib} (Java)"
+				else
+					rm -r "${JAVA_ROOT}"
+					einfo "Deleted: ${JAVA_ROOT} (Java)"
+				fi
+			fi
+		done
+
+		unset IFS
+		for GENTOO_JAVA in "${COMMON}"/*/.gentoo-java; do
+			EM=$(cat "${GENTOO_JAVA}"/em)
+			BINS=$(cat "${GENTOO_JAVA}"/bin | sed "s:^:${COMMON}:")
+			IFS=$'\n'
+
+			for BIN in ${BINS}; do
+				mkdir -p "${BIN%/*}"
+			done
+
+			if [[ "${EM}" = EM_386 && "${ARCH}" != x86 ]]; then
+				ATOMS[dev-java/icedtea-bin:8[abi_x86_32,multilib]]=1
+				cat <<EOF | tee ${BINS} >/dev/null
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 export GENTOO_VM=icedtea-bin-8-x86
 exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/java "\${@}"
@@ -186,94 +185,95 @@ EOF
 @GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -s "virtual/jre:1.8" >/dev/null || export GENTOO_VM=\$(@GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -v "virtual/jre:1.8")
 exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/java "\${@}"
 EOF
-		fi
+			fi
 
-		for BIN in ${BINS}; do
-			chown -R --reference="${COMMON}" "${BIN%/*}"
-			chmod -R --reference="${COMMON}" "${BIN%/*}"
+			for BIN in ${BINS}; do
+				chown -R --reference="${COMMON}" "${BIN%/*}"
+				chmod -R --reference="${COMMON}" "${BIN%/*}"
+			done
+
+			chmod a-s ${BINS}
 		done
 
-		chmod a-s ${BINS}
-	done
+		SCAN_RESULT=$(scanelf ${SCAN_ARGS} -BRF $'%F\t%a\t%n' "${COMMON}")
 
-	SCAN_RESULT=$(scanelf ${SCAN_ARGS} -BRF $'%F\t%a\t%n' "${COMMON}")
-
-	unset BINARIES
-	declare -A BINARIES
-
-	IFS=$'\n'
-	for SCAN_LINE in ${SCAN_RESULT}; do
-		IFS=$'\t' read SCANNED_PATH EM NEEDEDS <<< "${SCAN_LINE}"
-
-		GAME=${SCANNED_PATH#${COMMON}}
-		GAME=${GAME%%/*}
-
-		SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
-
-		if [[ -n "${SCANNED_ATOM}" && "${SCANNED_ATOM}" != + && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
-			rm "${SCANNED_PATH}"
-			einfo "Deleted: ${SCANNED_PATH#${COMMON}}"
-			continue
-		fi
-
-		SCANNED_PATH=${SCANNED_PATH#${COMMON}}
-		BINARIES[${SCANNED_PATH%%/*}/${EM}/${SCANNED_PATH##*/}]=1
-	done
-
-	IFS=$'\n'
-	for SCAN_LINE in ${SCAN_RESULT}; do
-		IFS=$'\t' read SCANNED_PATH EM NEEDEDS <<< "${SCAN_LINE}"
-		[[ ! -e "${SCANNED_PATH}" ]] && continue
-
-		GAME=${SCANNED_PATH#${COMMON}}
-		GAME=${GAME%%/*}
+		unset BINARIES
+		declare -A BINARIES
 
 		IFS=$'\n'
-		for MATCH in $(grep -Eao "Adobe AIR|S3TC" "${SCANNED_PATH}" | sort -u); do
+		for SCAN_LINE in ${SCAN_RESULT}; do
+			IFS=$'\t' read SCANNED_PATH EM NEEDEDS <<< "${SCAN_LINE}"
+
+			GAME=${SCANNED_PATH#${COMMON}}
+			GAME=${GAME%%/*}
+
+			SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
+
+			if [[ -n "${SCANNED_ATOM}" && "${SCANNED_ATOM}" != + && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
+				rm "${SCANNED_PATH}"
+				einfo "Deleted: ${SCANNED_PATH#${COMMON}}"
+				continue
+			fi
+
+			SCANNED_PATH=${SCANNED_PATH#${COMMON}}
+			BINARIES[${SCANNED_PATH%%/*}/${EM}/${SCANNED_PATH##*/}]=1
+		done
+
+		IFS=$'\n'
+		for SCAN_LINE in ${SCAN_RESULT}; do
+			IFS=$'\t' read SCANNED_PATH EM NEEDEDS <<< "${SCAN_LINE}"
+			[[ ! -e "${SCANNED_PATH}" ]] && continue
+
+			GAME=${SCANNED_PATH#${COMMON}}
+			GAME=${GAME%%/*}
+
+			IFS=$'\n'
+			for MATCH in $(grep -Eao "Adobe AIR|S3TC" "${SCANNED_PATH}" | sort -u); do
+				case "${MATCH}" in
+					"Adobe AIR") ATOMS[dev-util/adobe-air-runtime]=1 ;;
+					"S3TC") [[ "${GL_DRIVER}" = xorg-x11 ]] && NEEDEDS+=,libtxc_dxtn.so ;;
+				esac
+			done
+
+			IFS=','
+			for NEEDED_FILE in ${NEEDEDS}; do
+				NEEDED_ATOM=${LIBS[${NEEDED_FILE}]}
+				[[ "${NEEDED_ATOM}" = + ]] && continue
+				MSG="${NEEDED_FILE} needed by ${SCANNED_PATH#${COMMON}}"
+
+				if [[ ${BINARIES[${GAME}/${EM}/${NEEDED_FILE}]} = 1 ]]; then
+					if [[ -n "${NEEDED_ATOM}" ]]; then
+						vewarn "Skipped: ${MSG}" && true
+					else
+						vewarn "Bundled: ${MSG}" && true
+					fi
+				else
+					if [[ "${NEEDED_FILE}" = libGL.so* ]]; then
+						case "${GL_DRIVER}" in
+							ati) NEEDED_ATOM=x11-drivers/ati-drivers[@ABI@] ;;
+							nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
+							xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@,nettle\(+\)] ;;
+						esac
+					fi
+
+					if [[ -n "${NEEDED_ATOM}" ]]; then
+						case "${EM}" in
+							EM_X86_64) ATOMS64[${NEEDED_ATOM}]=1 ;;
+							EM_386) ATOMS32[${NEEDED_ATOM}]=1 ;;
+						esac
+					else
+						eerror "Unknown: ${MSG}" && true
+					fi
+				fi
+			done
+		done
+
+		IFS=$'\n'
+		for MATCH in $(find "${COMMON}" -type f -exec awk '/^#!/ {print FILENAME} {nextfile}' {} + | xargs -d $'\n' grep -Eaoh "\b(xwininfo)\b" | sort -u); do
 			case "${MATCH}" in
-				"Adobe AIR") ATOMS[dev-util/adobe-air-runtime]=1 ;;
-				"S3TC") [[ "${GL_DRIVER}" = xorg-x11 ]] && NEEDEDS+=,libtxc_dxtn.so ;;
+				"xwininfo") ATOMS[x11-apps/xwininfo]=1 ;;
 			esac
 		done
-
-		IFS=','
-		for NEEDED_FILE in ${NEEDEDS}; do
-			NEEDED_ATOM=${LIBS[${NEEDED_FILE}]}
-			[[ "${NEEDED_ATOM}" = + ]] && continue
-			MSG="${NEEDED_FILE} needed by ${SCANNED_PATH#${COMMON}}"
-
-			if [[ ${BINARIES[${GAME}/${EM}/${NEEDED_FILE}]} = 1 ]]; then
-				if [[ -n "${NEEDED_ATOM}" ]]; then
-					vewarn "Skipped: ${MSG}" && true
-				else
-					vewarn "Bundled: ${MSG}" && true
-				fi
-			else
-				if [[ "${NEEDED_FILE}" = libGL.so* ]]; then
-					case "${GL_DRIVER}" in
-						ati) NEEDED_ATOM=x11-drivers/ati-drivers[@ABI@] ;;
-						nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
-						xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@,nettle\(+\)] ;;
-					esac
-				fi
-
-				if [[ -n "${NEEDED_ATOM}" ]]; then
-					case "${EM}" in
-						EM_X86_64) ATOMS64[${NEEDED_ATOM}]=1 ;;
-						EM_386) ATOMS32[${NEEDED_ATOM}]=1 ;;
-					esac
-				else
-					eerror "Unknown: ${MSG}" && true
-				fi
-			fi
-		done
-	done
-
-	IFS=$'\n'
-	for MATCH in $(find "${COMMON}" -type f -exec awk '/^#!/ {print FILENAME} {nextfile}' {} + | xargs -d $'\n' grep -Eaoh "\b(xwininfo)\b" | sort -u); do
-		case "${MATCH}" in
-			"xwininfo") ATOMS[x11-apps/xwininfo]=1 ;;
-		esac
 	done
 done
 
