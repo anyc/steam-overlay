@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -276,6 +276,7 @@ UNBUNDLEABLES=(
 	"Altitude"
 	"Anodyne"
 	"Dwarfs - F2P"
+	"Mad Max"
 	"Revenge of the Titans"
 	"Sid Meier's Civilization V"
 	"Titan Attacks"
