@@ -276,6 +276,7 @@ UNBUNDLEABLES=(
 	"Altitude"
 	"Anodyne"
 	"Dwarfs - F2P"
+	"Mad Max"
 	"Revenge of the Titans"
 	"Sid Meier's Civilization V"
 	"Titan Attacks"
