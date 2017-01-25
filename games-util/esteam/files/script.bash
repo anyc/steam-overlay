@@ -283,7 +283,7 @@ for ATOM in "${!ATOMS64[@]}" "${!ATOMS32[@]}"; do
 done
 
 unset CONTENTS
-SET="@GENTOO_PORTAGE_EPREFIX@/var/lib/portage/esteam"
+SET="@GENTOO_PORTAGE_EPREFIX@/etc/portage/sets/esteam"
 
 unset IFS
 for ATOM in "${!ATOMS[@]}"; do
@@ -309,6 +309,9 @@ done
 
 echo
 einfo "Writing Portage set to ${SET} ..."
+if [[ ! -d /etc/portage/sets ]]; then
+	exec ${SUDO} mkdir -p /etc/portage/sets
+fi
 echo -n "${CONTENTS}" | sort | ${SUDO} tee "${SET}" >/dev/null
 
 einfo "Executing emerge -an${@+ }${@} @esteam ..."
