@@ -289,11 +289,17 @@ UNBUNDLEABLES=(
 # The following lack unbundleable libraries:
 
 # 1001 Spikes
+# Absolute Drift
 # Binaries
+# Gang Beasts
 # Hammerwatch
 # Lovers in a Dangerous Spacetime
 # Octodad Dadliest Catch
+# Oh...Sir! The Insult Simulator
+# PAC-MAN 256
 # Pix the Cat
+# Please, Don’t Touch Anything
+# Screencheat
 # The Talos Principle
 
 # The following should remain bundled:
