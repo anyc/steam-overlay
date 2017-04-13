@@ -280,6 +280,7 @@ UNBUNDLEABLES=(
 	"Mad Max"
 	"Revenge of the Titans"
 	"Sid Meier's Civilization V"
+	"Skullgirls"
 	"Titan Attacks"
 	"Tomb Raider"
 	"Trine 2"
