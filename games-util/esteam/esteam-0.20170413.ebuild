@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -22,9 +22,6 @@ S="${WORKDIR}"
 src_install() {
 	newbin $(prefixify_ro "${FILESDIR}"/script.bash) ${PN}
 
-	insinto /usr/share/portage/config/sets
-	newins $(prefixify_ro "${FILESDIR}"/set.conf) ${PN}.conf
-
 	insinto /usr/share/${PN}
 	doins "${FILESDIR}"/database.bash
 
@@ -35,6 +32,14 @@ src_install() {
 }
 
 pkg_postinst() {
+	if [[ -e "${EPREFIX}"/var/lib/portage/${PN} && ! -e "${EPREFIX}"/etc/portage/sets/${PN} ]]; then
+		ebegin "Moving old ${PN} Portage set to /etc/portage/sets"
+		mkdir -p "${EPREFIX}"/etc/portage/sets || die
+		mv "${EPREFIX}"/var/lib/portage/${PN} "${EPREFIX}"/etc/portage/sets/ || die
+		eend $?
+		echo
+	fi
+
 	elog "Run esteam after installing or updating Steam games to have"
 	elog "Portage automatically install the necessary dependencies. Your"
 	elog "games will probably not start otherwise. See esteam -h for more"
