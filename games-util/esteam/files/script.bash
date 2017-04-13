@@ -144,8 +144,11 @@ for DIR in "${!DIRS[@]}"; do
 				GENTOO_JAVA="${COMMON}/${GAME}"/.gentoo-java
 
 				mkdir -p "${GENTOO_JAVA}"
-				echo "${EM}" > "${GENTOO_JAVA}"/em
-				echo "${JAVA//${COMMON}}" > "${GENTOO_JAVA}"/bin
+				echo "${JAVA//${COMMON}}" >> "${GENTOO_JAVA}"/bin
+
+				if [[ $(cat "${GENTOO_JAVA}"/em 2>/dev/null) != EM_X86_64 ]]; then
+					echo "${EM}" > "${GENTOO_JAVA}"/em
+				fi
 
 				chown -R --reference="${COMMON}" "${GENTOO_JAVA}"
 				chmod -R --reference="${COMMON}" "${GENTOO_JAVA}"

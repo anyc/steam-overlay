@@ -275,6 +275,7 @@ UNBUNDLEABLES=(
 	"Alien Isolation"
 	"Altitude"
 	"Anodyne"
+	"Destination Sol"
 	"Dwarfs - F2P"
 	"Mad Max"
 	"Revenge of the Titans"
