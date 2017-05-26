@@ -17,6 +17,7 @@
 		<flag name='s3tc'>Pull in library for S3TC compression support</flag>
 		<flag name='steamgames_bioshock_infinite'>Bioshock Infinite</flag>
 		<flag name='steamgames_defenders_quest'>Defender's Quest: Valley of the Forgotten</flag>
+		<flag name='steamgames_dirt_rally'>Dirt Rally</flag>
 		<flag name='steamgames_dirt_showdown'>Dirt Showdown</flag>
 		<flag name='steamgames_dwarfs'>Dwarfs</flag>
 		<flag name='steamgames_dont_starve'>Don't Starve</flag>
