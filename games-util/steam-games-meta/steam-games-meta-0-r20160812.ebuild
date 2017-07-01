@@ -19,7 +19,7 @@ IUSE="s3tc mono +steamruntime"
 # display of steamgames use flags
 IUSE_STEAMGAMES="bioshock_infinite defenders_quest dirt_rally dirt_showdown dwarfs hammerwatch ironclad_tactics journey_down
 	narcissu painkiller portal shadow_mordor shatter source_engine tf2 trine2 unwritten_tales voidexpanse witcher2
-        dont_starve"
+        dont_starve te120"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -109,6 +109,7 @@ REQUIRED_USE="
 				video_cards_radeon? ( s3tc )
 				video_cards_nouveau? ( s3tc )
 			)
+		steamgames_te120? ( steamgames_source_engine )
 		steamgames_tf2? ( steamgames_source_engine )
 		steamgames_voidexpanse? ( mono )
 		"
