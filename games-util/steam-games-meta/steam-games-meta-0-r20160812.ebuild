@@ -50,8 +50,8 @@ RDEPEND="
 			dev-util/adobe-air-runtime
 			)
 		steamgames_dirt_rally? (
-			media-libs/sdl-image
-			media-libs/sdl-ttf
+			media-libs/sdl2-image
+			media-libs/sdl2-ttf
 			)
 		steamgames_dont_starve? (
 			!steamruntime? ( net-libs/libcurl-debian[abi_x86_32] )
