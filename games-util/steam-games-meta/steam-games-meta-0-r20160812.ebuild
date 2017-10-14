@@ -83,6 +83,9 @@ RDEPEND="
 			media-libs/libpng:1.2[abi_x86_32]
 			dev-libs/libgcrypt:11/11[abi_x86_32]
 			)
+		steamgames_tf2? (
+			!steamruntime? ( net-libs/libcurl-debian[abi_x86_32] )
+			)
 		steamgames_trine2? (
 			x11-apps/xwininfo
 			!steamruntime? (
