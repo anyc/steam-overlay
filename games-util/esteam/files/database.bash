@@ -279,6 +279,7 @@ UNBUNDLEABLES=(
 	"Dwarfs - F2P"
 	"Mad Max"
 	"Revenge of the Titans"
+	"ShadowOfMordor"
 	"Sid Meier's Civilization V"
 	"Skullgirls"
 	"Titan Attacks"
