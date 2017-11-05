@@ -301,6 +301,7 @@ UNBUNDLEABLES=(
 # Please, Don’t Touch Anything
 # Screencheat
 # The Talos Principle
+# Tricky Towers
 
 # The following should remain bundled:
 
