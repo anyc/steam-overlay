@@ -30,7 +30,7 @@ RDEPEND="
 			)
 
 		steamruntime? (
-			media-libs/mesa[abi_x86_32]
+			virtual/opengl[abi_x86_32]
 			x11-libs/libX11[abi_x86_32]
 			x11-libs/libXau[abi_x86_32]
 			x11-libs/libxcb[abi_x86_32]
