@@ -30,6 +30,7 @@ RDEPEND="
 			)
 
 		steamruntime? (
+			media-libs/mesa[abi_x86_32]
 			x11-libs/libX11[abi_x86_32]
 			x11-libs/libXau[abi_x86_32]
 			x11-libs/libxcb[abi_x86_32]
@@ -83,10 +84,8 @@ src_prepare() {
 		-e "s:@@STEAM_RUNTIME@@:$(usex steamruntime 1 0):g" \
 		steam || die
 
-	# if STEAM_RUNTIME_PREFER_HOST_LIBRARIES is enabled, steam.sh wants to
-	# parse the output of ldconfig which is not in PATH for regular users
-	sed -i \
-		-e "s,export TEXTDOMAIN=steam,export TEXTDOMAIN=steam\nexport PATH=\${PATH}:/sbin/," steam || die
+	# use steam launcher version as release number as it is a bit more helpful than the baselayout version
+	sed -i -e "s,export DISTRIB_RELEASE=\"2.2\",export DISTRIB_RELEASE=\"${PVR}\"," steam || die
 
 	# Still need EPREFIX in the DEBIAN_COMPAT sed replacement because
 	# the regular expression used by hprefixify doesn't match here.
