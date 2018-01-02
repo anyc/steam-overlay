@@ -14,7 +14,7 @@ HOMEPAGE="http://steampowered.com"
 LICENSE="metapackage"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="flash +pulseaudio steamfonts +steamruntime trayicon video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
