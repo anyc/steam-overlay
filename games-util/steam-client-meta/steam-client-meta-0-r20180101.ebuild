@@ -136,12 +136,6 @@ pkg_postinst() {
 		ewarn ""
 	fi
 
-	if has_version ">=media-libs/mesa-13.0.0[openssl]"; then
-		ewarn "You have installed \">=mesa-13\" with openssl use flag."
-		ewarn "If you are experiencing crashes please rebuild mesa with"
-		ewarn "the nettle use flag enabled."
-	fi
-
 	ewarn "The steam client and the games are not controlled by"
 	ewarn "portage. Updates are handled by the client itself."
 }
