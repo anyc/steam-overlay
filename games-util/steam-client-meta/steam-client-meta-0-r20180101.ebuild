@@ -15,7 +15,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS=""
-IUSE="flash +pulseaudio steamfonts +steamruntime streaming trayicon video_cards_intel video_cards_nvidia"
+IUSE="flash +pulseaudio steamfonts +steamruntime trayicon video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
@@ -82,7 +82,7 @@ RDEPEND="
 			x11-libs/libXtst[abi_x86_32]
 			x11-libs/pango[abi_x86_32]
 
-			streaming? ( x11-libs/libva[abi_x86_32] )
+			x11-libs/libva[abi_x86_32]
 			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 			pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
 			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
