@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -224,9 +224,9 @@ LIBS[libtxc_dxtn.so]=media-libs/libtxc_dxtn[@ABI@]
 LIBS[libudev.so.0]=sys-libs/libudev-compat[@ABI@]
 LIBS[libusb-1.0.so.0]=dev-libs/libusb:1[@ABI@]
 LIBS[libuuid.so.1]=sys-apps/util-linux[@ABI@]
-LIBS[libva-glx.so.1]=x11-libs/libva[@ABI@,opengl]
-LIBS[libva-x11.so.1]=x11-libs/libva[@ABI@,X]
-LIBS[libva.so.1]=x11-libs/libva[@ABI@]
+LIBS[libva-glx.so.1]==x11-libs/libva-1*[@ABI@,opengl]
+LIBS[libva-x11.so.1]==x11-libs/libva-1*[@ABI@,X]
+LIBS[libva.so.1]==x11-libs/libva-1*[@ABI@]
 LIBS[libvdpau.so.1]=x11-libs/libvdpau[@ABI@]
 LIBS[libvorbis.so.0]=media-libs/libvorbis[@ABI@]
 LIBS[libvorbisenc.so.2]=media-libs/libvorbis[@ABI@]
