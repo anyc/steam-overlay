@@ -17,6 +17,5 @@
 		<flag name='trayicon'>Enable system tray icon with libappindicator</flag>
 		<flag name='steamfonts'>Use official fonts from Valve's steam client</flag>
 		<flag name='steamruntime'>Use the official steam runtime libraries</flag>
-		<flag name='streaming'>Enable support for steam in-home streaming</flag>
 	</use>
 </pkgmetadata>

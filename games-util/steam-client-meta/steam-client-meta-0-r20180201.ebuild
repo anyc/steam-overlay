@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -82,7 +81,7 @@ RDEPEND="
 			x11-libs/libXtst[abi_x86_32]
 			x11-libs/pango[abi_x86_32]
 
-			x11-libs/libva[abi_x86_32]
+			=x11-libs/libva-1*[abi_x86_32]
 			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 			pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
 			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
