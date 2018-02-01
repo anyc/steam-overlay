@@ -116,7 +116,7 @@ pkg_postinst() {
 
 	if host-is-pax; then
 		elog "If you're using PAX, please see:"
-		elog "http://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
+		elog "https://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
 		elog ""
 	fi
 
