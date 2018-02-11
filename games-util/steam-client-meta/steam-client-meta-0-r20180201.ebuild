@@ -123,15 +123,13 @@ pkg_postinst() {
 	if ! use steamfonts; then
 		elog "If the Steam client shows no or misaligned text, then"
 		elog "please enable the steamfonts use flag."
+		elog ""
 	fi
 
 	if ! use pulseaudio; then
 		ewarn "You have disabled pulseaudio which is not supported."
-		ewarn "You have to use media-sound/apulse instead to start"
-		ewarn "steam. Please add '/usr/lib32/apulse' to your"
-		ewarn "LD_LIBRARY_PATH environment variable or start steam"
-		ewarn "with:"
-		ewarn "# LD_LIBRARY_PATH=/usr/lib32/apulse steam"
+		ewarn "If you are experiencing sound problems, you can try if"
+		ewarn "media-sound/apulse works for you."
 		ewarn ""
 	fi
 
