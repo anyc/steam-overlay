@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -231,10 +231,9 @@ EOF
 			GAME=${GAME%%/*}
 
 			IFS=$'\n'
-			for MATCH in $(grep -Eao "Adobe AIR|S3TC" "${SCANNED_PATH}" | sort -u); do
+			for MATCH in $(grep -Eao "Adobe AIR" "${SCANNED_PATH}" | sort -u); do
 				case "${MATCH}" in
 					"Adobe AIR") ATOMS[dev-util/adobe-air-runtime]=1 ;;
-					"S3TC") [[ "${GL_DRIVER}" = xorg-x11 ]] && NEEDEDS+=,libtxc_dxtn.so ;;
 				esac
 			done
 
