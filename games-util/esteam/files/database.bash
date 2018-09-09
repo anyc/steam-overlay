@@ -277,6 +277,7 @@ UNBUNDLEABLES=(
 	"Anodyne"
 	"Destination Sol"
 	"Dwarfs - F2P"
+	"Life Is Strange"
 	"Mad Max"
 	"Revenge of the Titans"
 	"ShadowOfMordor"
