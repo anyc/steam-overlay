@@ -280,6 +280,7 @@ UNBUNDLEABLES=(
 	"Altitude"
 	"Anodyne"
 	"Destination Sol"
+	"Deus Ex Mankind Divided"
 	"Dwarfs - F2P"
 	"Life Is Strange"
 	"Mad Max"
