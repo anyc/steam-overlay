@@ -124,7 +124,7 @@ for DIR in "${!DIRS[@]}"; do
 		# Reverse sort so that EM_X86_64 is handled before EM_386. This
 		# ensures that if both a 32-bit and 64-bit JRE are found within
 		# the same directory then 64-bit will take precedence.
-		SCAN_RESULT=$(find "${COMMON}" -type f -name libjvm.so -exec scanelf ${SCAN_ARGS} -BF $'%a\t%F' {} + | sort -r)
+		SCAN_RESULT=$(find "${COMMON}" -type f -name libjvm.so -exec scanelf ${SCAN_ARGS} -yBF $'%a\t%F' {} + | sort -r)
 
 		IFS=$'\n'
 		for SCAN_LINE in ${SCAN_RESULT}; do
@@ -198,7 +198,7 @@ EOF
 			chmod a-s ${BINS}
 		done
 
-		SCAN_RESULT=$(scanelf ${SCAN_ARGS} -BRF $'%F\t%a\t%n' "${COMMON}")
+		SCAN_RESULT=$(scanelf ${SCAN_ARGS} -yBRF $'%F\t%a\t%n' "${COMMON}")
 
 		unset BINARIES
 		declare -A BINARIES
@@ -212,10 +212,26 @@ EOF
 
 			SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
 
-			if [[ -n ${SCANNED_ATOM} && ${SCANNED_ATOM} != + && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
-				rm "${SCANNED_PATH}"
-				einfo "Deleted: ${SCANNED_PATH#${COMMON}}"
-				continue
+			if [[ ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
+				case "${SCANNED_ATOM}" in
+					+|"")
+						: ;;
+					*/*)
+						rm "${SCANNED_PATH}"
+						einfo "Deleted: ${SCANNED_PATH#${COMMON}}"
+						continue ;;
+					*)
+						case "${EM}" in
+							EM_X86_64) LIBDIR=$(portageq envvar LIBDIR_amd64) ;;
+							EM_386) LIBDIR=$(portageq envvar LIBDIR_x86) ;;
+						esac
+
+						[[ -n ${LIBDIR} ]] || eerror "Error: Could not determine Portage LIBDIR"
+						TARGET="@GENTOO_PORTAGE_EPREFIX@/usr/${LIBDIR}/${SCANNED_ATOM}"
+						ln -snf "${TARGET}" "${SCANNED_PATH}"
+						einfo "Symlinked: ${SCANNED_PATH#${COMMON}} to ${TARGET}"
+						continue ;;
+				esac
 			fi
 
 			SCANNED_PATH=${SCANNED_PATH#${COMMON}}
@@ -256,6 +272,8 @@ EOF
 							nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
 							xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@,nettle\(+\)] ;;
 						esac
+					elif [[ -n ${NEEDED_ATOM} && ${NEEDED_ATOM} != */* ]]; then
+						NEEDED_ATOM=${LIBS[${NEEDED_ATOM}]}
 					fi
 
 					if [[ -n ${NEEDED_ATOM} ]]; then
