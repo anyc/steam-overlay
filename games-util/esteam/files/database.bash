@@ -30,6 +30,7 @@ LIBS[libCg.so]=media-gfx/nvidia-cg-toolkit[@ABI@]
 LIBS[libCgGL.so]=media-gfx/nvidia-cg-toolkit[@ABI@]
 LIBS[libcom_err.so.2]=sys-libs/e2fsprogs-libs[@ABI@]
 LIBS[libcrypto.so.1.0.0]==dev-libs/openssl-1.0*[@ABI@]
+LIBS[libcrypto.so.42]=libcrypto.so.1.0.0
 LIBS[libcups.so.2]=net-print/cups[@ABI@]
 LIBS[libcurl-gnutls.so.4]=net-libs/libcurl-debian:4[@ABI@]
 LIBS[libcurl-nss.so.4]=net-libs/libcurl-debian:4[@ABI@]
@@ -176,7 +177,9 @@ LIBS[librt.so.1]=${GLIBC}[@MULTILIB@]
 LIBS[libsamplerate.so.0]=media-libs/libsamplerate[@ABI@]
 LIBS[libSDL-1.2.so.0]=media-libs/libsdl[@ABI@,joystick,sound,video]
 LIBS[libSDL2-2.0.so.0]=media-libs/libsdl2[@ABI@,haptic,joystick,sound,threads,video]
+LIBS[libSDL2-2.0.7.so]=libSDL2-2.0.so.0
 LIBS[libSDL2_image-2.0.so.0]=media-libs/sdl2-image[@ABI@]
+LIBS[libSDL2_image-2.0.1.so]=libSDL2_image-2.0.so.0
 LIBS[libSDL2_mixer-2.0.so.0]=media-libs/sdl2-mixer[@ABI@]
 LIBS[libSDL2_net-2.0.so.0]=media-libs/sdl2-net[@ABI@]
 LIBS[libSDL2_ttf-2.0.so.0]=media-libs/sdl2-ttf[@ABI@]
@@ -193,6 +196,7 @@ LIBS[libspeexdsp.so.1]=media-libs/speex[@ABI@]
 LIBS[libsqlite3.so.0]=dev-db/sqlite:3[@ABI@]
 LIBS[libss.so.2]=sys-libs/e2fsprogs-libs[@ABI@]
 LIBS[libssl.so.1.0.0]==dev-libs/openssl-1.0*[@ABI@]
+LIBS[libssl.so.44]=libssl.so.1.0.0
 LIBS[libssl3.so]=dev-libs/nss[@ABI@]
 LIBS[libstdc++.so.5]=sys-libs/libstdc++-v3[@MULTILIB@]
 LIBS[libstdc++.so.6]=${GCC}[@MULTILIB@,cxx]
@@ -280,6 +284,7 @@ UNBUNDLEABLES=(
 	"Life Is Strange"
 	"Mad Max"
 	"Revenge of the Titans"
+	"Rise of the Tomb Raider"
 	"ShadowOfMordor"
 	"Sid Meier's Civilization V"
 	"Skullgirls"
