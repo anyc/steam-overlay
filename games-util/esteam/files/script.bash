@@ -82,14 +82,14 @@ IFS=$'\n'
 for HOME in $(getent passwd | cut -d: -f6 | sort -u); do
 	DIR=${HOME%/}/.steam/steam
 
-	if [[ -d "${DIR}" ]]; then
-		if [[ -d "${DIR}"/steamapps/common || -d "${DIR}"/SteamApps/common ]]; then
+	if [[ -d ${DIR} ]]; then
+		if [[ -d ${DIR}/steamapps/common || -d ${DIR}/SteamApps/common ]]; then
 			DIRS[${DIR}]=1
 		fi
 
 		IFS=$'\n'
 		for DIR in $(grep -hs $'^\t"[0-9][0-9]*"' "${DIR}"/[Ss]team[Aa]pps/libraryfolders.vdf | cut -d\" -f4); do
-			if [[ -d "${DIR}"/steamapps/common || -d "${DIR}"/SteamApps/common ]]; then
+			if [[ -d ${DIR}/steamapps/common || -d ${DIR}/SteamApps/common ]]; then
 				DIRS[${DIR}]=1
 			fi
 		done
@@ -99,9 +99,9 @@ done
 unset IFS
 for DIR in "${!DIRS[@]}"; do
 	for COMMON in "${DIR}"/steamapps/common/ "${DIR}"/SteamApps/common/; do
-		if [[ ! -d "${COMMON}" ]]; then
+		if [[ ! -d ${COMMON} ]]; then
 			continue
-		elif [[ ! -w "${COMMON}" ]]; then
+		elif [[ ! -w ${COMMON} ]]; then
 			ewarn "Skipping unwritable ${DIR}"
 			continue
 		fi
@@ -110,7 +110,7 @@ for DIR in "${!DIRS[@]}"; do
 
 		unset IFS
 		for DELETEABLE in "${DELETEABLES[@]}"; do
-			if [[ -e "${COMMON}${DELETEABLE}" ]]; then
+			if [[ -e ${COMMON}${DELETEABLE} ]]; then
 				rm -r "${COMMON}${DELETEABLE}"
 				einfo "Deleted: ${DELETEABLE}"
 			fi
@@ -133,14 +133,14 @@ for DIR in "${!DIRS[@]}"; do
 			GAME=${SCANNED_PATH#${COMMON}}
 			GAME=${GAME%%/*}
 
-			if [[ ! -e "${SCANNED_PATH}" || ${UNBUNDLEABLES_A[${GAME}]} != 1 ]]; then
+			if [[ ! -e ${SCANNED_PATH} || ${UNBUNDLEABLES_A[${GAME}]} != 1 ]]; then
 				continue
 			fi
 
 			JAVA_ROOT=$(realpath -m "${SCANNED_PATH%/*}"/../../..)
 			JAVA=$(! ls -- "${JAVA_ROOT}"/bin/java{,32,64} 2>/dev/null)
 
-			if [[ -n "${JAVA}" ]]; then
+			if [[ -n ${JAVA} ]]; then
 				GENTOO_JAVA="${COMMON}/${GAME}"/.gentoo-java
 
 				mkdir -p "${GENTOO_JAVA}"
@@ -154,7 +154,7 @@ for DIR in "${!DIRS[@]}"; do
 				chmod -R --reference="${COMMON}" "${GENTOO_JAVA}"
 				chmod a-sx "${GENTOO_JAVA}"/*
 
-				if [[ "${JAVA_ROOT}" = "${COMMON}${GAME}" ]]; then
+				if [[ ${JAVA_ROOT} = ${COMMON}${GAME} ]]; then
 					rm -r "${JAVA_ROOT}"/{bin,lib}
 					einfo "Deleted: ${JAVA_ROOT}/{bin,lib} (Java)"
 				else
@@ -174,19 +174,19 @@ for DIR in "${!DIRS[@]}"; do
 				mkdir -p "${BIN%/*}"
 			done
 
-			if [[ "${EM}" = EM_386 && "${ARCH}" != x86 ]]; then
+			if [[ ${EM} = EM_386 && ${ARCH} != x86 ]]; then
 				ATOMS[dev-java/icedtea-bin:8[abi_x86_32,multilib]]=1
 				cat <<EOF | tee ${BINS} >/dev/null
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 export GENTOO_VM=icedtea-bin-8-x86
-exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/java "\${@}"
+exec "@GENTOO_PORTAGE_EPREFIX@/usr/bin/java" "\${@}"
 EOF
 		else
 			ATOMS[virtual/jre:1.8]=1
 			cat <<EOF | tee ${BINS} >/dev/null
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 @GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -s "virtual/jre:1.8" >/dev/null || export GENTOO_VM=\$(@GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -v "virtual/jre:1.8")
-exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/java "\${@}"
+exec "@GENTOO_PORTAGE_EPREFIX@/usr/bin/java" "\${@}"
 EOF
 			fi
 
@@ -212,7 +212,7 @@ EOF
 
 			SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
 
-			if [[ -n "${SCANNED_ATOM}" && "${SCANNED_ATOM}" != + && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
+			if [[ -n ${SCANNED_ATOM} && ${SCANNED_ATOM} != + && ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
 				rm "${SCANNED_PATH}"
 				einfo "Deleted: ${SCANNED_PATH#${COMMON}}"
 				continue
@@ -225,7 +225,7 @@ EOF
 		IFS=$'\n'
 		for SCAN_LINE in ${SCAN_RESULT}; do
 			IFS=$'\t' read SCANNED_PATH EM NEEDEDS <<< "${SCAN_LINE}"
-			[[ ! -e "${SCANNED_PATH}" ]] && continue
+			[[ ! -e ${SCANNED_PATH} ]] && continue
 
 			GAME=${SCANNED_PATH#${COMMON}}
 			GAME=${GAME%%/*}
@@ -240,17 +240,17 @@ EOF
 			IFS=','
 			for NEEDED_FILE in ${NEEDEDS}; do
 				NEEDED_ATOM=${LIBS[${NEEDED_FILE}]}
-				[[ "${NEEDED_ATOM}" = + ]] && continue
+				[[ ${NEEDED_ATOM} = + ]] && continue
 				MSG="${NEEDED_FILE} needed by ${SCANNED_PATH#${COMMON}}"
 
 				if [[ ${BINARIES[${GAME}/${EM}/${NEEDED_FILE}]} = 1 ]]; then
-					if [[ -n "${NEEDED_ATOM}" ]]; then
+					if [[ -n ${NEEDED_ATOM} ]]; then
 						vewarn "Skipped: ${MSG}" && true
 					else
 						vewarn "Bundled: ${MSG}" && true
 					fi
 				else
-					if [[ "${NEEDED_FILE}" = libGL.so* ]]; then
+					if [[ ${NEEDED_FILE} = libGL.so* ]]; then
 						case "${GL_DRIVER}" in
 							ati) NEEDED_ATOM=x11-drivers/ati-drivers[@ABI@] ;;
 							nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
@@ -258,7 +258,7 @@ EOF
 						esac
 					fi
 
-					if [[ -n "${NEEDED_ATOM}" ]]; then
+					if [[ -n ${NEEDED_ATOM} ]]; then
 						case "${EM}" in
 							EM_X86_64) ATOMS64[${NEEDED_ATOM}]=1 ;;
 							EM_386) ATOMS32[${NEEDED_ATOM}]=1 ;;
@@ -289,17 +289,17 @@ SET="@GENTOO_PORTAGE_EPREFIX@/etc/portage/sets/esteam"
 
 unset IFS
 for ATOM in "${!ATOMS[@]}"; do
-	if [[ "${ARCH}" != x86 && -n "${ATOMS32[${ATOM}]}" ]]; then
+	if [[ ${ARCH} != x86 && -n ${ATOMS32[${ATOM}]} ]]; then
 		ATOM=${ATOM//@MULTILIB@/multilib}
 	else
 		ATOM=${ATOM//@MULTILIB@}
 	fi
 
-	if [[ -n "${ATOMS64[${ATOM}]}" && -n "${ATOMS32[${ATOM}]}" ]]; then
+	if [[ -n ${ATOMS64[${ATOM}]} && -n ${ATOMS32[${ATOM}]} ]]; then
 		ATOM=${ATOM//@ABI@/abi_x86_64,abi_x86_32}
-	elif [[ -n "${ATOMS64[${ATOM}]}" ]]; then
+	elif [[ -n ${ATOMS64[${ATOM}]} ]]; then
 		ATOM=${ATOM//@ABI@/abi_x86_64}
-	elif [[ -n "${ATOMS32[${ATOM}]}" ]]; then
+	elif [[ -n ${ATOMS32[${ATOM}]} ]]; then
 		ATOM=${ATOM//@ABI@/abi_x86_32}
 	fi
 
