@@ -26,7 +26,7 @@ src_install() {
 
 	if ! use pulseaudio; then
 		sed -i 's:=media-sound/pulseaudio\b:=media-sound/apulse:g' \
-			"${ED}"usr/share/${PN}/database.bash || die
+			"${ED}"/usr/share/${PN}/database.bash || die
 	fi
 }
 
