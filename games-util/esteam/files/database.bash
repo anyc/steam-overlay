@@ -289,6 +289,7 @@ UNBUNDLEABLES=(
 	"ShadowOfMordor"
 	"Sid Meier's Civilization V"
 	"Skullgirls"
+	"SpeedRunners"
 	"Titan Attacks"
 	"Tomb Raider"
 	"Trine 2"
