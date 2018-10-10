@@ -200,6 +200,14 @@ EOF
 
 		SCAN_RESULT=$(scanelf ${SCAN_ARGS} -yBRF $'%F\t%a\t%n' "${COMMON}")
 
+		IFS=$'\n'
+		for SCANNED_PATH in $(find "${COMMON}" -type f -name FNA.dll.config); do
+			MATCH=$(grep -F "${SCANNED_PATH%/*}" <<< "${SCAN_RESULT}")
+			NEEDEDS=$(printf '%s,' $(grep -Eo 'lib[^"]+\.so[^"]*' "${SCANNED_PATH}")) # FIXME: Use XPath
+			[[ ${MATCH} = *$'\tEM_X86_64\t'* ]] && SCAN_RESULT+=$'\n'${SCANNED_PATH}$'\tEM_X86_64\t'${NEEDEDS%,}
+			[[ ${MATCH} = *$'\tEM_386\t'* ]] && SCAN_RESULT+=$'\n'${SCANNED_PATH}$'\tEM_386\t'${NEEDEDS%,}
+		done
+
 		unset BINARIES
 		declare -A BINARIES
 
