@@ -286,6 +286,7 @@ UNBUNDLEABLES=(
 	"Anodyne"
 	"Destination Sol"
 	"Deus Ex Mankind Divided"
+	"Duck Game" # Effective when https://github.com/0x0ade/DuckGame-Linux is applied.
 	"Dwarfs - F2P"
 	"Life Is Strange"
 	"Mad Max"
