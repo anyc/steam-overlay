@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -242,6 +242,7 @@ LIBS[libwayland-client.so.0]=dev-libs/wayland[@ABI@]
 LIBS[libwayland-cursor.so.0]=dev-libs/wayland[@ABI@]
 LIBS[libwayland-egl.so.1]=media-libs/mesa[@ABI@,wayland]
 LIBS[libwind.so.0]=app-crypt/heimdal[@ABI@]
+LIBS[libwine.so.1]=+
 LIBS[libwrap.so.0]=sys-apps/tcp-wrappers[@ABI@]
 LIBS[libX11-xcb.so.1]=x11-libs/libX11[@ABI@]
 LIBS[libX11.so.6]=x11-libs/libX11[@ABI@]
