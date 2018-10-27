@@ -182,6 +182,7 @@ LIBS[libsamplerate.so.0]=media-libs/libsamplerate[@ABI@]
 LIBS[libSDL-1.2.so.0]=media-libs/libsdl[@ABI@,joystick,sound,video]
 LIBS[libSDL2-2.0.so.0]=media-libs/libsdl2[@ABI@,haptic,joystick,sound,threads,video]
 LIBS[libSDL2-2.0.7.so]=libSDL2-2.0.so.0
+LIBS[libSDL2-2.0.8.so]=libSDL2-2.0.so.0
 LIBS[libSDL2_image-2.0.so.0]=media-libs/sdl2-image[@ABI@]
 LIBS[libSDL2_image-2.0.1.so]=libSDL2_image-2.0.so.0
 LIBS[libSDL2_mixer-2.0.so.0]=media-libs/sdl2-mixer[@ABI@]
@@ -289,6 +290,7 @@ UNBUNDLEABLES=(
 	"GRID Autosport"
 	"Half-Life 2"
 	"Half-Life"
+	"Life is Strange - Before the Storm" # Will still use bundled SDL2 via SDL_DYNAMIC_API to work around Unity bug. Hopefully will be resolved soon.
 	"Life Is Strange"
 	"Mad Max"
 	"Portal 2"
