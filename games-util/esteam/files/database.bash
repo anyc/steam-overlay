@@ -52,6 +52,9 @@ LIBS[libfltk_cairo.so.1.3]=x11-libs/fltk[@ABI@,cairo]
 LIBS[libfltk_forms.so.1.3]=x11-libs/fltk[@ABI@]
 LIBS[libfltk_gl.so.1.3]=x11-libs/fltk[@ABI@,opengl]
 LIBS[libfltk_images.so.1.3]=x11-libs/fltk[@ABI@]
+LIBS[libfmod.so]=+
+LIBS[libfmodevent.so]=+
+LIBS[libfmodex.so]=+
 LIBS[libfontconfig.so.1]=media-libs/fontconfig:1.0[@ABI@]
 LIBS[libform.so.5]==sys-libs/ncurses-5*:5[@ABI@]
 LIBS[libform.so.6]==sys-libs/ncurses-6*[@ABI@]
