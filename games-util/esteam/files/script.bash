@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -45,10 +45,9 @@ Notes:
   installed by this tool in favor of the runtime then execute:
   emerge --deselect @esteam && emerge --depclean
 
-  Only a specific list of games will have their bundled libraries
-  deleted in favor of system versions where possible. This list
-  excludes games that are VAC enabled or known to break when
-  unbundled. Additions to this list are welcome.
+  To avoid unexpected breakage, only a specific list of games will
+  have their bundled libraries deleted in favor of system versions
+  where possible. Additions to this list are welcome.
 EOF
 
 			exit 1 ;;

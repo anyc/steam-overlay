@@ -276,9 +276,6 @@ LIBS[libXxf86vm.so.1]=x11-libs/libXxf86vm[@ABI@]
 LIBS[libz.so.1]=sys-libs/zlib[@ABI@]
 LIBS[vgui.so]=+
 
-# IMPORTANT! Do not include games that are VAC enabled:
-# http://store.steampowered.com/search/?sort_by=Name_ASC&category2=8&os=linux
-
 UNBUNDLEABLES=(
 	"A Boy and His Blob"
 	"Alien Isolation"
@@ -286,10 +283,16 @@ UNBUNDLEABLES=(
 	"Anodyne"
 	"Destination Sol"
 	"Deus Ex Mankind Divided"
+	"dota 2"
 	"Duck Game" # Effective when https://github.com/0x0ade/DuckGame-Linux is applied.
 	"Dwarfs - F2P"
+	"GRID Autosport"
+	"Half-Life 2"
+	"Half-Life"
 	"Life Is Strange"
 	"Mad Max"
+	"Portal 2"
+	"Portal"
 	"Revenge of the Titans"
 	"Rise of the Tomb Raider"
 	"ShadowOfMordor"
@@ -314,18 +317,14 @@ UNBUNDLEABLES=(
 # PAC-MAN 256
 # Pix the Cat
 # Please, Don’t Touch Anything
+# rocketleague
 # Screencheat
 # The Talos Principle
 # Tricky Towers
 
 # The following should remain bundled:
 
-# dota 2 (VAC)
 # Grim Fandango Remastered (custom SDL2? other libs are in DELETEABLES)
-# Half-Life (VAC)
-# Half-Life 2 (VAC)
-# Portal (VAC?)
-# rocketleague (unlisted but reportedly uses VAC, no libs anyway)
 
 # The following files will be deleted if found:
 
