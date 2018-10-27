@@ -307,20 +307,37 @@ UNBUNDLEABLES=(
 # The following lack unbundleable libraries:
 
 # 1001 Spikes
+# A Virus Named TOM
 # Absolute Drift
+# Besiege
 # Binaries
+# Bridge Constructor Portal
+# BridgeConstructor
+# Dustforce
+# Epistory
 # Gang Beasts
 # Hammerwatch
+# Hover
+# Human Fall Flat
+# I Hate Running Backwards
+# Letter Quest Remastered
 # Lovers in a Dangerous Spacetime
+# MegabytePunch
+# Metro 2033 Redux
 # Octodad Dadliest Catch
 # Oh...Sir! The Insult Simulator
 # PAC-MAN 256
 # Pix the Cat
 # Please, Don’t Touch Anything
+# Prison Architect
+# Rocket Wars
 # rocketleague
 # Screencheat
+# Serious Sam 3
 # The Talos Principle
 # Tricky Towers
+# Ultimate Chicken Horse
+# Worms Clan Wars
 
 # The following should remain bundled:
 
