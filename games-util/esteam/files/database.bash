@@ -290,7 +290,7 @@ UNBUNDLEABLES=(
 	"GRID Autosport"
 	"Half-Life 2"
 	"Half-Life"
-	"Life is Strange - Before the Storm" # Will still use bundled SDL2 via SDL_DYNAMIC_API to work around Unity bug. Hopefully will be resolved soon.
+	"Life is Strange - Before the Storm"
 	"Life Is Strange"
 	"Mad Max"
 	"Portal 2"
@@ -350,4 +350,5 @@ UNBUNDLEABLES=(
 DELETEABLES=(
 	"Dwarfs - F2P"/lib{tier0,vstdlib}_s.so # Crashes on startup with these.
 	"Grim Fandango Remastered"/{amd64,i386} # They bundled half a distro!
+	"Life is Strange - Before the Storm"/sdl_override # Fixes minor bug but breaks with SDL 2.0.9 installed.
 )
