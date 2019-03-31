@@ -17,5 +17,6 @@
 		<flag name='trayicon'>Enable system tray icon with libappindicator</flag>
 		<flag name='steamfonts'>Use official fonts from Valve's steam client</flag>
 		<flag name='steamruntime'>Use the official steam runtime libraries</flag>
+		<flag name='steamvr'>Enable SteamVR virtual reality support</flag>
 	</use>
 </pkgmetadata>
