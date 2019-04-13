@@ -213,8 +213,6 @@ LIBS[libSteamValidateUserIDTickets_amd64.so]=+
 LIBS[libtbb.so.2]=dev-cpp/tbb[@ABI@]
 LIBS[libtbbmalloc.so.2]=dev-cpp/tbb[@ABI@]
 LIBS[libtbbmalloc_proxy.so.2]=dev-cpp/tbb[@ABI@]
-LIBS[libtcmalloc.so.4]==dev-util/google-perftools-2*[@ABI@]
-LIBS[libtcmalloc_minimal.so.4]==dev-util/google-perftools-2*[@ABI@]
 LIBS[libtdb.so.1]=sys-libs/tdb[@ABI@]
 LIBS[libtheora.so.0]=media-libs/libtheora[@ABI@]
 LIBS[libtheoradec.so.1]=media-libs/libtheora[@ABI@]
