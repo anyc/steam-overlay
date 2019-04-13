@@ -1,7 +1,7 @@
 diff -Naur a/steam b/steam
 --- a/steam	2019-03-24 23:05:23.035074609 +0000
 +++ b/steam	2019-03-24 23:15:11.768471262 +0000
-@@ -17,6 +17,24 @@
+@@ -17,6 +17,23 @@
  # Set up domain for script localization
  export TEXTDOMAIN=steam
  
@@ -18,9 +18,8 @@ diff -Naur a/steam b/steam
 +	[[ -n ${LDPATH} ]] && LD_LIBRARY_PATH+=":${LDPATH}"
 +fi
 +
-+# Preload certain platform libraries to avoid old and unnecessary
-+# dependencies. We cannot force these using LD_LIBRARY_PATH or by
-+# modifying the files as Steam prevents it. Mainly for libcef.so.
++# Preload Gentoo's execve wrapper so that steamwebhelper prefers system
++# libraries over older bundled libraries.
 +[[ ${STEAM_RUNTIME} = 0 ]] && export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_LD_PRELOAD@@"
 +
  function show_message()

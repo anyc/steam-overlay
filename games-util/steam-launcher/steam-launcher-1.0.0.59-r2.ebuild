@@ -6,7 +6,7 @@ EAPI=7
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
-inherit desktop linux-info prefix udev xdg-utils
+inherit desktop linux-info prefix toolchain-funcs udev xdg-utils
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
@@ -99,7 +99,7 @@ src_prepare() {
 
 	sed -i \
 		-e "s#@@GENTOO_LD_LIBRARY_PATH@@#$(multilib_path_entries debiancompat fltk)#g" \
-		-e "s#@@GENTOO_LD_PRELOAD@@#$(native_path_entries lib{atk-1.0,atk-bridge-2.0,atspi,gio-2.0,glib-2.0,gobject-2.0,pango-1.0,pangocairo-1.0,pangoft2-1.0}.so.0)#g" \
+		-e "s#@@GENTOO_LD_PRELOAD@@#$(native_path_entries libsteam-preload.so)#g" \
 		-e "s#@@STEAM_RUNTIME@@#$(usex steamruntime 1 0)#g" \
 		steam || die
 
@@ -112,11 +112,13 @@ src_prepare() {
 }
 
 src_compile() {
-	:
+	$(tc-getCC) ${CFLAGS} ${LDFLAGS} -fPIC -DGLIBDIR="${EPREFIX}/usr/$(get_libdir)" -shared \
+				"${FILESDIR}"/libsteam-preload.c -ldl -Wl,-soname=libsteam-preload.so -o libsteam-preload.so || die
 }
 
 src_install() {
 	dobin steam
+	dolib.so libsteam-preload.so
 
 	insinto /usr/lib/steam/
 	doins bootstraplinux_ubuntu12_32.tar.xz
