@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -63,7 +63,7 @@ LIBS[libformw.so.6]==sys-libs/ncurses-6*[@ABI@,unicode]
 LIBS[libfreetype.so.6]=media-libs/freetype:2[@ABI@]
 LIBS[libgcc_s.so.1]=${GCC}[@MULTILIB@]
 LIBS[libgconf-2.so.4]=gnome-base/gconf:2[@ABI@]
-LIBS[libgcrypt.so.11]==dev-libs/libgcrypt-1.5*:11[@ABI@]
+LIBS[libgcrypt.so.11]=dev-libs/libgcrypt-compat:11[@ABI@]
 LIBS[libgdk-x11-2.0.so.0]=x11-libs/gtk+:2[@ABI@]
 LIBS[libgdk_pixbuf-2.0.so.0]=x11-libs/gdk-pixbuf[@ABI@]
 LIBS[libgdk_pixbuf_xlib-2.0.so.0]=x11-libs/gdk-pixbuf[@ABI@,X]
