@@ -1,7 +1,7 @@
 diff -Naur a/steam b/steam
 --- a/steam	2019-03-24 23:05:23.035074609 +0000
 +++ b/steam	2019-03-24 23:15:11.768471262 +0000
-@@ -17,6 +17,23 @@
+@@ -17,6 +17,31 @@
  # Set up domain for script localization
  export TEXTDOMAIN=steam
  
@@ -9,13 +9,21 @@ diff -Naur a/steam b/steam
 +export LD_LIBRARY_PATH+="${LD_LIBRARY_PATH+:}@@GENTOO_LD_LIBRARY_PATH@@"
 +
 +# Steam appends /usr/lib32 to LD_LIBRARY_PATH. We need to make sure that
-+# OpenGL implementation dir goes before that, so we need to append it
-+# to user's LD_LIBRARY_PATH ourselves. But that's needed only with
-+# the new eselect-opengl that uses 000opengl file.
++# OpenGL implementation dir goes before that, so we need to append it to
++# user's LD_LIBRARY_PATH ourselves. But that's needed only with the new
++# eselect-opengl that uses 000opengl file. GL_LDPATH is also used by
++# by Gentoo's execve wrapper.
 +if [[ -f /etc/env.d/000opengl ]]; then
-+	. /etc/env.d/000opengl
-+	# Append only when LDPATH is non-empty -- i.e. using nvidia or ati.
-+	[[ -n ${LDPATH} ]] && LD_LIBRARY_PATH+=":${LDPATH}"
++	export GL_LDPATH=$(. /etc/env.d/000opengl >/dev/null; echo "${LDPATH}")
++
++	# Append only when GL_LDPATH is non-empty -- i.e. using nvidia or ati.
++	if [[ -n ${GL_LDPATH} ]]; then
++		LD_LIBRARY_PATH+=":${GL_LDPATH}"
++	else
++		unset GL_LDPATH
++	fi
++else
++	unset GL_LDPATH
 +fi
 +
 +# Preload Gentoo's execve wrapper so that steamwebhelper prefers system

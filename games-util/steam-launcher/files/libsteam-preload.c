@@ -37,7 +37,13 @@ int execve(const char *filename, char *const argv[], char *const envp[]) {
 
 		for (i = 0; envp[i] != NULL; i++) {
 			if (strncmp(envp[i], "LD_LIBRARY_PATH=", 16) == 0) {
-				ret = asprintf(&llp, "LD_LIBRARY_PATH=" GLIBDIR_STR ":%s", envp[i] + 16);
+				const char *gl_ldpath = getenv("GL_LDPATH");
+
+				if (gl_ldpath) {
+					ret = asprintf(&llp, "LD_LIBRARY_PATH=%s:" GLIBDIR_STR ":%s", gl_ldpath, envp[i] + 16);
+				} else {
+					ret = asprintf(&llp, "LD_LIBRARY_PATH=" GLIBDIR_STR ":%s", envp[i] + 16);
+				}
 
 				if (ret < 0) {
 					free(envp2);
