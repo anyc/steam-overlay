@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -201,7 +201,7 @@ EOF
 
 		IFS=$'\n'
 		for SCANNED_PATH in $(find "${COMMON}" -type f -name FNA.dll.config); do
-			MATCH=$(grep -F "${SCANNED_PATH%/*}" <<< "${SCAN_RESULT}")
+			MATCH=$(grep -F "${SCANNED_PATH%/*}" <<< "${SCAN_RESULT}") || continue
 			NEEDEDS=$(printf '%s,' $(grep -Eo 'lib[^"]+\.so[^"]*' "${SCANNED_PATH}")) # FIXME: Use XPath
 			[[ ${MATCH} = *$'\tEM_X86_64\t'* ]] && SCAN_RESULT+=$'\n'${SCANNED_PATH}$'\tEM_X86_64\t'${NEEDEDS%,}
 			[[ ${MATCH} = *$'\tEM_386\t'* ]] && SCAN_RESULT+=$'\n'${SCANNED_PATH}$'\tEM_386\t'${NEEDEDS%,}
