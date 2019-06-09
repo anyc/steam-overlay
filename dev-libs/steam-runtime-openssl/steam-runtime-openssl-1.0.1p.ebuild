@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="4"
 
@@ -12,7 +11,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 REV="1.7"
 DESCRIPTION="OpenSSL for Steam-based games"
 HOMEPAGE="http://www.openssl.org/"
-SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
+SRC_URI="mirror://openssl/source/old/${PV%[a-z]}/${MY_P}.tar.gz
 	http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/packages/${MY_PN}/${MY_PN}-c_rehash.sh?rev=${REV} -> ${MY_PN}-c_rehash.sh.${REV}"
 
 LICENSE="openssl"
