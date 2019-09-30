@@ -33,6 +33,7 @@ RDEPEND="
 		amd64? (
 			!media-libs/mesa[-abi_x86_32]
 			!x11-misc/virtualgl[-abi_x86_32]
+			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
 			)
 
 		x86? (
@@ -82,11 +83,6 @@ RDEPEND="
 			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 			pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
 			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
-
-			video_cards_nvidia? ( || (
-						<x11-drivers/nvidia-drivers-358
-						>=x11-drivers/nvidia-drivers-361.18
-						) )
 
 			amd64? (
 				>=sys-devel/gcc-4.6.0[multilib]
