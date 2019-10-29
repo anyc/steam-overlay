@@ -17,7 +17,7 @@ IUSE="mono +steamruntime video_cards_nvidia"
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
 IUSE_STEAMGAMES="bioshock_infinite defenders_quest dirt_rally dwarfs hammerwatch ironclad_tactics journey_down
-	narcissu painkiller portal shadow_mordor shatter source_engine tf2 trine2 unwritten_tales voidexpanse witcher2
+	narcissu painkiller portal shadow_mordor shatter slay_the_spire source_engine tf2 trine2 unwritten_tales voidexpanse witcher2
 	dont_starve te120"
 
 for sgame in ${IUSE_STEAMGAMES}; do
@@ -69,6 +69,9 @@ RDEPEND="
 		steamgames_shatter? (
 			media-gfx/nvidia-cg-toolkit[abi_x86_32]
 			)
+                steamgames_slay_the_spire? (
+                        x11-apps/xrandr
+                        )
 		steamgames_source_engine? (
 			media-libs/libpng:1.2[abi_x86_32]
 			dev-libs/libgcrypt:0/20[abi_x86_32]
