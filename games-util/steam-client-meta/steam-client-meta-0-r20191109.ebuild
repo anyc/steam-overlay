@@ -51,7 +51,7 @@ RDEPEND="
 			media-libs/alsa-lib[abi_x86_32]
 			media-libs/fontconfig[abi_x86_32]
 			media-libs/freetype[abi_x86_32]
-			media-libs/libpng:1.2[abi_x86_32]
+			media-libs/libpng-compat:1.2[abi_x86_32]
 			media-libs/openal[abi_x86_32]
 			net-misc/curl[abi_x86_32]
 			net-misc/networkmanager[abi_x86_32]
