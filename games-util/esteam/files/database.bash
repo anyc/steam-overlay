@@ -160,6 +160,7 @@ LIBS[libnssutil3.so]=dev-libs/nss[@ABI@]
 LIBS[libnuma.so.1]=sys-process/numactl[@ABI@]
 LIBS[libogg.so.0]=media-libs/libogg[@ABI@]
 LIBS[libopenal.so.1]=media-libs/openal[@ABI@]
+LIBS[libOpenAL.so]=libopenal.so.1
 LIBS[libopenjpeg.so.5]=media-libs/openjpeg:0/5[@ABI@]
 LIBS[libopenvr_api.so]=+
 LIBS[libopus.so.0]=media-libs/opus[@ABI@]
@@ -335,6 +336,7 @@ UNBUNDLEABLES=(
 	"Sid Meier's Civilization V"
 	"Skullgirls"
 	"SpeedRunners"
+	"This War of Mine"
 	"Titan Attacks"
 	"Tomb Raider"
 	"Trine 2"
