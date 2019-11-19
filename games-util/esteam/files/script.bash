@@ -27,10 +27,11 @@ Output:
 
 EOF
 
-			eerror "Unknown: Required library has no system version and is not bundled" && true
-			einfo  "Deleted: Library has been safely deleted in favor of a system version"
-			ewarn  "Bundled: Library has no system version but is bundled (verbose)"
-			ewarn  "Skipped: Library has a system version but remains bundled (verbose)"
+			eerror "Unknown:  Required library has no system version and is not bundled" && true
+			einfo  "Deleted:  Library has been safely deleted in favor of a system version"
+			ewarn  "Bundled:  Library has no system version but is bundled (verbose)"
+			ewarn  "Skipped:  Library has a system version but remains bundled (verbose)"
+			ewarn  "Included: Library has been included into @esteam (verbose)"
 
 			cat <<EOF
 
@@ -284,6 +285,7 @@ EOF
 					fi
 
 					if [[ -n ${NEEDED_ATOM} ]]; then
+						vewarn "Included: ${MSG}" && true
 						case "${EM}" in
 							EM_X86_64) ATOMS64[${NEEDED_ATOM}]=1 ;;
 							EM_386) ATOMS32[${NEEDED_ATOM}]=1 ;;
