@@ -70,7 +70,7 @@ else
 fi
 
 ARCH=$(portageq envvar ARCH || eerror "Error: Could not determine Portage ARCH")
-GL_DRIVER=$(eselect opengl show || echo libglvnd)
+GL_DRIVER=$(eselect opengl show 2>/dev/null || echo libglvnd)
 
 unset IFS
 for UNBUNDLEABLE in "${UNBUNDLEABLES[@]}"; do
