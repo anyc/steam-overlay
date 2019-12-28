@@ -5,4 +5,7 @@
 		<email>chewi@gentoo.org</email>
 		<name>James Le Cuirot</name>
 	</maintainer>
+	<use>
+		<flag name="libglvnd">Pull in <pkg>media-libs/libglvnd</pkg> rather than an eselected driver when requiring libGL.so</flag>
+	</use>
 </pkgmetadata>

@@ -10,11 +10,14 @@ HOMEPAGE="https://github.com/anyc/steam-overlay"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+pulseaudio"
+IUSE="libglvnd +pulseaudio"
 
-RDEPEND="app-eselect/eselect-opengl
+RDEPEND="
 	app-misc/pax-utils
-	sys-apps/gentoo-functions"
+	sys-apps/gentoo-functions
+	libglvnd? ( !app-eselect/eselect-opengl )
+	!libglvnd? ( app-eselect/eselect-opengl )
+"
 
 S="${WORKDIR}"
 

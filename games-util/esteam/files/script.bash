@@ -70,7 +70,7 @@ else
 fi
 
 ARCH=$(portageq envvar ARCH || eerror "Error: Could not determine Portage ARCH")
-GL_DRIVER=$(eselect opengl show || eerror "Error: Could not determine OpenGL driver")
+GL_DRIVER=$(eselect opengl show || echo libglvnd)
 
 unset IFS
 for UNBUNDLEABLE in "${UNBUNDLEABLES[@]}"; do
@@ -276,6 +276,7 @@ EOF
 					if [[ ${NEEDED_FILE} = libGL.so* ]]; then
 						case "${GL_DRIVER}" in
 							ati) NEEDED_ATOM=x11-drivers/ati-drivers[@ABI@] ;;
+							libglvnd) NEEDED_ATOM=media-libs/libglvnd[@ABI@] ;;
 							nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
 							xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@,nettle\(+\)] ;;
 						esac
