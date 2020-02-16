@@ -1,4 +1,1 @@
 move games-util/steam-base games-util/steam-launcher
-slotmove =dev-libs/libindicator-12.10.0-r301 3 0
-slotmove =dev-libs/libdbusmenu-0.6.2-r1 3 0
-slotmove =dev-libs/libappindicator-12.10.0-r1 3 0
