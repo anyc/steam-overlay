@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="flash +pulseaudio steamfonts +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
+IUSE="flash +pulseaudio steamfonts +steamruntime steamvr video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
@@ -26,7 +26,6 @@ RDEPEND="
 		virtual/opengl[abi_x86_32]
 
 		flash? ( www-plugins/adobe-flash[abi_x86_32] )
-		trayicon? ( sys-apps/dbus )
 		steamfonts? ( media-fonts/steamfonts )
 		steamvr? ( sys-apps/usbutils )
 
@@ -80,7 +79,6 @@ RDEPEND="
 			x11-libs/libXtst[abi_x86_32]
 			x11-libs/pango[abi_x86_32]
 
-			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 			pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
 			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 
