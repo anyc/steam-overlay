@@ -1,0 +1,14 @@
+diff --git a/steam b/steam
+index a47bd07..766669f 100755
+--- a/steam
++++ b/steam
+@@ -17,6 +17,9 @@ export STEAMSCRIPT_VERSION=100059
+ # Set up domain for script localization
+ export TEXTDOMAIN=steam
+ 
++# Preload steam-runtime's version of libappindicator, because Gentoo's version is masked.
++[[ ${STEAM_RUNTIME} = 0 ]] && export LD_PRELOAD+="${LD_PRELOAD+:}${HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/i386-linux-gnu/libappindicator.so.1.0.0"
++
+ function show_message()
+ {
+ 	style=$1
