@@ -1,13 +1,16 @@
 diff --git a/steam b/steam
-index a47bd07..766669f 100755
+index a47bd07..c27cc79 100755
 --- a/steam
 +++ b/steam
-@@ -17,6 +17,9 @@ export STEAMSCRIPT_VERSION=100059
+@@ -17,6 +17,12 @@ export STEAMSCRIPT_VERSION=100059
  # Set up domain for script localization
  export TEXTDOMAIN=steam
  
-+# Preload steam-runtime's version of libappindicator, because Gentoo's version is masked.
-+[[ ${STEAM_RUNTIME} = 0 ]] && export LD_PRELOAD+="${LD_PRELOAD+:}${HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/i386-linux-gnu/libappindicator.so.1.0.0"
++# Preload steam-runtime's version of libappindicator (and it's dependencies), because Gentoo's version is masked.
++[[ ${STEAM_RUNTIME} = 0 ]] && export LD_PRELOAD+="${LD_PRELOAD+:}${HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/i386-linux-gnu/libappindicator.so.1.0.0"\
++":${HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/i386-linux-gnu/libindicator.so.7"\
++":${HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/i386-linux-gnu/libdbusmenu-gtk.so.4"\
++":${HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/i386-linux-gnu/libdbusmenu-glib.so.4"
 +
  function show_message()
  {
