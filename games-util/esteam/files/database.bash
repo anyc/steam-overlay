@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Please keep these lists sorted!
@@ -48,7 +48,7 @@ LIBS[libexpat.so.1]=dev-libs/expat[@ABI@]
 LIBS[libexpatu.so.1]=dev-libs/expat[@ABI@,unicode]
 LIBS[libexpatw.so.1]=dev-libs/expat[@ABI@,unicode]
 LIBS[libFAudio.so.0]=app-emulation/faudio[@ABI@]
-LIBS[libffi.so.6]=dev-libs/libffi[@ABI@]
+LIBS[libffi.so.6]=dev-libs/libffi-compat:6[@ABI@]
 LIBS[libFLAC.so.8]=media-libs/flac[@ABI@]
 LIBS[libfltk.so.1.3]=x11-libs/fltk[@ABI@]
 LIBS[libfltk_cairo.so.1.3]=x11-libs/fltk[@ABI@,cairo]
@@ -79,7 +79,7 @@ LIBS[libGLU.so.1]=media-libs/glu[@ABI@]
 LIBS[libglut.so.3]=media-libs/freeglut[@ABI@]
 LIBS[libgme.so.0]=media-libs/game-music-emu[@ABI@]
 LIBS[libgmodule-2.0.so.0]=dev-libs/glib:2[@ABI@]
-LIBS[libgmp.so.10]==dev-libs/gmp-6.1*[@ABI@]
+LIBS[libgmp.so.10]=dev-libs/gmp:0/10.4[@ABI@]
 LIBS[libgobject-2.0.so.0]=dev-libs/glib:2[@ABI@]
 LIBS[libgomp.so.1]=${GCC}[@MULTILIB@,openmp]
 LIBS[libgsm.so.1]=media-sound/gsm[@ABI@]
@@ -121,7 +121,7 @@ LIBS[libjack.so.0]=media-sound/jack2[@ABI@]
 LIBS[libjacknet.so.0]=media-sound/jack2[@ABI@]
 LIBS[libjasper.so.1]=media-libs/jasper[@ABI@]
 LIBS[libjawt.so]=+
-LIBS[libjpeg.so.62]=virtual/jpeg:62[@ABI@]
+LIBS[libjpeg.so.62]=virtual/jpeg-compat:62[@ABI@]
 LIBS[libjpeg.so.8]=media-libs/jpeg:8[@ABI@]
 LIBS[libjvm.so]=+
 LIBS[libk5crypto.so.3]=app-crypt/mit-krb5[@ABI@]
