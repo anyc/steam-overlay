@@ -12,12 +12,11 @@ DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam clien
 HOMEPAGE="https://steampowered.com"
 SRC_URI="https://repo-steampowered-com.steamos.cloud/steam/pool/steam/s/steam/steam_${PV}.tar.gz"
 
-KEYWORDS="~amd64 ~x86"
 LICENSE="ValveSteamLicense MIT"
-
-RESTRICT="bindist mirror"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE="+steamruntime"
+RESTRICT="bindist mirror test"
 
 RDEPEND="
 		app-arch/tar
