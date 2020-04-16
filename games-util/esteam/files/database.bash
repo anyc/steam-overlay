@@ -322,6 +322,7 @@ UNBUNDLEABLES=(
 	"dota 2 beta"
 	"dota 2"
 	"Duck Game" # Effective when https://github.com/0x0ade/DuckGame-Linux is applied.
+	"Dustforce"
 	"Dwarfs - F2P"
 	"GRID Autosport"
 	"Half-Life 2"
@@ -353,7 +354,6 @@ UNBUNDLEABLES=(
 # Binaries
 # Bridge Constructor Portal
 # BridgeConstructor
-# Dustforce
 # Epistory
 # Gang Beasts
 # Hammerwatch
