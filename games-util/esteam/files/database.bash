@@ -37,6 +37,7 @@ LIBS[libcrypto.so.42]=libcrypto.so.1.0.0
 LIBS[libcups.so.2]=net-print/cups[@ABI@]
 LIBS[libcurl-gnutls.so.4]=net-libs/libcurl-debian:4[@ABI@]
 LIBS[libcurl-nss.so.4]=net-libs/libcurl-debian:4[@ABI@]
+LIBS[libcurl.so.3]=libcurl.so.4
 LIBS[libcurl.so.4]=net-misc/curl[@ABI@]
 LIBS[libdbus-1.so.3]=sys-apps/dbus[@ABI@]
 LIBS[libdbus-glib-1.so.2]=dev-libs/dbus-glib[@ABI@]
