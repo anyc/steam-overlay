@@ -10,6 +10,7 @@ GLIBC=\>=sys-libs/glibc-2.15
 LIBS[ld-linux-x86-64.so.2]=${GLIBC}[@MULTILIB@]
 LIBS[ld-linux.so.2]=${GLIBC}[@MULTILIB@]
 LIBS[libacl.so.1]=sys-apps/acl[@ABI@]
+LIBS[libalut.so.0]=media-libs/freealut[@ABI@]
 LIBS[libappindicator.so.1]=dev-libs/libappindicator:2[@ABI@]
 LIBS[libasn1.so.8]=app-crypt/heimdal[@ABI@]
 LIBS[libasound.so.2]=media-libs/alsa-lib[@ABI@]
