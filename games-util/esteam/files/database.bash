@@ -331,6 +331,7 @@ UNBUNDLEABLES=(
 	"Life Is Strange"
 	"Mad Max"
 	"Portal 2"
+	"Portal Stories Mel"
 	"Portal"
 	"Revenge of the Titans"
 	"Rise of the Tomb Raider"
