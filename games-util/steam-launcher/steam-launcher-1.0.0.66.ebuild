@@ -10,7 +10,7 @@ inherit linux-info prefix udev xdg-utils
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="https://steampowered.com"
-SRC_URI="https://repo-steampowered-com.steamos.cloud/steam/pool/steam/s/steam/steam_${PV}.tar.gz"
+SRC_URI="https://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
 
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
