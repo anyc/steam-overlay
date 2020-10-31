@@ -6,7 +6,7 @@ EAPI=7
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
-inherit linux-info prefix udev xdg-utils
+inherit linux-info prefix xdg-utils
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="https://steampowered.com"
@@ -15,7 +15,7 @@ SRC_URI="https://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+steamruntime"
+IUSE="+joystick +steamruntime +udev"
 RESTRICT="bindist mirror test"
 
 RDEPEND="
@@ -27,6 +27,9 @@ RDEPEND="
 			x11-terms/xterm
 			)
 
+		joystick? (
+			udev? ( games-util/game-device-udev-rules )
+		)
 		steamruntime? (
 			virtual/opengl[abi_x86_32]
 			x11-libs/libX11[abi_x86_32]
@@ -86,9 +89,6 @@ src_prepare() {
 	xdg_environment_reset
 	default
 
-	sed -i 's:TAG+="uaccess":\0, TAG+="udev-acl":g' \
-		subprojects/steam-devices/*.rules || die
-
 	sed \
 		-e "s#@@PVR@@#${PVR}#g" \
 		-e "s#@@GENTOO_LD_LIBRARY_PATH@@#$(multilib_path_entries debiancompat fltk)#g" \
@@ -110,14 +110,11 @@ src_install() {
 
 	dodoc README debian/changelog
 	doman steam.6
-
-	udev_dorules subprojects/steam-devices/60-steam-{input,vr}.rules
 }
 
 pkg_postinst() {
 	xdg_icon_cache_update
 	xdg_desktop_database_update
-	udev_reload
 
 	elog "Execute ${EPREFIX}/usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
