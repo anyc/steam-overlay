@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="flash +pulseaudio steamfonts +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
+IUSE="+pulseaudio steamfonts +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
@@ -25,7 +25,6 @@ RDEPEND="
 
 		virtual/opengl[abi_x86_32]
 
-		flash? ( www-plugins/adobe-flash[abi_x86_32] )
 		trayicon? ( sys-apps/dbus )
 		steamfonts? ( media-fonts/steamfonts )
 		steamvr? ( sys-apps/usbutils )
@@ -100,12 +99,6 @@ pkg_postinst() {
 	elog "This is only a meta package that pulls in the required"
 	elog "dependencies for the steam client."
 	elog ""
-
-	if use flash; then
-		elog "In order to use flash, link the 32bit libflashplayer.so to"
-		elog "\${STEAM_FOLDER}/ubuntu12_32/plugins/"
-		elog ""
-	fi
 
 	if host-is-pax; then
 		elog "If you're using PAX, please see:"

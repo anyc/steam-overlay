@@ -13,7 +13,6 @@
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
 	<use>
-		<flag name='flash'>Pull in www-plugins/adobe-flash for the internal browser</flag>
 		<flag name='trayicon'>Enable system tray icon with libappindicator</flag>
 		<flag name='steamfonts'>Use official fonts from Valve's steam client</flag>
 		<flag name='steamruntime'>Use the official steam runtime libraries</flag>
