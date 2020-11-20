@@ -1,7 +1,6 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 source "@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh"
 set -e # Gentoo bug #592470
@@ -70,7 +69,6 @@ else
 fi
 
 ARCH=$(portageq envvar ARCH || eerror "Error: Could not determine Portage ARCH")
-GL_DRIVER=$(eselect opengl show 2>/dev/null || echo libglvnd)
 
 unset IFS
 for UNBUNDLEABLE in "${UNBUNDLEABLES[@]}"; do
@@ -273,14 +271,7 @@ EOF
 						vewarn "Bundled: ${MSG}" && true
 					fi
 				else
-					if [[ ${NEEDED_FILE} = libGL.so* ]]; then
-						case "${GL_DRIVER}" in
-							ati) NEEDED_ATOM=x11-drivers/ati-drivers[@ABI@] ;;
-							libglvnd) NEEDED_ATOM=media-libs/libglvnd[@ABI@] ;;
-							nvidia) NEEDED_ATOM=x11-drivers/nvidia-drivers[@MULTILIB@] ;;
-							xorg-x11) NEEDED_ATOM=media-libs/mesa[@ABI@,nettle\(+\)] ;;
-						esac
-					elif [[ -n ${NEEDED_ATOM} && ${NEEDED_ATOM} != */* ]]; then
+					if [[ -n ${NEEDED_ATOM} && ${NEEDED_ATOM} != */* ]]; then
 						NEEDED_ATOM=${LIBS[${NEEDED_ATOM}]}
 					fi
 
