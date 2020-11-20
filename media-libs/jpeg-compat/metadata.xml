@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>chewi@gentoo.org</email>
+		<name>James Le Cuirot</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">libjpeg-turbo/libjpeg-turbo</remote-id>
+		<remote-id type="sourceforge">libjpeg-turbo</remote-id>
+		<remote-id type="cpe">cpe:/a:libjpeg-turbo:libjpeg-turbo</remote-id>
+	</upstream>
+</pkgmetadata>
