@@ -215,6 +215,9 @@ EOF
 			GAME=${SCANNED_PATH#${COMMON}}
 			GAME=${GAME%%/*}
 
+			# Valve's runtime should be self-contained.
+			[[ ${GAME} = SteamLinuxRuntime ]] && continue
+
 			SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
 
 			if [[ ${UNBUNDLEABLES_A[${GAME}]} = 1 ]]; then
@@ -250,6 +253,9 @@ EOF
 
 			GAME=${SCANNED_PATH#${COMMON}}
 			GAME=${GAME%%/*}
+
+			# Valve's runtime should be self-contained.
+			[[ ${GAME} = SteamLinuxRuntime ]] && continue
 
 			IFS=$'\n'
 			for MATCH in $(grep -Eao "Adobe AIR" "${SCANNED_PATH}" | sort -u); do
