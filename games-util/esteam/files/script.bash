@@ -54,7 +54,7 @@ EOF
 done
 
 shift $(( ${OPTIND} - 1 ))
-declare -A LIBS UNBUNDLEABLES_A DIRS ATOMS ATOMS64 ATOMS32
+declare -A LIBS UNBUNDLEABLES_A DIRS GAME_ATOMS
 source "@GENTOO_PORTAGE_EPREFIX@/usr/share/esteam/database.bash"
 
 if [[ ! -w "@GENTOO_PORTAGE_EPREFIX@/" ]]; then
@@ -163,6 +163,9 @@ for DIR in "${!DIRS[@]}"; do
 
 		unset IFS
 		for GENTOO_JAVA in "${COMMON}"/*/.gentoo-java; do
+			GAME=${GENTOO_JAVA%/*}
+			GAME=${GAME##*/}
+
 			EM=$(cat "${GENTOO_JAVA}"/em)
 			BINS=$(cat "${GENTOO_JAVA}"/bin | sed "s:^:${COMMON}:")
 			IFS=$'\n'
@@ -172,7 +175,7 @@ for DIR in "${!DIRS[@]}"; do
 			done
 
 			if [[ ${EM} = EM_386 && ${ARCH} != x86 ]]; then
-				ATOMS[dev-java/icedtea-bin:8[abi_x86_32,multilib]]=1
+				GAME_ATOMS[${GAME}]+=dev-java/icedtea-bin:8[abi_x86_32,multilib]$'\n'
 				cat <<EOF | tee ${BINS} >/dev/null
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 export GENTOO_VM=icedtea-bin-8-x86
@@ -260,7 +263,7 @@ EOF
 			IFS=$'\n'
 			for MATCH in $(grep -Eao "Adobe AIR" "${SCANNED_PATH}" | sort -u); do
 				case "${MATCH}" in
-					"Adobe AIR") ATOMS[dev-util/adobe-air-runtime]=1 ;;
+					"Adobe AIR") GAME_ATOMS[${GAME}]+=dev-util/adobe-air-runtime$'\n' ;;
 				esac
 			done
 
@@ -282,10 +285,25 @@ EOF
 					fi
 
 					if [[ -n ${NEEDED_ATOM} ]]; then
+						unset ATOM
+
 						case "${EM}" in
-							EM_X86_64) ATOMS64[${NEEDED_ATOM}]=1 ;;
-							EM_386) ATOMS32[${NEEDED_ATOM}]=1 ;;
+							EM_X86_64) ATOM=${NEEDED_ATOM//@ABI@/abi_x86_64} ;;
+							EM_386) ATOM=${NEEDED_ATOM//@ABI@/abi_x86_32} ;;
 						esac
+
+						if [[ -n ${ATOM} ]]; then
+							if [[ ${ARCH} != x86 && ${EM} = EM_386 ]]; then
+								ATOM=${ATOM//@MULTILIB@/multilib}
+							else
+								ATOM=${ATOM//@MULTILIB@}
+							fi
+
+							ATOM=${ATOM//\[,/\[}
+							ATOM=${ATOM//,\]/\]}
+							ATOM=${ATOM//\[\]}
+							GAME_ATOMS[${GAME}]+=${ATOM}$'\n'
+						fi
 					else
 						eerror "Unknown: ${MSG}" && true
 					fi
@@ -296,46 +314,24 @@ EOF
 		IFS=$'\n'
 		for MATCH in $(find "${COMMON}" -type f -exec awk '/^#!/ {print FILENAME} {nextfile}' {} + | xargs -d $'\n' grep -Eaoh "\b(xwininfo)\b" | sort -u); do
 			case "${MATCH}" in
-				"xwininfo") ATOMS[x11-apps/xwininfo]=1 ;;
+				"xwininfo") GAME_ATOMS["Miscellaneous"]+=x11-apps/xwininfo$'\n' ;;
 			esac
 		done
 	done
-done
-
-unset IFS
-for ATOM in "${!ATOMS64[@]}" "${!ATOMS32[@]}"; do
-	ATOMS[${ATOM}]=1
 done
 
 unset CONTENTS
 SET="@GENTOO_PORTAGE_EPREFIX@/etc/portage/sets/esteam"
 
 unset IFS
-for ATOM in "${!ATOMS[@]}"; do
-	if [[ ${ARCH} != x86 && -n ${ATOMS32[${ATOM}]} ]]; then
-		ATOM=${ATOM//@MULTILIB@/multilib}
-	else
-		ATOM=${ATOM//@MULTILIB@}
-	fi
-
-	if [[ -n ${ATOMS64[${ATOM}]} && -n ${ATOMS32[${ATOM}]} ]]; then
-		ATOM=${ATOM//@ABI@/abi_x86_64,abi_x86_32}
-	elif [[ -n ${ATOMS64[${ATOM}]} ]]; then
-		ATOM=${ATOM//@ABI@/abi_x86_64}
-	elif [[ -n ${ATOMS32[${ATOM}]} ]]; then
-		ATOM=${ATOM//@ABI@/abi_x86_32}
-	fi
-
-	ATOM=${ATOM//\[,/\[}
-	ATOM=${ATOM//,\]/\]}
-	ATOM=${ATOM//\[\]}
-	CONTENTS+=${ATOM}$'\n'
+for GAME in "${!GAME_ATOMS[@]}"; do
+	CONTENTS+="# ${GAME}$(sort -u <<< ${GAME_ATOMS[${GAME}]})"$'\n\n'
 done
 
 echo
 einfo "Writing Portage set to ${SET} ..."
 ${SUDO} mkdir -p "${SET%/*}"
-echo -n "${CONTENTS}" | sort | ${SUDO} tee "${SET}" >/dev/null
+${SUDO} tee "${SET}" <<< ${CONTENTS%$'\n\n'} >/dev/null
 
 einfo "Executing emerge -an${@+ }${@} @esteam ..."
 exec ${SUDO} emerge -an "${@}" @esteam
