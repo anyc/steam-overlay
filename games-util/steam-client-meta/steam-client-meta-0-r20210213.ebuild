@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -52,8 +52,8 @@ RDEPEND="
 			media-libs/freetype[abi_x86_32]
 			media-libs/libpng-compat:1.2[abi_x86_32]
 			media-libs/openal[abi_x86_32]
+			net-libs/libnm-glib[abi_x86_32]
 			net-misc/curl[abi_x86_32]
-			net-misc/networkmanager[abi_x86_32]
 			net-print/cups[abi_x86_32]
 			sys-apps/dbus[abi_x86_32,X]
 			sys-libs/libudev-compat[abi_x86_32]
