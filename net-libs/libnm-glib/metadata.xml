@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>chewi@aura-online.co.uk</email>
+		<name>James Le Cuirot</name>
+	</maintainer>
+	<use>
+		<flag name="nss">Use <pkg>dev-libs/nss</pkg> for cryptography</flag>
+	</use>
+</pkgmetadata>
