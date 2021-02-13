@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,11 +6,11 @@ EAPI=7
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
 # or come to #gentoo-gamerlay in freenode IRC
 
-inherit linux-info prefix xdg-utils
+inherit linux-info prefix xdg
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="https://steampowered.com"
-SRC_URI="https://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
+SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
 
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
@@ -86,8 +86,7 @@ native_path_entries() { path_entries false "${@}"; }
 multilib_path_entries() { path_entries true "${@}"; }
 
 src_prepare() {
-	xdg_environment_reset
-	default
+	xdg_src_prepare
 
 	sed \
 		-e "s#@@PVR@@#${PVR}#g" \
@@ -113,8 +112,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	xdg_icon_cache_update
-	xdg_desktop_database_update
+	xdg_pkg_postinst
 
 	elog "Execute ${EPREFIX}/usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
@@ -142,9 +140,4 @@ pkg_postinst() {
 
 	ewarn "The Steam client and the games are _not_ controlled by Portage."
 	ewarn "Updates are handled by the client itself."
-}
-
-pkg_postrm() {
-	xdg_icon_cache_update
-	xdg_desktop_database_update
 }
