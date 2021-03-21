@@ -32,7 +32,7 @@ RDEPEND="
 		amd64? (
 			!media-libs/mesa[-abi_x86_32]
 			!x11-misc/virtualgl[-abi_x86_32]
-			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
+			video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32,multilib(+)] )
 			)
 
 		x86? (
