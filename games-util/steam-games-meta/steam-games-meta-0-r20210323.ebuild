@@ -28,7 +28,7 @@ RDEPEND="
 		>=media-libs/mesa-17.3.9[-bindist(-)]
 
 		amd64? (
-			video_cards_nvidia? ( x11-drivers/nvidia-drivers[multilib] )
+			video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32,multilib(+)] )
 			)
 		mono? (
 			dev-lang/mono
