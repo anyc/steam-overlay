@@ -31,10 +31,6 @@
 		<flag name='steamgames_te120'>Transmissions: Element 120</flag>
 		<flag name='steamgames_tf2'>Team Fortress 2</flag>
 		<flag name='steamgames_trine2'>Trine 2</flag>
-		<flag name='steamgames_unwritten_tales'>
-			Dependencies for "The Book of Unwritten Tales: The Critter
-			Chronicles"
-		</flag>
 		<flag name='steamgames_voidexpanse'>VoidExpanse</flag>
 		<flag name='steamgames_witcher2'>The Witcher 2</flag>
 	</use>
