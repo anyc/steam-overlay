@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -8,7 +8,7 @@ inherit multilib-minimal
 MY_P="nettle-${PV}"
 DESCRIPTION="Low-level cryptographic library (6.2 ABI)"
 HOMEPAGE="http://www.lysator.liu.se/~nisse/nettle/"
-SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz"
+SRC_URI="mirror://gnu/nettle/${MY_P}.tar.gz"
 
 LICENSE="|| ( LGPL-3 LGPL-2.1 )"
 SLOT="6.2"
