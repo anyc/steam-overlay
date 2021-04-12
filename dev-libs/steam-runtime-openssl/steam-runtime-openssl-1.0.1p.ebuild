@@ -60,13 +60,13 @@ src_prepare() {
 
 	if ! use vanilla ; then
 		eapply -p0 "${FILESDIR}"/${MY_PN}-1.0.0a-ldflags.patch
-        eapply -p0 "${FILESDIR}"/${MY_PN}-1.0.0d-windres.patch
-        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.0h-pkg-config.patch
-        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1p-parallel-build.patch
-        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1m-x32.patch
-        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1m-ipv6.patch
-        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1f-revert-alpha-perl-generation.patch
-        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1p-default-source.patch
+		eapply -p0 "${FILESDIR}"/${MY_PN}-1.0.0d-windres.patch
+		eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.0h-pkg-config.patch
+		eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1p-parallel-build.patch
+		eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1m-x32.patch
+		eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1m-ipv6.patch
+		eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1f-revert-alpha-perl-generation.patch
+		eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1p-default-source.patch
 	fi
 
 	# disable fips in the build
