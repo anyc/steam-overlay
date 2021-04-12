@@ -1,7 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-
-EAPI="4"
+EAPI=7
 
 MY_PN=openssl
 MY_P=${MY_PN}-${PV}
@@ -60,15 +59,14 @@ src_prepare() {
 	rm -f Makefile
 
 	if ! use vanilla ; then
-		epatch "${FILESDIR}"/${MY_PN}-1.0.0a-ldflags.patch #327421
-		epatch "${FILESDIR}"/${MY_PN}-1.0.0d-windres.patch #373743
-		epatch "${FILESDIR}"/${MY_PN}-1.0.0h-pkg-config.patch
-		epatch "${FILESDIR}"/${MY_PN}-1.0.1p-parallel-build.patch
-		epatch "${FILESDIR}"/${MY_PN}-1.0.1m-x32.patch
-		epatch "${FILESDIR}"/${MY_PN}-1.0.1m-ipv6.patch
-		epatch "${FILESDIR}"/${MY_PN}-1.0.1f-revert-alpha-perl-generation.patch #499086
-		epatch "${FILESDIR}"/${MY_PN}-1.0.1p-default-source.patch #554338
-		epatch_user #332661
+		eapply -p0 "${FILESDIR}"/${MY_PN}-1.0.0a-ldflags.patch
+        eapply -p0 "${FILESDIR}"/${MY_PN}-1.0.0d-windres.patch
+        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.0h-pkg-config.patch
+        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1p-parallel-build.patch
+        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1m-x32.patch
+        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1m-ipv6.patch
+        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1f-revert-alpha-perl-generation.patch
+        eapply -p1 "${FILESDIR}"/${MY_PN}-1.0.1p-default-source.patch
 	fi
 
 	# disable fips in the build
@@ -109,6 +107,7 @@ src_prepare() {
 	./config --test-sanity || die "I AM NOT SANE"
 
 	multilib_copy_sources
+	default
 }
 
 multilib_src_configure() {
