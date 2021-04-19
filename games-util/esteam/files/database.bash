@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Please keep these lists sorted!
@@ -152,8 +152,8 @@ LIBS[libncurses.so.6]==sys-libs/ncurses-6*[@ABI@]
 LIBS[libncursesw.so.5]=sys-libs/ncurses-compat:5[@ABI@,unicode]
 LIBS[libncursesw.so.6]==sys-libs/ncurses-6*[@ABI@,unicode]
 LIBS[libnettle.so.6]=dev-libs/nettle-compat:6.2[@ABI@]
-LIBS[libnm-glib.so.4]=net-misc/networkmanager[@ABI@]
-LIBS[libnm-util.so.2]=net-misc/networkmanager[@ABI@]
+LIBS[libnm-glib.so.4]=net-libs/libnm-glib[@ABI@]
+LIBS[libnm-util.so.2]=net-libs/libnm-glib[@ABI@]
 LIBS[libnotify.so.4]=x11-libs/libnotify[@ABI@]
 LIBS[libnsl.so.1]=${GLIBC}[@MULTILIB@]
 LIBS[libnspr4.so]=dev-libs/nspr[@ABI@]
