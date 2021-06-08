@@ -6,7 +6,7 @@ EAPI=7
 inherit pax-utils
 
 # Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
-# or come to #gentoo-gamerlay in freenode IRC
+# or come to #gentoo-games in Libera Chat IRC
 
 DESCRIPTION="Meta package for Valve's native Steam client"
 HOMEPAGE="http://steampowered.com"
@@ -52,8 +52,9 @@ RDEPEND="
 			media-libs/freetype[abi_x86_32]
 			media-libs/libpng-compat:1.2[abi_x86_32]
 			media-libs/openal[abi_x86_32]
-			net-libs/libnm-glib[abi_x86_32]
+			media-video/pipewire:0/0.3[abi_x86_32]
 			net-misc/curl[abi_x86_32]
+			net-misc/networkmanager[abi_x86_32]
 			net-print/cups[abi_x86_32]
 			sys-apps/dbus[abi_x86_32,X]
 			sys-libs/libudev-compat[abi_x86_32]
