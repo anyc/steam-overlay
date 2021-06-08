@@ -19,14 +19,4 @@ unset IFS
 # Add paths to occasionally needed libraries not found in /usr/lib.
 export LD_LIBRARY_PATH+="${LD_LIBRARY_PATH+:}@@GENTOO_LD_LIBRARY_PATH@@"
 
-# Steam appends /usr/lib32 to LD_LIBRARY_PATH. We need to make sure
-# that OpenGL implementation dir goes before that, so we need to
-# append it to user's LD_LIBRARY_PATH ourselves. But that's needed
-# only with the new eselect-opengl that uses 000opengl file.
-if [[ -f "/etc/env.d/000opengl" ]]; then
-	. "/etc/env.d/000opengl"
-	# Append only when LDPATH is non-empty -- i.e. using nvidia or ati.
-	[[ -n "${LDPATH}" ]] && LD_LIBRARY_PATH+=":${LDPATH}"
-fi
-
 . "${0%/*}"/../lib/steam/bin_steam.sh
