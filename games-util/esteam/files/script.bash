@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 source "@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh"
@@ -182,7 +182,7 @@ export GENTOO_VM=icedtea-bin-8-x86
 exec "@GENTOO_PORTAGE_EPREFIX@/usr/bin/java" "\${@}"
 EOF
 		else
-			ATOMS[virtual/jre:1.8]=1
+			GAME_ATOMS[virtual/jre:1.8]=1
 			cat <<EOF | tee ${BINS} >/dev/null
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 @GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -s "virtual/jre:1.8" >/dev/null || export GENTOO_VM=\$(@GENTOO_PORTAGE_EPREFIX@/usr/bin/depend-java-query -v "virtual/jre:1.8")
