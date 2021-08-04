@@ -81,7 +81,7 @@ RDEPEND="
 			x11-libs/pango[abi_x86_32]
 
 			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
-			pulseaudio? ( media-sound/pulseaudio[abi_x86_32,caps] )
+			pulseaudio? ( media-sound/pulseaudio[abi_x86_32] )
 			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 
 			amd64? (
