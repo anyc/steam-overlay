@@ -313,6 +313,7 @@ LIBS[libzvbi.so.0]=media-libs/zvbi[@ABI@]
 LIBS[vgui.so]=+
 
 UNBUNDLEABLES=(
+	"5dchesswithmultiversetimetravel"
 	"A Boy and His Blob"
 	"Alien Isolation"
 	"Altitude"
