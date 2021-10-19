@@ -163,7 +163,6 @@ LIBS[libnuma.so.1]=sys-process/numactl[@ABI@]
 LIBS[libogg.so.0]=media-libs/libogg[@ABI@]
 LIBS[libopenal.so.1]=media-libs/openal[@ABI@]
 LIBS[libOpenAL.so]=libopenal.so.1
-LIBS[libopenjpeg.so.5]=media-libs/openjpeg:0/5[@ABI@]
 LIBS[libopenvr_api.so]=+
 LIBS[libopus.so.0]=media-libs/opus[@ABI@]
 LIBS[liborc-0.4.so.0]=dev-lang/orc[@ABI@]
