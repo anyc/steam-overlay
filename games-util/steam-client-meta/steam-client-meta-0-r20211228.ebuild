@@ -52,7 +52,7 @@ RDEPEND="
 			media-libs/freetype[abi_x86_32]
 			media-libs/libpng-compat:1.2[abi_x86_32]
 			media-libs/openal[abi_x86_32]
-			media-video/pipewire:0/0.3[abi_x86_32]
+			media-video/pipewire:0/0.4[abi_x86_32]
 			net-misc/curl[abi_x86_32]
 			net-misc/networkmanager[abi_x86_32]
 			net-print/cups[abi_x86_32]
