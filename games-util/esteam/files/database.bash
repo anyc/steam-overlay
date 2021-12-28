@@ -205,9 +205,11 @@ LIBS[libresolv.so.2]=${GLIBC}[@MULTILIB@]
 LIBS[librt.so.1]=${GLIBC}[@MULTILIB@]
 LIBS[libsamplerate.so.0]=media-libs/libsamplerate[@ABI@]
 LIBS[libSDL-1.2.so.0]=media-libs/libsdl[@ABI@,joystick,opengl,sound,video]
+LIBS[libSDL2.so]=libSDL2-2.0.so.0
 LIBS[libSDL2-2.0.so.0]=media-libs/libsdl2[@ABI@,haptic,joystick,opengl,sound,threads,video]
 LIBS[libSDL2-2.0.7.so]=libSDL2-2.0.so.0
 LIBS[libSDL2-2.0.8.so]=libSDL2-2.0.so.0
+LIBS[libSDL2_image.so]=libSDL2_image-2.0.so.0
 LIBS[libSDL2_image-2.0.so.0]=media-libs/sdl2-image[@ABI@]
 LIBS[libSDL2_image-2.0.1.so]=libSDL2_image-2.0.so.0
 LIBS[libSDL2_mixer-2.0.so.0]=media-libs/sdl2-mixer[@ABI@]
@@ -341,6 +343,7 @@ UNBUNDLEABLES=(
 	"Titan Attacks"
 	"Tomb Raider"
 	"Trine 2"
+	"Unrailed"
 	"WormsWMD"
 )
 
