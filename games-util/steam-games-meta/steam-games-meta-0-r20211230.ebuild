@@ -16,7 +16,7 @@ IUSE="mono +steamruntime video_cards_nvidia"
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="bioshock_infinite defenders_quest dirt_rally dwarfs hammerwatch ironclad_tactics journey_down
+IUSE_STEAMGAMES="bioshock_infinite dirt_rally dwarfs hammerwatch ironclad_tactics journey_down
 	narcissu painkiller portal shadow_mordor shatter source_engine tf2 trine2 voidexpanse witcher2
 	dont_starve te120"
 
@@ -36,9 +36,6 @@ RDEPEND="
 
 		steamgames_bioshock_infinite? (
 			!steamruntime? ( media-libs/sdl2-image[abi_x86_32] )
-			)
-		steamgames_defenders_quest? (
-			dev-util/adobe-air-runtime
 			)
 		steamgames_dirt_rally? (
 			media-libs/sdl2-image
