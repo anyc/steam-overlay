@@ -260,13 +260,6 @@ EOF
 			# Valve's runtime should be self-contained.
 			[[ ${GAME} = SteamLinuxRuntime ]] && continue
 
-			IFS=$'\n'
-			for MATCH in $(grep -Eao "Adobe AIR" "${SCANNED_PATH}" | sort -u); do
-				case "${MATCH}" in
-					"Adobe AIR") GAME_ATOMS[${GAME}]+=dev-util/adobe-air-runtime$'\n' ;;
-				esac
-			done
-
 			IFS=','
 			for NEEDED_FILE in ${NEEDEDS}; do
 				NEEDED_ATOM=${LIBS[${NEEDED_FILE}]}
