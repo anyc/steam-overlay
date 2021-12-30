@@ -53,6 +53,16 @@ EOF
 	esac
 done
 
+should_ignore_dir() {
+	# Valve's runtimes should be self-contained and therefore ignored.
+	[[ ${1##*/} = SteamLinuxRuntime* ]] && return 0
+
+	# Games or tools depending on a containerised runtime should be ignored.
+	grep -Exq '\s*"require_tool_appid"\s+"1391110"\s*' "$1"/toolmanifest.vdf 2>/dev/null && return 0
+
+	return 1
+}
+
 shift $(( ${OPTIND} - 1 ))
 declare -A LIBS UNBUNDLEABLES_A DIRS GAME_ATOMS
 source "@GENTOO_PORTAGE_EPREFIX@/usr/share/esteam/database.bash"
@@ -218,8 +228,7 @@ EOF
 			GAME=${SCANNED_PATH#${COMMON}}
 			GAME=${GAME%%/*}
 
-			# Valve's runtime should be self-contained.
-			[[ ${GAME} = SteamLinuxRuntime ]] && continue
+			should_ignore_dir "${COMMON}/${GAME}" && continue
 
 			SCANNED_ATOM=${LIBS[${SCANNED_PATH##*/}]}
 
@@ -257,8 +266,7 @@ EOF
 			GAME=${SCANNED_PATH#${COMMON}}
 			GAME=${GAME%%/*}
 
-			# Valve's runtime should be self-contained.
-			[[ ${GAME} = SteamLinuxRuntime ]] && continue
+			should_ignore_dir "${COMMON}/${GAME}" && continue
 
 			IFS=','
 			for NEEDED_FILE in ${NEEDEDS}; do
