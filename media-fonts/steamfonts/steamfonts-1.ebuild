@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 2014-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=7
 
@@ -14,6 +13,6 @@ LICENSE="MSttfEULA"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-S=${WORKDIR}
-FONT_S=${WORKDIR}
+S="${WORKDIR}"
+FONT_S="${WORKDIR}"
 FONT_SUFFIX="ttf TTF"
