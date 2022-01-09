@@ -2,6 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
+		<email>chewi@gentoo.org</email>
+		<name>James Le Cuirot</name>
+	</maintainer>
+	<maintainer type="person">
 		<email>marco@scardovi.com</email>
 		<name>Marco Scardovi</name>
 	</maintainer>
