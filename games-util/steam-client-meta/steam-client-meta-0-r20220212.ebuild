@@ -14,19 +14,16 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+pulseaudio steamfonts +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
+IUSE="+pulseaudio +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
 
 RDEPEND="
-		media-fonts/font-mutt-misc
-		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
-
 		virtual/opengl[abi_x86_32]
+		virtual/ttf-fonts
 
 		trayicon? ( sys-apps/dbus )
-		steamfonts? ( media-fonts/steamfonts )
 		steamvr? ( sys-apps/usbutils )
 
 		amd64? (
@@ -104,12 +101,6 @@ pkg_postinst() {
 	if host-is-pax; then
 		elog "If you're using PAX, please see:"
 		elog "https://wiki.gentoo.org/wiki/Steam#Hardened_Gentoo"
-		elog ""
-	fi
-
-	if ! use steamfonts; then
-		elog "If the Steam client shows no or misaligned text, then"
-		elog "please enable the steamfonts use flag."
 		elog ""
 	fi
 
