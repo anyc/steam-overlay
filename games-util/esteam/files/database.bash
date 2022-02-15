@@ -345,6 +345,7 @@ UNBUNDLEABLES=(
 	"Trine 2"
 	"Unrailed"
 	"WormsWMD"
+	"XCOM 2"
 )
 
 # The following lack unbundleable libraries:
