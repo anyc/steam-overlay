@@ -5,10 +5,6 @@
 		<email>dev@kicherer.org</email>
 		<name>Mario Kicherer</name>
 	</maintainer>
-	<longdescription>
-		This is a meta package that pulls in dependencies
-		for the steam environment.
-	</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
