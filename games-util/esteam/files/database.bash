@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Please keep these lists sorted!
@@ -29,7 +29,7 @@ LIBS[libcap.so.2]=sys-libs/libcap[@ABI@]
 LIBS[libcef.so]=+
 LIBS[libCg.so]=media-gfx/nvidia-cg-toolkit[@ABI@]
 LIBS[libCgGL.so]=media-gfx/nvidia-cg-toolkit[@ABI@]
-LIBS[libcom_err.so.2]=sys-libs/e2fsprogs-libs[@ABI@]
+LIBS[libcom_err.so.2]=sys-libs/e2fsprogs[@ABI@]
 LIBS[libcrypto.so.0.9.8]=dev-libs/openssl-compat:0.9.8[@ABI@]
 LIBS[libcrypto.so.1.0.0]=dev-libs/openssl-compat:1.0.0[@ABI@]
 LIBS[libcrypto.so.1.1]=dev-libs/openssl:0/1.1[@ABI@]
@@ -228,7 +228,7 @@ LIBS[libsoxr.so.0]=media-libs/soxr[@ABI@]
 LIBS[libspeex.so.1]=media-libs/speex[@ABI@]
 LIBS[libspeexdsp.so.1]=media-libs/speex[@ABI@]
 LIBS[libsqlite3.so.0]=dev-db/sqlite:3[@ABI@]
-LIBS[libss.so.2]=sys-libs/e2fsprogs-libs[@ABI@]
+LIBS[libss.so.2]=sys-libs/e2fsprogs[@ABI@]
 LIBS[libssl.so.0.9.8]=dev-libs/openssl-compat:0.9.8[@ABI@]
 LIBS[libssl.so.1.0.0]=dev-libs/openssl-compat:1.0.0[@ABI@]
 LIBS[libssl.so.1.1]=dev-libs/openssl:0/1.1[@ABI@]
