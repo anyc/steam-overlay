@@ -207,6 +207,7 @@ LIBS[libsamplerate.so.0]=media-libs/libsamplerate[@ABI@]
 LIBS[libSDL-1.2.so.0]=media-libs/libsdl[@ABI@,joystick,opengl,sound,video]
 LIBS[libSDL2.so]=libSDL2-2.0.so.0
 LIBS[libSDL2-2.0.so.0]=media-libs/libsdl2[@ABI@,haptic,joystick,opengl,sound,threads,video]
+LIBS[libSDL2-2.0.5.so]=libSDL2-2.0.so.0
 LIBS[libSDL2-2.0.7.so]=libSDL2-2.0.so.0
 LIBS[libSDL2-2.0.8.so]=libSDL2-2.0.so.0
 LIBS[libSDL2_image.so]=libSDL2_image-2.0.so.0
@@ -319,6 +320,7 @@ UNBUNDLEABLES=(
 	"Anodyne"
 	"Destination Sol"
 	"Deus Ex Mankind Divided"
+	"DiRT Rally"
 	"dota 2 beta"
 	"dota 2"
 	"Duck Game" # Effective when https://github.com/0x0ade/DuckGame-Linux is applied.
