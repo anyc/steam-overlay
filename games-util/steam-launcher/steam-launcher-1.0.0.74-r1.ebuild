@@ -56,8 +56,9 @@ pkg_setup() {
 	linux-info_pkg_setup
 
 	if ! { linux_config_exists && linux_chkconfig_present INPUT_UINPUT; }; then
-		ewarn "If you want to use the Steam controller, please make sure"
-		ewarn "CONFIG_INPUT_UINPUT is enabled in your kernel config."
+		ewarn "If you want to use Steam Input's virtual controller"
+		eawen "implementation, please make sure CONFIG_INPUT_UINPUT"
+		ewarn "is enabled in your kernel config."
 
 		# Device Drivers
 		#  -> Input device support
