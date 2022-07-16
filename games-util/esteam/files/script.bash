@@ -294,12 +294,19 @@ EOF
 						esac
 
 						if [[ -n ${ATOM} ]]; then
-							if [[ ${ARCH} != x86 && ${EM} = EM_386 ]]; then
-								ATOM=${ATOM//@MULTILIB@/multilib}
-							else
-								ATOM=${ATOM//@MULTILIB@}
+							unset MULTILIB
+
+							if [[ ${EM} = EM_386 ]]; then
+								case "${NEEDED_ATOM}" in
+									"${GLIBC}["*) MULTILIB+=",stack-realign(+)" ;;
+								esac
+
+								if [[ ${ARCH} != x86 ]]; then
+									MULTILIB+=",multilib"
+								fi
 							fi
 
+							ATOM=${ATOM//@MULTILIB@/${MULTILIB#,}}
 							ATOM=${ATOM//\[,/\[}
 							ATOM=${ATOM//,\]/\]}
 							ATOM=${ATOM//\[\]}
