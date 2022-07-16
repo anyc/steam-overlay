@@ -203,6 +203,7 @@ LIBS[libpulse.so.0]=media-sound/pulseaudio[@ABI@]
 LIBS[libroken.so.18]=app-crypt/heimdal[@ABI@]
 LIBS[libresolv.so.2]=${GLIBC}[@MULTILIB@]
 LIBS[librt.so.1]=${GLIBC}[@MULTILIB@]
+LIBS[librtmp.so.1]=media-video/rtmpdump[@ABI@]
 LIBS[libsamplerate.so.0]=media-libs/libsamplerate[@ABI@]
 LIBS[libSDL-1.2.so.0]=media-libs/libsdl[@ABI@,joystick,opengl,sound,video]
 LIBS[libSDL2.so]=libSDL2-2.0.so.0
