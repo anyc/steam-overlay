@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -57,7 +57,7 @@ pkg_setup() {
 
 	if ! { linux_config_exists && linux_chkconfig_present INPUT_UINPUT; }; then
 		ewarn "If you want to use Steam Input's virtual controller"
-		eawen "implementation, please make sure CONFIG_INPUT_UINPUT"
+		ewarn "implementation, please make sure CONFIG_INPUT_UINPUT"
 		ewarn "is enabled in your kernel config."
 
 		# Device Drivers
