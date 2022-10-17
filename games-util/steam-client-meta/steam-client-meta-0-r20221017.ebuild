@@ -39,7 +39,10 @@ RDEPEND="
 		!steamruntime? (
 			app-arch/bzip2[abi_x86_32]
 			app-i18n/ibus
-			dev-libs/atk[abi_x86_32]
+			|| (
+				>=app-accessibility/at-spi2-core-2.46.0:2[abi_x86_32]
+				( app-accessibility/at-spi2-atk[abi_x86_32] dev-libs/atk[abi_x86_32] )
+			)
 			dev-libs/dbus-glib[abi_x86_32]
 			dev-libs/expat[abi_x86_32]
 			dev-libs/glib:2[abi_x86_32]
