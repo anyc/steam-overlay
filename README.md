@@ -34,7 +34,7 @@ If you have problems, please take a look at http://wiki.gentoo.org/wiki/Steam, [
 thread](https://forums.gentoo.org/viewtopic-t-930354-postdays-0-postorder-asc-start-75.html), [Arch 
 Wiki](https://wiki.archlinux.org/index.php/Steam#Native_Steam_on_Linux) and the [official bug tracker](https://github.com/ValveSoftware/steam-for-linux/issues).
 
-The correspondig bugzilla entry is [bug #442176](https://bugs.gentoo.org/show_bug.cgi?id=442176). The official steam repo is [here](http://repo.steampowered.com/steam/).
+The corresponding bugzilla entry is [bug #442176](https://bugs.gentoo.org/show_bug.cgi?id=442176). The official steam repo is [here](http://repo.steampowered.com/steam/).
 
 License
 -------
