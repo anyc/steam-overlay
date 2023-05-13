@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+pulseaudio +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
+IUSE="+dialogs +pulseaudio +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
@@ -39,10 +39,7 @@ RDEPEND="
 		!steamruntime? (
 			app-arch/bzip2[abi_x86_32]
 			app-i18n/ibus
-			|| (
-				>=app-accessibility/at-spi2-core-2.46.0:2[abi_x86_32]
-				( app-accessibility/at-spi2-atk[abi_x86_32] dev-libs/atk[abi_x86_32] )
-			)
+			>=app-accessibility/at-spi2-core-2.46.0:2[abi_x86_32]
 			dev-libs/dbus-glib[abi_x86_32]
 			dev-libs/expat[abi_x86_32]
 			dev-libs/glib:2[abi_x86_32]
@@ -84,6 +81,11 @@ RDEPEND="
 			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
 			pulseaudio? ( media-sound/pulseaudio[abi_x86_32] )
 			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
+
+			dialogs? ( || (
+				>=gnome-extra/zenity-3
+				x11-terms/xterm
+			) )
 
 			amd64? (
 				>=sys-devel/gcc-4.6.0[multilib]

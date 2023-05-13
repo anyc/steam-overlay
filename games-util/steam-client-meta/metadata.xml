@@ -9,6 +9,7 @@
 		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
 	</upstream>
 	<use>
+		<flag name='dialogs'>Support additional dialogs before the client starts</flag>
 		<flag name='trayicon'>Enable system tray icon with libappindicator</flag>
 		<flag name='steamruntime'>Use the official steam runtime libraries</flag>
 		<flag name='steamvr'>Enable SteamVR virtual reality support</flag>
