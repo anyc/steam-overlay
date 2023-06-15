@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+dialogs +pulseaudio +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
+IUSE="+desktop-portal +dialogs +pulseaudio +steamruntime steamvr trayicon video_cards_intel video_cards_nvidia"
 
 # This can help to determine the dependencies:
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
@@ -23,8 +23,9 @@ RDEPEND="
 		virtual/opengl[abi_x86_32]
 		virtual/ttf-fonts
 
-		trayicon? ( sys-apps/dbus )
+		desktop-portal? ( sys-apps/xdg-desktop-portal )
 		steamvr? ( sys-apps/usbutils )
+		trayicon? ( sys-apps/dbus )
 
 		amd64? (
 			!media-libs/mesa[-abi_x86_32]
@@ -110,8 +111,16 @@ pkg_postinst() {
 		elog ""
 	fi
 
+	if ! use desktop-portal; then
+		ewarn "You have disabled desktop-portal, which is not supported."
+		ewarn "An xdg-desktop-portal backend is needed for file pickers"
+		ewarn "and other desktop components to work, e.g. when adding a"
+		ewarn "non-Steam game or a new library folder."
+		ewarn ""
+	fi
+
 	if ! use pulseaudio; then
-		ewarn "You have disabled pulseaudio which is not supported."
+		ewarn "You have disabled pulseaudio, which is not supported."
 		ewarn "If you are experiencing sound problems, you can try if"
 		ewarn "media-sound/apulse works for you."
 		ewarn ""
