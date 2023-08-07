@@ -20,6 +20,7 @@ IUSE="+desktop-portal +dialogs +pulseaudio +steamruntime steamvr trayicon video_
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
 
 RDEPEND="
+		sys-libs/libudev-compat[abi_x86_32]
 		virtual/opengl[abi_x86_32]
 		virtual/ttf-fonts
 
@@ -50,23 +51,21 @@ RDEPEND="
 			media-libs/fontconfig[abi_x86_32]
 			media-libs/freetype[abi_x86_32]
 			media-libs/libpng-compat:1.2[abi_x86_32]
+			media-libs/libva:0/2[abi_x86_32]
 			media-libs/openal[abi_x86_32]
 			media-video/pipewire:0/0.4[abi_x86_32]
 			net-misc/curl[abi_x86_32]
 			net-misc/networkmanager[abi_x86_32]
 			net-print/cups[abi_x86_32]
 			sys-apps/dbus[abi_x86_32,X]
-			sys-libs/libudev-compat[abi_x86_32]
 			sys-libs/zlib[abi_x86_32]
 			virtual/libusb[abi_x86_32]
 			x11-libs/gdk-pixbuf[abi_x86_32]
 			x11-libs/gtk+:2[abi_x86_32,cups]
 			x11-libs/libICE[abi_x86_32]
 			x11-libs/libSM[abi_x86_32]
-			media-libs/libva:0/2[abi_x86_32]
 			x11-libs/libvdpau[abi_x86_32]
 			x11-libs/libX11[abi_x86_32]
-			x11-libs/libXScrnSaver[abi_x86_32]
 			x11-libs/libXcomposite[abi_x86_32]
 			x11-libs/libXcursor[abi_x86_32]
 			x11-libs/libXdamage[abi_x86_32]
@@ -76,6 +75,7 @@ RDEPEND="
 			x11-libs/libXinerama[abi_x86_32]
 			x11-libs/libXrandr[abi_x86_32]
 			x11-libs/libXrender[abi_x86_32]
+			x11-libs/libXScrnSaver[abi_x86_32]
 			x11-libs/libXtst[abi_x86_32]
 			x11-libs/pango[abi_x86_32]
 
