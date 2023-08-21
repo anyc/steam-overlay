@@ -21,6 +21,7 @@ IUSE="+desktop-portal +dialogs +pulseaudio +steamruntime steamvr trayicon video_
 
 RDEPEND="
 		sys-libs/libudev-compat[abi_x86_32]
+		sys-process/lsof
 		virtual/opengl[abi_x86_32]
 		virtual/ttf-fonts
 
