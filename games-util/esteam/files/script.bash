@@ -58,7 +58,7 @@ should_ignore_dir() {
 	[[ ${1##*/} = SteamLinuxRuntime* ]] && return 0
 
 	# Games or tools depending on a containerised runtime should be ignored.
-	grep -Exq '\s*"require_tool_appid"\s+"1391110"\s*' "$1"/toolmanifest.vdf 2>/dev/null && return 0
+	grep -Exq '\s*"require_tool_appid"\s+"(1391110|1628350)"\s*' "$1"/toolmanifest.vdf 2>/dev/null && return 0
 
 	return 1
 }
