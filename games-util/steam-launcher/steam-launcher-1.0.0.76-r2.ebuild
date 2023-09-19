@@ -15,7 +15,7 @@ SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+joystick +steamruntime +udev"
+IUSE="+joystick +steamruntime +udev wayland"
 RESTRICT="bindist mirror test"
 
 RDEPEND="
@@ -25,6 +25,10 @@ RDEPEND="
 
 		joystick? (
 			udev? ( games-util/game-device-udev-rules )
+			wayland? ( || (
+				x11-libs/extest[abi_x86_32]
+				>=x11-base/xwayland-23.2.1[libei(+)]
+			) )
 		)
 		steamruntime? (
 			virtual/opengl[abi_x86_32]
@@ -88,6 +92,7 @@ src_prepare() {
 	sed \
 		-e "s#@@PVR@@#${PVR}#g" \
 		-e "s#@@GENTOO_LD_LIBRARY_PATH@@#$(multilib_path_entries debiancompat fltk)#g" \
+		-e "s#@@GENTOO_X86_LIBDIR@@#${EPREFIX}/usr/$(ABI=x86 get_libdir)#g" \
 		-e "s#@@STEAM_RUNTIME@@#$(usex steamruntime 1 0)#g" \
 		"${FILESDIR}"/steam-wrapper.sh > steam-wrapper.sh || die
 
