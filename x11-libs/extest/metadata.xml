@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription>
+		Extest is a drop in replacement for the X11 XTEST extension. It creates
+		a virtual device with the uinput kernel module. It's been primarily
+		developed for allowing the desktop functionality on the Steam Controller
+		to work while Steam is open on Wayland.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">Supreeeme/extest</remote-id>
+	</upstream>
+</pkgmetadata>
