@@ -1,7 +1,0 @@
-# Copyright 1999-2022 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-# James Le Cuirot <chewi@gentoo.org>
-# Only supports a small handful of games, is not scalable, and is unmaintained.
-# Use games-util/esteam instead. Removal in 60 days.
-games-util/steam-games-meta
