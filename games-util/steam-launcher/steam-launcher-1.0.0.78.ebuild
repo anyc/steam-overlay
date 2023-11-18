@@ -67,12 +67,9 @@ pkg_setup() {
 	fi
 }
 
-path_entries() {
-	local multilib=${1}
-	shift
-
+lib_path_entries() {
 	while true; do
-		echo -n ${EPREFIX}/usr/$(get_libdir)/${1}$(${multilib} && use amd64 && echo :${EPREFIX}/usr/$(ABI=x86 get_libdir)/${1})
+		echo -n ${EPREFIX}/usr/\\\\\${LIB}/${1}
 		shift
 
 		if [[ -n ${1} ]]; then
@@ -83,15 +80,12 @@ path_entries() {
 	done
 }
 
-native_path_entries() { path_entries false "${@}"; }
-multilib_path_entries() { path_entries true "${@}"; }
-
 src_prepare() {
 	default
 
 	sed \
 		-e "s#@@PVR@@#${PVR}#g" \
-		-e "s#@@GENTOO_LD_LIBRARY_PATH@@#$(multilib_path_entries debiancompat fltk)#g" \
+		-e "s#@@GENTOO_LD_LIBRARY_PATH@@#$(lib_path_entries debiancompat fltk)#g" \
 		-e "s#@@GENTOO_X86_LIBDIR@@#${EPREFIX}/usr/$(ABI=x86 get_libdir)#g" \
 		-e "s#@@STEAM_RUNTIME@@#$(usex steamruntime 1 0)#g" \
 		"${FILESDIR}"/steam-wrapper.sh > steam-wrapper.sh || die
