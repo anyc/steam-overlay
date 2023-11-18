@@ -11,15 +11,17 @@ export DISTRIB_RELEASE="@@PVR@@"
 export LD_LIBRARY_PATH+="${LD_LIBRARY_PATH+:}@@GENTOO_LD_LIBRARY_PATH@@"
 
 # Preload the extest library when running in wayland session
-if [[ -f "@@GENTOO_X86_LIBDIR@@/libextest.so" &&
-		${XDG_SESSION_TYPE} == wayland ]]; then
-	export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_X86_LIBDIR@@/libextest.so"
-elif [ -f `find "/usr/lib/gcc/x86_64-pc-linux-gnu/$(gcc --version | grep gcc | sed -E 's|[A-Za-z]+\s+\([^)]*\)\s+||' | cut -f 1 -d '.')/32" -type l -name "libstdc++.so"` ] &&
-		[ "$(eselect profile list | grep '\*' | grep clang)" != "" ] && [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+if [ -f `find "/usr/lib/gcc/x86_64-pc-linux-gnu/$(gcc --version | grep gcc | sed -E 's|[A-Za-z]+\s+\([^)]*\)\s+||' | cut -f 1 -d '.')/32" -type l -name "libstdc++.so"` ] &&
+		[ "$(eselect profile list | grep '\*' | grep clang)" != "" ] &&
+  		[ -f "@@GENTOO_X86_LIBDIR@@/libextest.so" ] &&
+  		[ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_X86_LIBDIR@@/libextest.so"
 	# Fixes Steam not properly launching on LLVM+Wayland systems
 	# Backticks (``) are being used because it captures spaces inside paths; not that there should be. Shellcheck will complain about this.
 	export LD_PRELOAD+="${LD_PRELOAD+:}`find "/usr/lib/gcc/x86_64-pc-linux-gnu/$(gcc --version | grep gcc | sed -E 's|[A-Za-z]+\s+\([^)]*\)\s+||' | cut -f 1 -d '.')/32" -type l -name "libstdc++.so"`"
+elif [[ -f "@@GENTOO_X86_LIBDIR@@/libextest.so" &&
+		${XDG_SESSION_TYPE} == wayland ]]; then
+	export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_X86_LIBDIR@@/libextest.so"
 fi
 
 # Steam renames LD_LIBRARY_PATH to SYSTEM_LD_LIBRARY_PATH and it then becomes
