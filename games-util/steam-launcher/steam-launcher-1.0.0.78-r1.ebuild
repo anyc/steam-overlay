@@ -22,6 +22,7 @@ RDEPEND="
 		app-arch/tar
 		app-shells/bash
 		net-misc/curl
+		sys-process/lsof
 
 		joystick? (
 			udev? ( games-util/game-device-udev-rules )
