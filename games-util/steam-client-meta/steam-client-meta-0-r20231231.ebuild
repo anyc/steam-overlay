@@ -20,10 +20,14 @@ IUSE="+desktop-portal +dialogs +pulseaudio +steamruntime steamvr trayicon video_
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
 
 RDEPEND="
+		media-libs/fontconfig[abi_x86_32]
 		sys-libs/libudev-compat[abi_x86_32]
 		sys-process/lsof
 		virtual/opengl[abi_x86_32]
 		virtual/ttf-fonts
+
+		pulseaudio? ( media-libs/libpulse[abi_x86_32] )
+		!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 
 		desktop-portal? ( sys-apps/xdg-desktop-portal )
 		steamvr? ( sys-apps/usbutils )
@@ -49,7 +53,6 @@ RDEPEND="
 			dev-libs/nspr[abi_x86_32]
 			dev-libs/nss[abi_x86_32]
 			media-libs/alsa-lib[abi_x86_32]
-			media-libs/fontconfig[abi_x86_32]
 			media-libs/freetype[abi_x86_32]
 			media-libs/libpng-compat:1.2[abi_x86_32]
 			media-libs/libva:0/2[abi_x86_32]
@@ -81,8 +84,6 @@ RDEPEND="
 			x11-libs/pango[abi_x86_32]
 
 			trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
-			pulseaudio? ( media-libs/libpulse[abi_x86_32] )
-			!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 
 			dialogs? ( || (
 				>=gnome-extra/zenity-3
