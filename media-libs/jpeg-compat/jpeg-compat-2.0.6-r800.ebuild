@@ -1,9 +1,8 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-CMAKE_ECLASS=cmake
 inherit cmake-multilib
 
 MY_PN="libjpeg-turbo"
@@ -21,7 +20,6 @@ ASM_DEPEND="|| ( dev-lang/nasm dev-lang/yasm )"
 
 BDEPEND="
 	app-misc/pax-utils
-	>=dev-util/cmake-3.16.5
 	amd64? ( ${ASM_DEPEND} )
 	x86? ( ${ASM_DEPEND} )
 "
