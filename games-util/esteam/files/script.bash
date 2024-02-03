@@ -26,10 +26,11 @@ Output:
 
 EOF
 
-			eerror "Unknown: Required library has no system version and is not bundled" && true
-			einfo  "Deleted: Library has been safely deleted in favor of a system version"
-			ewarn  "Bundled: Library has no system version but is bundled (verbose)"
-			ewarn  "Skipped: Library has a system version but remains bundled (verbose)"
+			eerror "Unknown:  Required library has no system version and is not bundled" && true
+			eerror "Mismatch: Required library has no 32-bit system version and is not bundled" && true
+			einfo  "Deleted:  Library has been safely deleted in favor of a system version"
+			ewarn  "Bundled:  Library has no system version but is bundled (verbose)"
+			ewarn  "Skipped:  Library has a system version but remains bundled (verbose)"
 
 			cat <<EOF
 
@@ -301,12 +302,18 @@ EOF
 
 							if [[ ${EM} = EM_386 ]]; then
 								case "${NEEDED_ATOM}" in
-									"${GLIBC}["*) MULTILIB+=",stack-realign(+)" ;;
+									*@ABI64@*)
+										eerror "Mismatch: ${MSG}" && true
+										continue ;;
+									"${GLIBC}["*)
+										MULTILIB+=",stack-realign(+)" ;;
 								esac
 
 								if [[ ${ARCH} != x86 ]]; then
 									MULTILIB+=",multilib"
 								fi
+							else
+								ATOM=${ATOM//@ABI64@}
 							fi
 
 							ATOM=${ATOM//@MULTILIB@/${MULTILIB#,}}
