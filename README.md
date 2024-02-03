@@ -1,40 +1,63 @@
 steam-overlay
 =============
 
-Gentoo overlay for Valve's Steam client and Steam-based games.
+Gentoo overlay for Valve's Steam client.
 
-Valve only provides a 32-bit version of the client, uses an own update mechanism for the client and games that is not under control 
-of package managers and ships a customized runtime with precompiled libraries. This overlay provides an ebuild for the steam
-installer and meta ebuilds as well as patched (multilib) ebuilds from main tree that enable the execution of the client and games with 
-(almost only) system libraries on x86_64 and x86 systems.
+Valve only provides a 32-bit version of the client, uses an own update mechanism
+for the client and games that is outside the control of package managers, and
+ships a customized runtime with precompiled libraries. This overlay provides:
 
-*Please note*: Valve only supports Steam with an enabled steam runtime. If you have problems, enable the runtime with the use flag or 
-start steam with `STEAM_RUNTIME=1 steam` before reporting a bug at the [official bug tracker](https://github.com/ValveSoftware/steam-for-linux/issues).
+* A package for the Steam launcher.
+* A utility to install additional native Linux game dependencies.
+* Old ebuilds that are needed by games but have been officially removed by Gentoo.
+
+*Please note*: Valve only supports Steam with their runtime enabled. If you have
+problems, enable the runtime with the `steamruntime` USE flag or start Steam
+with `STEAM_RUNTIME=1 steam` before reporting a bug at the [official bug
+tracker](https://github.com/ValveSoftware/steam-for-linux/issues).
 
 Usage
 -----
 
-* Include this overlay with [Layman](http://www.gentoo.org/proj/en/overlays/userguide.xml) and the following command: `layman -a steam-overlay` *or*
-  copy `steam-overlay.conf` from this repository into `/etc/portage/repos.conf/` to use the new [portage sync capabilities](https://wiki.gentoo.org/wiki/Project:Portage/Sync)
-* Choose if you want to use the official Steam runtime along with its bundled libraries or system libraries by en-/disabling the `steamruntime` use flag. Disabling the official runtime is only 
-  recommended for advanced Gentoo users
-* Emerge the `steam-meta` package
-* Start the client by executing `steam`
+* Install `app-eselect/eselect-repository` and `dev-vcs/git`:
+  ```
+  emerge --ask --noreplace app-eselect/eselect-repository dev-vcs/git
+  ```
 
-Notes for AMD64
----------------
+* Add this repository:
+  ```
+  eselect repository enable steam-overlay
+  ```
 
-As the client and most games use 32-bit executables, the ebuilds require that you enable the `abi_x86_32` use flag for some packages, see [this news 
-item](https://www.gentoo.org/support/news-items/2015-03-28-true-multilib.html) for more information.
+* Then sync with either [emaint](https://wiki.gentoo.org/wiki/Emaint) or `emerge`:
+  ```
+  emaint sync -r steam-overlay
+  emerge --sync
+  ```
+
+* The Steam runtime is enabled by default. If you'd like to rely solely on
+  Gentoo packages, then disable the `steamruntime` USE flag. Use the `esteam`
+  utility later to scan your installed native Linux games for additional Gentoo
+  packages required by them. Note that Gentoo packages do not cover the entirety
+  of the runtime, so a small number of games may not work.
+
+* Install `games-util/steam-launcher`:
+  ```
+  emerge --ask games-util/steam-launcher
+  ```
+  This may prompt you to enable to `abi_x86_32` USE flag for many packages due to the Steam client being 32-bit. You can just enable it globally for simplicity.
+
+* Start the client by executing `steam`.
 
 Troubleshooting Steam
 ---------------------
 
-If you have problems, please take a look at http://wiki.gentoo.org/wiki/Steam, [Gentoo Forums 
-thread](https://forums.gentoo.org/viewtopic-t-930354-postdays-0-postorder-asc-start-75.html), [Arch 
-Wiki](https://wiki.archlinux.org/index.php/Steam#Native_Steam_on_Linux) and the [official bug tracker](https://github.com/ValveSoftware/steam-for-linux/issues).
+If you encounter any issues, the following links may be helpful.
 
-The corresponding bugzilla entry is [bug #442176](https://bugs.gentoo.org/show_bug.cgi?id=442176). The official steam repo is [here](http://repo.steampowered.com/steam/).
+* [Steam on the Gentoo Wiki](https://wiki.gentoo.org/wiki/Steam)
+* [Steam thread on the Gentoo Forums](https://forums.gentoo.org/viewtopic-t-930354.html)
+* [Steam on the Arch Wiki](https://wiki.archlinux.org/title/Steam#Native_Steam_on_Linux)
+* [Official Steam for Linux bug tracker](https://github.com/ValveSoftware/steam-for-linux/issues)
 
 License
 -------
