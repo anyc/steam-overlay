@@ -19,66 +19,79 @@ IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayi
 RESTRICT="bindist mirror test"
 
 # This can help to determine the dependencies:
-# find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep Shared | sort -u | fgrep -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
+# find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep -F NEEDED | sort -u | grep -F -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
 
 RDEPEND="
-	>=app-accessibility/at-spi2-core-2.46.0:2[abi_x86_32]
-	app-arch/bzip2[abi_x86_32]
 	app-arch/tar
-	app-i18n/ibus
+	app-arch/xz-utils
 	app-shells/bash
-	dev-libs/dbus-glib[abi_x86_32]
-	dev-libs/expat[abi_x86_32]
-	dev-libs/glib:2[abi_x86_32]
-	dev-libs/nspr[abi_x86_32]
-	dev-libs/nss[abi_x86_32]
-	media-libs/alsa-lib[abi_x86_32]
 	media-libs/fontconfig[abi_x86_32]
-	media-libs/freetype[abi_x86_32]
-	media-libs/libpng-compat:1.2[abi_x86_32]
-	media-libs/libva:0/2[abi_x86_32]
-	media-libs/openal[abi_x86_32]
-	media-video/pipewire:0/0.4[abi_x86_32]
-	net-misc/curl[abi_x86_32]
-	net-misc/networkmanager[abi_x86_32]
-	net-print/cups[abi_x86_32]
-	sys-apps/dbus[abi_x86_32,X]
 	sys-libs/libudev-compat[abi_x86_32]
-	sys-libs/zlib[abi_x86_32]
 	sys-process/lsof
-	virtual/libusb[abi_x86_32]
 	virtual/opengl[abi_x86_32]
 	virtual/ttf-fonts
-	x11-libs/gdk-pixbuf[abi_x86_32]
-	x11-libs/gtk+:2[abi_x86_32,cups]
-	x11-libs/libICE[abi_x86_32]
-	x11-libs/libSM[abi_x86_32]
-	x11-libs/libvdpau[abi_x86_32]
-	x11-libs/libX11[abi_x86_32]
-	x11-libs/libXcomposite[abi_x86_32]
-	x11-libs/libXcursor[abi_x86_32]
-	x11-libs/libXdamage[abi_x86_32]
-	x11-libs/libXext[abi_x86_32]
-	x11-libs/libXfixes[abi_x86_32]
-	x11-libs/libXi[abi_x86_32]
-	x11-libs/libXinerama[abi_x86_32]
-	x11-libs/libXrandr[abi_x86_32]
-	x11-libs/libXrender[abi_x86_32]
-	x11-libs/libXScrnSaver[abi_x86_32]
-	x11-libs/libXtst[abi_x86_32]
-	x11-libs/pango[abi_x86_32]
+	!x11-misc/virtualgl[-abi_x86_32]
+
+	steamruntime? (
+		!sys-apps/dbus[abi_x86_32,-X]
+		!x11-libs/cairo[abi_x86_32,-X]
+		!x11-libs/gtk+:2[abi_x86_32,-cups]
+	)
+
+	!steamruntime? (
+		>=app-accessibility/at-spi2-core-2.46.0:2[abi_x86_32]
+		app-arch/bzip2[abi_x86_32]
+		app-i18n/ibus
+		dev-libs/dbus-glib[abi_x86_32]
+		dev-libs/expat[abi_x86_32]
+		dev-libs/glib:2[abi_x86_32]
+		dev-libs/nspr[abi_x86_32]
+		dev-libs/nss[abi_x86_32]
+		media-libs/alsa-lib[abi_x86_32]
+		media-libs/freetype[abi_x86_32]
+		media-libs/libpng-compat:1.2
+		media-libs/libva:0/2[abi_x86_32]
+		media-libs/openal[abi_x86_32]
+		media-video/pipewire:0/0.4[abi_x86_32]
+		net-misc/curl[abi_x86_32]
+		net-misc/networkmanager[abi_x86_32]
+		net-print/cups
+		sys-apps/dbus[abi_x86_32,X]
+		sys-libs/zlib[abi_x86_32]
+		virtual/libusb[abi_x86_32]
+		x11-libs/gdk-pixbuf[abi_x86_32]
+		x11-libs/gtk+:2[abi_x86_32,cups]
+		x11-libs/libICE[abi_x86_32]
+		x11-libs/libSM[abi_x86_32]
+		x11-libs/libvdpau[abi_x86_32]
+		x11-libs/libX11[abi_x86_32]
+		x11-libs/libXcomposite[abi_x86_32]
+		x11-libs/libXcursor[abi_x86_32]
+		x11-libs/libXdamage[abi_x86_32]
+		x11-libs/libXext[abi_x86_32]
+		x11-libs/libXfixes[abi_x86_32]
+		x11-libs/libXi[abi_x86_32]
+		x11-libs/libXinerama[abi_x86_32]
+		x11-libs/libXrandr[abi_x86_32]
+		x11-libs/libXrender[abi_x86_32]
+		x11-libs/libXScrnSaver[abi_x86_32]
+		x11-libs/libXtst[abi_x86_32]
+		x11-libs/pango[abi_x86_32]
+
+		dialogs? ( || (
+			>=gnome-extra/zenity-3
+			x11-terms/xterm
+		) )
+
+		trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
+	)
 
 	desktop-portal? ( sys-apps/xdg-desktop-portal )
 	pulseaudio? ( media-libs/libpulse[abi_x86_32] )
 	!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 	!steamruntime? ( games-util/esteam )
 	steamvr? ( sys-apps/usbutils )
-	trayicon? ( dev-libs/libappindicator:2[abi_x86_32] )
-
-	dialogs? ( || (
-		>=gnome-extra/zenity-3
-		x11-terms/xterm
-	) )
+	video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32] )
 
 	joystick? (
 		udev? ( games-util/game-device-udev-rules )
@@ -91,9 +104,6 @@ RDEPEND="
 	amd64? (
 		>=sys-devel/gcc-4.6.0[multilib]
 		>=sys-libs/glibc-2.15[multilib]
-		!media-libs/mesa[-abi_x86_32]
-		!x11-misc/virtualgl[-abi_x86_32]
-		video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32] )
 	)
 
 	x86? (
@@ -175,8 +185,8 @@ pkg_postinst() {
 	if use steamruntime; then
 		elog "You have enabled the Steam runtime environment by default."
 		elog "Steam will use bundled libraries if they are missing from"
-		elog "your Gentoo system. Try setting STEAM_RUNTIME=0 to"
-		elog "temporarily disable the runtime if you have issues."
+		elog "your Gentoo system. Try disabling the runtime with the"
+		elog "steamruntime USE flag if you have issues."
 		elog ""
 	else
 		elog "You have disabled the Steam runtime environment by default."
