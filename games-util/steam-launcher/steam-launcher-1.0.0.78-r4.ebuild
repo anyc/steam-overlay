@@ -35,7 +35,6 @@ RDEPEND="
 	steamruntime? (
 		!sys-apps/dbus[abi_x86_32,-X]
 		!x11-libs/cairo[abi_x86_32,-X]
-		!x11-libs/gtk+:2[abi_x86_32,-cups]
 	)
 
 	!steamruntime? (
@@ -60,7 +59,7 @@ RDEPEND="
 		sys-libs/zlib[abi_x86_32]
 		virtual/libusb[abi_x86_32]
 		x11-libs/gdk-pixbuf[abi_x86_32]
-		x11-libs/gtk+:2[abi_x86_32,cups]
+		x11-libs/gtk+:2[abi_x86_32]
 		x11-libs/libICE[abi_x86_32]
 		x11-libs/libSM[abi_x86_32]
 		x11-libs/libvdpau[abi_x86_32]
