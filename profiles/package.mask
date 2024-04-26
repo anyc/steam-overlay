@@ -2,6 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # James Le Cuirot <chewi@gentoo.org> (2024-04-26)
+# Superseded by games-util/steam-launcher for simplicity. Removal on 2024-05-29.
+games-util/steam-client-meta
+games-util/steam-meta
+
+# James Le Cuirot <chewi@gentoo.org> (2024-04-26)
 # Not required by Steam any more. Probably never required by games. Removal on
 # 2024-05-29. See https://github.com/anyc/steam-overlay/issues/357.
 net-libs/libnm-glib
