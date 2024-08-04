@@ -342,6 +342,7 @@ UNBUNDLEABLES=(
 	"Sid Meier's Civilization V"
 	"Skullgirls"
 	"SpeedRunners"
+	"Terraria"
 	"This War of Mine"
 	"Tomb Raider"
 	"Trine 2"
