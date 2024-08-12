@@ -1,0 +1,53 @@
+Avoid the gtk-doc dependency.
+
+diff -Naur a/configure.ac b/configure.ac
+--- a/configure.ac	2020-07-06 14:22:59.000000000 +0100
++++ b/configure.ac	2024-08-12 23:30:08.754675427 +0100
+@@ -33,7 +33,6 @@
+ # GTK Doc
+ ###########################
+ 
+-GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+ 
+ 
+ ###########################
+@@ -215,10 +214,6 @@
+ bindings/vala/examples/Makefile
+ tests/Makefile
+ example/Makefile
+-docs/Makefile
+-docs/reference/Makefile
+-docs/reference/version.xml
+-docs/reference/libappindicator-docs.sgml
+ ])
+ 
+ if test "x$has_mono" = "xtrue" ; then
+diff -Naur a/Makefile.am b/Makefile.am
+--- a/Makefile.am	2020-07-06 14:22:59.000000000 +0100
++++ b/Makefile.am	2024-08-12 23:30:36.491482353 +0100
+@@ -2,8 +2,7 @@
+ 
+ SUBDIRS = \
+       src		\
+-	  bindings	\
+-	  docs
++	  bindings
+ 
+ # FIXME: Disabled, vala error
+ #	  example	
+@@ -14,14 +13,12 @@
+ 
+ EXTRA_DIST = \
+ 	m4/introspection.m4 \
+-	gtk-doc.make \
+ 	omf.make \
+-	xmldocs.make \
+ 	autogen.sh \
+ 	COPYING.LGPL.2.1 \
+ 	ChangeLog
+ 
+-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-localinstall --enable-introspection
++DISTCHECK_CONFIGURE_FLAGS = --enable-localinstall --enable-introspection
+ 
+ dist-hook:
+ 	@if test -d "$(top_srcdir)/.bzr"; \
