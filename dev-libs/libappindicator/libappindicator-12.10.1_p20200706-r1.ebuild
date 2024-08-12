@@ -1,7 +1,7 @@
 # Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit autotools multilib-minimal
 
@@ -11,6 +11,7 @@ HOMEPAGE="https://launchpad.net/libappindicator"
 MY_PV="${PV%_p*}"
 PATCH_VERSION="${PV#*_p}"
 SRC_URI="mirror://ubuntu/pool/main/liba/${PN}/${PN}_${MY_PV}+20.10.${PATCH_VERSION}.1.orig.tar.gz"
+S="${WORKDIR}"
 
 LICENSE="LGPL-2.1 LGPL-3"
 SLOT="2"
@@ -31,8 +32,6 @@ BDEPEND="
 	test? ( dev-util/dbus-test-runner )
 "
 
-S="${WORKDIR}"
-
 # FIXME: tests keep trying to access dirs they don't have access, feel free
 # to report a bug about how to avoid that
 RESTRICT="test"
@@ -52,7 +51,6 @@ src_prepare() {
 multilib_src_configure() {
 	ECONF_SOURCE="${S}" \
 	econf \
-		--disable-static \
 		--with-gtk=2 \
 		--disable-introspection
 }
