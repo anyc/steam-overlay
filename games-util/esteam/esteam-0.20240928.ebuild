@@ -7,6 +7,7 @@ inherit prefix
 
 DESCRIPTION="Scan Steam libraries to generate and emerge a Portage set"
 HOMEPAGE="https://github.com/anyc/steam-overlay"
+S="${WORKDIR}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -16,8 +17,6 @@ RDEPEND="
 	app-misc/pax-utils
 	sys-apps/gentoo-functions
 "
-
-S="${WORKDIR}"
 
 src_install() {
 	newbin $(prefixify_ro "${FILESDIR}"/script.bash) ${PN}
