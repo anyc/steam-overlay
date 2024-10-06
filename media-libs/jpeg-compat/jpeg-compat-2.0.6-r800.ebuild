@@ -10,7 +10,8 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Accelerated JPEG library (libjpeg.so.8 ABI provided by libjpeg-turbo)"
 HOMEPAGE="https://libjpeg-turbo.org/ https://sourceforge.net/projects/libjpeg-turbo/"
-SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}.tar.gz"
+SRC_URI="https://downloads.sourceforge.net/${MY_PN}/${MY_P}.tar.gz"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="BSD IJG ZLIB"
 SLOT="8"
@@ -30,7 +31,6 @@ RDEPEND="
 	!<media-libs/libjpeg-turbo-1.3.0-r2
 "
 
-S="${WORKDIR}/${MY_P}"
 DOCS=()
 
 multilib_src_configure() {
