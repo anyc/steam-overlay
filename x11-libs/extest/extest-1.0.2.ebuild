@@ -55,6 +55,8 @@ CRATES="
 	wyz@0.5.1
 "
 
+RUST_MULTILIB=1
+
 inherit cargo multibuild multilib-minimal rust-toolchain
 
 DESCRIPTION="X11 XTEST Reimplementation for Steam Controller on Wayland"
@@ -72,9 +74,6 @@ DEPEND=""
 RDEPEND="${DEPEND}
 	dev-libs/libevdev[${MULTILIB_USEDEP}]
 	dev-libs/wayland[${MULTILIB_USEDEP}]
-"
-BDEPEND="
-	virtual/rust[${MULTILIB_USEDEP}]
 "
 
 # rust does not use *FLAGS from make.conf, silence portage warning
