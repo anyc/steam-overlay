@@ -14,7 +14,7 @@ SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
 
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayicon +udev video_cards_nvidia wayland"
 RESTRICT="bindist mirror test"
 
@@ -102,15 +102,8 @@ RDEPEND="
 		) )
 	)
 
-	amd64? (
-		>=sys-devel/gcc-4.6.0[multilib]
-		>=sys-libs/glibc-2.15[multilib]
-	)
-
-	x86? (
-		>=sys-devel/gcc-4.6.0
-		>=sys-libs/glibc-2.15
-	)
+	>=sys-devel/gcc-4.6.0[multilib]
+	>=sys-libs/glibc-2.15[multilib]
 "
 
 S="${WORKDIR}/${PN}"
