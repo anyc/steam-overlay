@@ -11,6 +11,7 @@ inherit desktop linux-info pax-utils prefix xdg
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="https://store.steampowered.com"
 SRC_URI="https://repo.steampowered.com/steam/archive/stable/steam_${PV}.tar.gz"
+S="${WORKDIR}/${PN}"
 
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
@@ -30,6 +31,7 @@ RDEPEND="
 	sys-process/lsof
 	virtual/opengl[abi_x86_32]
 	virtual/ttf-fonts
+	x11-libs/libdrm[abi_x86_32]
 	!x11-misc/virtualgl[-abi_x86_32]
 
 	steamruntime? (
@@ -60,7 +62,6 @@ RDEPEND="
 		virtual/libusb[abi_x86_32]
 		x11-libs/gdk-pixbuf[abi_x86_32]
 		x11-libs/gtk+:2[abi_x86_32]
-		x11-libs/libdrm[abi_x86_32]
 		x11-libs/libICE[abi_x86_32]
 		x11-libs/libSM[abi_x86_32]
 		x11-libs/libvdpau[abi_x86_32]
@@ -92,7 +93,9 @@ RDEPEND="
 	!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 	!steamruntime? ( games-util/esteam )
 	steamvr? ( sys-apps/usbutils )
-	video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32] )
+
+	!video_cards_nvidia? ( media-libs/mesa[abi_x86_32,opengl,X] )
+	video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32,X] )
 
 	joystick? (
 		udev? ( games-util/game-device-udev-rules )
@@ -105,8 +108,6 @@ RDEPEND="
 	>=sys-devel/gcc-4.6.0[multilib]
 	>=sys-libs/glibc-2.15[multilib]
 "
-
-S="${WORKDIR}/${PN}"
 
 pkg_setup() {
 	linux-info_pkg_setup
