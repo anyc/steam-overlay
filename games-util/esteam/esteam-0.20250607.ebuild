@@ -11,7 +11,7 @@ S="${WORKDIR}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+pulseaudio"
+IUSE="+pulseaudio systemd"
 
 RDEPEND="
 	app-misc/pax-utils
@@ -26,6 +26,11 @@ src_install() {
 
 	if ! use pulseaudio; then
 		sed -i 's:=media-libs/libpulse\b:=media-sound/apulse:g' \
+			"${ED}"/usr/share/${PN}/database.bash || die
+	fi
+
+	if use systemd; then
+		sed -i 's:=sys-apps/systemd-utils\b:=sys-apps/systemd:g' \
 			"${ED}"/usr/share/${PN}/database.bash || die
 	fi
 }
