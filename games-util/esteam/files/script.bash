@@ -99,7 +99,7 @@ for HOME in $(getent passwd | cut -d: -f6 | sort -u); do
 		fi
 
 		IFS=$'\n'
-		for DIR in $(grep -hs $'^\t\t"path"' "${DIR}"/[Ss]team[Aa]pps/libraryfolders.vdf | cut -d\" -f4); do
+		for DIR in $(grep -hs $'^\t\t"path"' "${DIR}"/[Ss]team[Aa]pps/libraryfolders.vdf /dev/null | cut -d\" -f4); do
 			if [[ -d ${DIR}/steamapps/common || -d ${DIR}/SteamApps/common ]]; then
 				DIRS[${DIR}]=1
 			fi
