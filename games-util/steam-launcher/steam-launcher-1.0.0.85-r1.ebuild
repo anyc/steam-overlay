@@ -48,6 +48,7 @@ RDEPEND="
 		dev-libs/glib:2[abi_x86_32]
 		dev-libs/nspr[abi_x86_32]
 		dev-libs/nss[abi_x86_32]
+		games-util/esteam
 		media-libs/alsa-lib[abi_x86_32]
 		media-libs/freetype[abi_x86_32]
 		media-libs/libpng-compat:1.2
@@ -91,7 +92,6 @@ RDEPEND="
 	desktop-portal? ( sys-apps/xdg-desktop-portal )
 	pulseaudio? ( media-libs/libpulse[abi_x86_32] )
 	!pulseaudio? ( media-sound/apulse[abi_x86_32] )
-	!steamruntime? ( games-util/esteam )
 	steamvr? ( sys-apps/usbutils )
 
 	!video_cards_nvidia? ( media-libs/mesa[abi_x86_32,opengl,X] )
