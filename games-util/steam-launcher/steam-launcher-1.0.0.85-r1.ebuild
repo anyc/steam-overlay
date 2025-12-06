@@ -109,6 +109,10 @@ RDEPEND="
 	>=sys-libs/glibc-2.15[multilib]
 "
 
+PATCHES=(
+	"${FILESDIR}"/apply-steam-non-gtar.patch
+)
+
 pkg_setup() {
 	linux-info_pkg_setup
 
@@ -160,6 +164,9 @@ src_install() {
 	exeinto /usr/lib/steam
 	doexe bin_steam.sh
 	domenu steam.desktop
+
+	insinto /usr/lib/steam
+	doins "${FILESDIR}"/steam-non-gtar.patch
 
 	dodoc README debian/changelog
 	doman steam.6

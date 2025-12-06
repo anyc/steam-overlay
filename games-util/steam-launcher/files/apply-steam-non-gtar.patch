@@ -1,0 +1,8 @@
+--- a/bin_steam.sh
++++ b/bin_steam.sh
+@@ -310,4 +310,4 @@
+ # go to the install directory and run the client
+ cd "$LAUNCHSTEAMDIR"
+ 
+-exec "$LAUNCHSTEAMDIR/$STEAMBOOTSTRAP" ${log_opened+-srt-logger-opened} "$@"
++exec patch -s -f -o - --dry-run "$LAUNCHSTEAMDIR/$STEAMBOOTSTRAP" "/usr/lib/${STEAMPACKAGE}/steam-non-gtar.patch" | exec -a "$LAUNCHSTEAMDIR/$STEAMBOOTSTRAP" bash -s -- ${log_opened+-srt-logger-opened} "$@"

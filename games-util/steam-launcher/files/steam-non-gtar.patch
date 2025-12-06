@@ -1,0 +1,17 @@
+--- steam.sh.orig
++++ steam.sh
+@@ -342,11 +342,11 @@
+ 		BF=""
+ 		;;
+ 	esac
+-	if [ "${BF}" ]; then
++	if [ "${BF}" ] && type -P gtar &>/dev/null; then
+ 		if [ -n "${STEAM_ZENITY}" ]; then
+-			tar --blocking-factor=${BF} --checkpoint=1 --checkpoint-action='exec=echo $TAR_CHECKPOINT' -xf "$2" -C "$3" | "${STEAM_ZENITY}" --progress --auto-close --no-cancel --width 400 --text="$1"
++			gtar --blocking-factor=${BF} --checkpoint=1 --checkpoint-action='exec=echo $TAR_CHECKPOINT' -xf "$2" -C "$3" | "${STEAM_ZENITY}" --progress --auto-close --no-cancel --width 400 --text="$1"
+ 		else
+-			tar --blocking-factor=${BF} --checkpoint=1 --checkpoint-action='exec=echo $TAR_CHECKPOINT' -xf "$2" -C "$3"
++			gtar --blocking-factor=${BF} --checkpoint=1 --checkpoint-action='exec=echo $TAR_CHECKPOINT' -xf "$2" -C "$3"
+ 		fi
+ 		return ${PIPESTATUS[0]}
+ 	else
