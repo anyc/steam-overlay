@@ -23,7 +23,7 @@ RESTRICT="bindist mirror test"
 # find ~/.steam/root/ -exec readelf -d {} + 2>/dev/null | grep -F NEEDED | sort -u | grep -F -v -f <(ls -1 ~/.steam/root/ubuntu12_32/)
 
 RDEPEND="
-	app-arch/tar
+	app-alternatives/tar
 	app-arch/xz-utils
 	app-shells/bash
 	media-libs/fontconfig[abi_x86_32]
