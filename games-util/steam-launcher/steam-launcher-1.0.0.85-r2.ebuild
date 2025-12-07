@@ -16,7 +16,7 @@ S="${WORKDIR}/${PN}"
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayicon +udev video_cards_nvidia wayland"
+IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayicon +udev video_cards_nvidia +vulkan wayland"
 RESTRICT="bindist mirror test"
 
 # This can help to determine the dependencies:
@@ -93,9 +93,15 @@ RDEPEND="
 	pulseaudio? ( media-libs/libpulse[abi_x86_32] )
 	!pulseaudio? ( media-sound/apulse[abi_x86_32] )
 	steamvr? ( sys-apps/usbutils )
+	vulkan? ( media-libs/vulkan-loader[abi_x86_32,wayland?,X] )
 
-	!video_cards_nvidia? ( media-libs/mesa[abi_x86_32,opengl,X] )
-	video_cards_nvidia? ( x11-drivers/nvidia-drivers[abi_x86_32,X] )
+	!video_cards_nvidia? (
+		media-libs/mesa[abi_x86_32,opengl,X]
+	)
+	video_cards_nvidia? (
+		x11-drivers/nvidia-drivers[abi_x86_32,X]
+		vulkan? ( media-libs/vulkan-loader[layers] )
+	)
 
 	joystick? (
 		udev? ( games-util/game-device-udev-rules )
