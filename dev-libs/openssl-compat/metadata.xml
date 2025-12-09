@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>chewi@gentoo.org</email>
+		<name>James Le Cuirot</name>
+	</maintainer>
+	<use>
+		<flag name="bindist">Disable/Restrict EC algorithms (as they seem to be patented) -- note: changes the ABI</flag>
+		<flag name="tls-compression">Enable support for discouraged TLS compression</flag>
+	</use>
+	<upstream>
+		<remote-id type="cpe">cpe:/a:openssl:openssl</remote-id>
+		<remote-id type="github">openssl/openssl</remote-id>
+	</upstream>
+</pkgmetadata>
