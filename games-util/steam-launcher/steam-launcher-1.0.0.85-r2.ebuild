@@ -100,7 +100,7 @@ RDEPEND="
 	)
 	video_cards_nvidia? (
 		x11-drivers/nvidia-drivers[abi_x86_32,X]
-		vulkan? ( media-libs/vulkan-loader[layers] )
+		vulkan? ( media-libs/vulkan-layers[abi_x86_32,wayland?,X] )
 	)
 
 	joystick? (
