@@ -57,7 +57,7 @@ CRATES="
 
 RUST_MULTILIB=1
 
-inherit cargo multilib-minimal rust-toolchain
+inherit cargo multilib-minimal
 
 DESCRIPTION="X11 XTEST Reimplementation for Steam Controller on Wayland"
 HOMEPAGE="https://github.com/Supreeeme/extest"
@@ -84,19 +84,20 @@ QA_FLAGS_IGNORED="
 
 src_prepare() {
 	default
+	rm -v .cargo/config.toml || die
 	multilib_copy_sources
 }
 
 multilib_src_compile() {
-	cargo_src_compile --target="$(rust_abi)"
+	cargo_src_compile
 }
 
 multilib_src_test() {
-	cargo_src_test --target="$(rust_abi)"
+	cargo_src_test
 }
 
 multilib_src_install() {
-	dolib.so "${BUILD_DIR}/target/$(rust_abi)/$(usex debug "debug" "release")/libextest.so"
+	dolib.so "${BUILD_DIR}/$(cargo_target_dir)/libextest.so"
 }
 
 pkg_postinst() {
