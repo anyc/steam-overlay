@@ -16,7 +16,7 @@ S="${WORKDIR}/${PN}"
 LICENSE="ValveSteamLicense MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayicon +udev video_cards_nvidia +vulkan wayland"
+IUSE="console +desktop-portal +dialogs +joystick +pulseaudio +steamruntime steamvr trayicon +udev video_cards_nvidia +vulkan wayland"
 RESTRICT="bindist mirror test"
 
 # This can help to determine the dependencies:
@@ -160,6 +160,9 @@ src_prepare() {
 	# Still need EPREFIX in the sed replacements above because the
 	# regular expression used by hprefixify doesn't match there.
 	hprefixify bin_steam.sh steam-wrapper.sh
+
+	use console && \
+		sed -i -e 's:/usr/bin/steam:/usr/bin/steam -console:' steam.desktop
 }
 
 src_install() {
