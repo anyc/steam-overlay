@@ -1,0 +1,3 @@
+# Disabling the runtime is no longer supported, and this USE flag will be
+# dropped entirely soon. Please read the news item.
+games-util/steam-launcher steamruntime

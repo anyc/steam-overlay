@@ -1,8 +1,13 @@
 #!/bin/bash
 
-# Set a default STEAM_RUNTIME value.
-: ${STEAM_RUNTIME:=@@STEAM_RUNTIME@@}
-export STEAM_RUNTIME
+# Disable STEAM_RUNTIME if preferred. This is unsupported by Valve, and
+# steam-overlay will stop making it configurable with a USE flag soon. Never
+# explicitly set STEAM_RUNTIME=1 as it breaks things. Rely on the default.
+if [[ ${STEAM_RUNTIME:-@@STEAM_RUNTIME@@} == 0 ]]; then
+	export STEAM_RUNTIME=0
+else
+	unset STEAM_RUNTIME
+fi
 
 # Gentoo's lsb-release doesn't set this.
 export DISTRIB_RELEASE="@@PVR@@"

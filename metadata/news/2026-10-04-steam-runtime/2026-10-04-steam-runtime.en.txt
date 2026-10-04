@@ -1,0 +1,57 @@
+Title: Disabling the Steam runtime is no longer supported
+Author: James Le Cuirot <chewi@gentoo.org>
+Posted: 2026-10-04
+Revision: 1
+News-Item-Format: 2.0
+Display-If-Installed: games-util/steam-launcher[-steamruntime]
+
+You currently have Valve's Steam client installed with its runtime
+disabled. Disabling the runtime traditionally told Steam to use
+libraries from the host instead. This has never been supported by Valve,
+and it is no longer very effective. It has already long been the case
+that the client will use host libraries anyway, only falling back to the
+runtime when a host library a missing. Almost all games, even very old
+native ones, are now run in a container by default, where it is not
+possible to disable the runtime.
+
+As such, steam-overlay is now shifting to a supported setup by forcibly
+enabling the `steamruntime` USE flag. The intention is to keep the USE
+flag and the associated esteam package around for 2 months until
+2026-12-04. With these gone, most of the steam-overlay packages will be
+largely redundant, so the steam-launcher and extest packages will
+migrate to the main Gentoo repository, and the overlay will be retired.
+
+If you used esteam to remove bundled libraries from some games, then you
+may need to restore those libraries for each game by navigating to
+Properties -> Installed Files -> Verify integrity of game files.
+
+If you want to run some games directly on the host with host libraries
+preferred, you can still do so by selecting Legacy Steam Runtime under
+Properties -> Compatibility, but it is your responsibility to install
+those libraries.
+
+Do not assume that the older Steam runtimes used by older games only
+have ancient versions of libraries. Obviously, compatibility needs to be
+maintained, as that is the point of the runtime, but while writing this,
+I found that the "Scout" runtime had the same version of libSDL2 as
+Gentoo and a newer version of libSDL1.2 than Gentoo.
+
+It is worth bearing in mind that, despite the success of the Steam Deck,
+relatively few games are Linux native. New native games tend to be built
+on large engines like Unity or Unreal, and if these do use traditional
+free software libraries at all, they are statically linked.
+
+Many older native games have been left to rot while their Windows
+counterparts have continued to receive updates, making Proton the more
+sensible choice in these cases. With Wine and Proton now being able to
+run 32-bit binaries on a purely 64-bit Linux system, you may decide to
+drop 32-bit support from your system entirely once the 64-bit Steam
+client goes out of testing, which will hopefully be soon.
+
+If Steam no longer meets your needs, you may want to consider Lutris
+instead, but it has broadly the same options, such as using host
+libraries, its own runtime, or Steam's "Sniper" runtime in a container.
+It does nothing to ensure you have the right host libraries installed.
+
+Please give any feedback at:
+https://github.com/anyc/steam-overlay/issues/386
