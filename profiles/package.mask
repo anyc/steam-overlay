@@ -1,0 +1,6 @@
+# Copyright 2026 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# The 64-bit client is masked for testing. Please do try it and give feedback in
+# https://github.com/anyc/steam-overlay/issues/383.
+>=games-util/steam-launcher-1.0.0.87_p0
