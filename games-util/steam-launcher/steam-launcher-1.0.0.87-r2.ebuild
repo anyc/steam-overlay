@@ -106,7 +106,7 @@ RDEPEND="
 	joystick? (
 		udev? ( games-util/game-device-udev-rules )
 		wayland? ( || (
-			x11-libs/extest[abi_x86_32]
+			x11-libs/extest[abi_x86_32,abi_x86_64]
 			>=x11-base/xwayland-23.2.1[libei(+)]
 		) )
 	)
@@ -154,6 +154,7 @@ src_prepare() {
 		-e "s#@@PVR@@#${PVR}#g" \
 		-e "s#@@GENTOO_LD_LIBRARY_PATH@@#$(lib_path_entries debiancompat fltk)#g" \
 		-e "s#@@GENTOO_X86_LIBDIR@@#${EPREFIX}/usr/$(ABI=x86 get_libdir)#g" \
+		-e "s#@@GENTOO_AMD64_LIBDIR@@#${EPREFIX}/usr/$(ABI=amd64 get_libdir)#g" \
 		-e "s#@@STEAM_RUNTIME@@#$(usex steamruntime 1 0)#g" \
 		"${FILESDIR}"/steam-wrapper.sh > steam-wrapper.sh || die
 
