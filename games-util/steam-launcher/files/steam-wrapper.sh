@@ -16,8 +16,12 @@ export DISTRIB_RELEASE="@@PVR@@"
 export LD_LIBRARY_PATH+="${LD_LIBRARY_PATH+:}@@GENTOO_LD_LIBRARY_PATH@@"
 
 # Preload the extest library when running in a Wayland session.
-[[ -f "@@GENTOO_X86_LIBDIR@@/libextest.so" && ${XDG_SESSION_TYPE} == wayland ]] &&
-	export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_X86_LIBDIR@@/libextest.so"
+if [[ ${XDG_SESSION_TYPE} == wayland ]]; then
+	[[ -f "@@GENTOO_AMD64_LIBDIR@@/libextest.so" ]] &&
+		export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_AMD64_LIBDIR@@/libextest.so"
+	[[ -f "@@GENTOO_X86_LIBDIR@@/libextest.so" ]] &&
+		export LD_PRELOAD+="${LD_PRELOAD+:}@@GENTOO_X86_LIBDIR@@/libextest.so"
+fi
 
 # Preload libstdc++ on default-libcxx systems to avoid crashes. Loading the
 # 64-bit library prevents Steam from working at all, so only load the 32-bit
